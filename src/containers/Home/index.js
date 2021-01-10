@@ -1,12 +1,10 @@
 import React from "react";
-import SmallButton from "components/Button.js/SmallButton";
+import Input from "components/Input";
 
 const Home = () => {
   return (
     <>
-      <SmallButton>아이템</SmallButton>
-      <SmallButton>아이템</SmallButton>
-      <SmallButton>아이템</SmallButton>
+      <Input width={"200px"} children={"Name"} />
     </>
   );
 };
