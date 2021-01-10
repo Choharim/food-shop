@@ -1,17 +1,11 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const SmallButton = ({ children, ...props }) => {
   return <Button {...props}>{children}</Button>;
 };
 
 export default SmallButton;
-
-const ButtonContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
 
 const Button = styled.button`
   display: flex;
