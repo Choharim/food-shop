@@ -1,8 +1,14 @@
 import React from "react";
-import BigButton from "components/Button.js/BigButton";
+import SmallButton from "components/Button.js/SmallButton";
 
 const Home = () => {
-  return <BigButton>완료</BigButton>;
+  return (
+    <>
+      <SmallButton>아이템</SmallButton>
+      <SmallButton>아이템</SmallButton>
+      <SmallButton>아이템</SmallButton>
+    </>
+  );
 };
 
 export default Home;
