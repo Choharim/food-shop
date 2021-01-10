@@ -1,11 +1,12 @@
 import React from "react";
 import Home from "containers/Home/index";
+import Frame from "components/Frame";
 
 const HomePage = () => {
   return (
-    <div>
+    <Frame>
       <Home />
-    </div>
+    </Frame>
   );
 };
 
