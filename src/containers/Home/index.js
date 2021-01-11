@@ -3,6 +3,7 @@ import styled from "styled-components";
 import MainText from "./_fragments/MainText";
 import MenuSlider from "./_fragments/MenuSlider";
 import Categories from "./_fragments/Categories";
+import ClassModal from "./_fragments/ClassModal";
 import { Data } from "Data";
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
       <MainText />
       <MenuSlider foodSlider={foodSlider} />
       <Categories filterFoodArray={filterFoodArray} />
+      <ClassModal />
     </HomeContainer>
   );
 };

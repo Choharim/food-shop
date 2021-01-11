@@ -79,6 +79,7 @@ const NavbarBox = styled.div`
   height: 100%;
   z-index: 100;
   background-color: #493c3b;
+  transition: 0.2s ease;
   ${(props) =>
     props.showNav &&
     css`

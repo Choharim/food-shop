@@ -26,7 +26,6 @@ const ModalBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
   visibility: hidden;
   background-color: rgba(0, 0, 0, 0.5);
   transition: 0.2s ease;
@@ -42,16 +41,14 @@ const ModalContainer = styled.div`
   max-width: 600px;
   width: 100%;
   z-index: 100;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  opacity: 1;
+  visibility: visible;
   > div {
     transition: 0.2s ease;
   }
   > div {
     position: absolute;
-    bottom: -50px;
+    bottom: -260px;
     ${(props) =>
       props.visible &&
       css`
