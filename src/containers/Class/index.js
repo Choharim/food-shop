@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { AiFillStar } from "react-icons/ai";
 import { Data } from "Data";
 
 const Class = () => {
@@ -20,7 +21,16 @@ const Class = () => {
                 index >= 6 * page && (
                   <ClassCard key={index}>
                     <ClassPicture image={foodClass.image2}></ClassPicture>
-                    <ClassName>{foodClass.name}</ClassName>
+                    <ClassName>{foodClass.name} (Class)</ClassName>
+                    <ClassContents>
+                      <DiffText>난이도</DiffText>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        {[...Array(foodClass.difficulty)].map((a, i) => (
+                          <Star key={i} />
+                        ))}
+                      </div>
+                      <Price>{foodClass.price * 2} 원</Price>
+                    </ClassContents>
                   </ClassCard>
                 )
             )
@@ -64,7 +74,7 @@ const CardContainer = styled.div`
 const ClassCard = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 40%;
   margin-bottom: 20px;
   background-color: white;
@@ -76,14 +86,42 @@ const ClassCard = styled.div`
 
 const ClassPicture = styled.div`
   width: 100%;
-  height: 200px;
+  height: 160px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background-image: url(${(props) => props.image});
   background-size: cover;
 `;
 
-const ClassName = styled.span``;
+const ClassName = styled.span`
+  margin: 10px 0 0 10px;
+  font-size: 16px;
+  color: #493c3b;
+  font-weight: bolder;
+`;
+
+const ClassContents = styled.div`
+  width: calc(100% - 20px);
+  padding: 5px 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const DiffText = styled.span`
+  color: #493c3b;
+  font-size: 13px;
+`;
+
+const Star = styled(AiFillStar)`
+  font-size: 1.3rem;
+  color: #ffdc00;
+`;
+
+const Price = styled.span`
+  font-size: 16px;
+  align-self: flex-end;
+`;
 
 const PageMoveBtnContainer = styled.div`
   width: 100%;
