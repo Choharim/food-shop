@@ -1,6 +1,6 @@
 import React from "react";
 import HomePage from "pages/Home/index";
-import { GlobalStyle } from "./GlobalStyle";
+import { createGlobalStyle } from "styled-components";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -19,3 +19,12 @@ function App() {
 }
 
 export default App;
+
+const GlobalStyle = createGlobalStyle`
+  body {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Roboto', sans-serif;
+  }
+`;

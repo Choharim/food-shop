@@ -1,9 +1,9 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-const Modal = ({ visible, children, position, ...props }) => {
+const Modal = ({ closeModal, visible, children, position, ...props }) => {
   return (
-    <ModalBackground {...props} visible={visible}>
+    <ModalBackground {...props} visible={visible} onClick={closeModal}>
       <ModalContainer
         visible={visible}
         position={position}
