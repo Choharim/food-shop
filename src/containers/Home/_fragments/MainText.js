@@ -4,7 +4,7 @@ import styled from "styled-components";
 const MainText = () => {
   return (
     <TextContainer>
-      <Text>더 건강하게 더 오랫동안 </Text>
+      <Text>더 건강하게, 더 오랫동안 </Text>
       <Text>함께하기 위해</Text>
     </TextContainer>
   );

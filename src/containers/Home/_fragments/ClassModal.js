@@ -5,10 +5,12 @@ import { ImFire } from "react-icons/im";
 import { BsArrowRight } from "react-icons/bs";
 import cookingClass from "images/cookingClass.jpg";
 import { Data } from "Data";
+import BigButton from "components/Button/BigButton";
+import { useHistory } from "react-router-dom";
 
 const ClassModal = () => {
+  let history = useHistory();
   const [showModal, setShowModal] = useState(false);
-  const [difficulty, setDifficulty] = useState({});
   const difficultyData = [
     { score: 1, desc: "매우 쉬워요! 요리 초보자에게 추전합니다!" },
     { score: 2, desc: "칼만 잡을 수 있으면 누구나 가능합니다!" },
@@ -16,9 +18,14 @@ const ClassModal = () => {
     { score: 4, desc: "조금 시간이 걸리고 들어가는 재료가 많지만 재밌어요!" },
     { score: 5, desc: "섬세함이 필요한 레시피에요! 요리 고수가 될거에요!" },
   ];
+  const [difficulty, setDifficulty] = useState(difficultyData[2]);
 
   return (
-    <Modal visible={showModal} closeModal={() => setShowModal(false)}>
+    <Modal
+      bottom={"-480px"}
+      visible={showModal}
+      closeModal={() => setShowModal(false)}
+    >
       <ModalContainer>
         <TouchLineArea onClick={() => setShowModal(!showModal)}>
           <TouchLine></TouchLine>
@@ -38,7 +45,7 @@ const ClassModal = () => {
             <Desc>{difficulty.desc}</Desc>
           </div>
         </Container>
-        <Container>
+        <RecommContainer>
           <Text>추천 수업</Text>
           <div style={{ display: "flex", alignItems: "center" }}>
             <ArrowIcon />
@@ -48,7 +55,8 @@ const ClassModal = () => {
               ) : null
             )}
           </div>
-        </Container>
+        </RecommContainer>
+        <ClassBtn onClick={() => history.push("/class")}>수업 더보기</ClassBtn>
       </ModalContainer>
     </Modal>
   );
@@ -182,6 +190,10 @@ const MoveArrow = keyframes`
   }
 `;
 
+const RecommContainer = styled(Container)`
+  margin-bottom: 100px;
+`;
+
 const ArrowIcon = styled(BsArrowRight)`
   margin-right: 5px;
   font-size: 1.5rem;
@@ -193,4 +205,12 @@ const ClassList = styled.span`
   margin: 0 10px;
   color: #493c3b;
   font-size: 16px;
+`;
+
+const ClassBtn = styled(BigButton)`
+  background-color: #b89995;
+  color: #fbf9f9;
+  &:hover {
+    background-color: #c9aca9;
+  }
 `;

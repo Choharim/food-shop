@@ -1,10 +1,18 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-const Modal = ({ closeModal, visible, children, position, ...props }) => {
+const Modal = ({
+  bottom,
+  closeModal,
+  visible,
+  children,
+  position,
+  ...props
+}) => {
   return (
     <ModalBackground {...props} visible={visible} onClick={closeModal}>
       <ModalContainer
+        bottom={bottom}
         visible={visible}
         position={position}
         onClick={(e) => e.stopPropagation()}
@@ -48,7 +56,7 @@ const ModalContainer = styled.div`
   }
   > div {
     position: absolute;
-    bottom: -400px;
+    bottom: ${(props) => props.bottom};
     ${(props) =>
       props.visible &&
       css`

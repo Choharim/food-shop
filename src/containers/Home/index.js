@@ -30,5 +30,5 @@ const HomeContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background-color: #b89995;
+  // background-color: #b89995;
 `;
