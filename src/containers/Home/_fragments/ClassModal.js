@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Modal from "components/Modal";
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { ImFire } from "react-icons/im";
+import { BsArrowRight } from "react-icons/bs";
 import cookingClass from "images/cookingClass.jpg";
+import { Data } from "Data";
 
 const ClassModal = () => {
   const [showModal, setShowModal] = useState(false);
@@ -12,7 +14,7 @@ const ClassModal = () => {
     { score: 2, desc: "칼만 잡을 수 있으면 누구나 가능합니다!" },
     { score: 3, desc: "복잡하지 않은 간단한 레시피로 진행돼요!" },
     { score: 4, desc: "조금 시간이 걸리고 들어가는 재료가 많지만 재밌어요!" },
-    { score: 5, desc: "섬세함이 필요한 레시피에요! 요리고수에게 추천합니다!" },
+    { score: 5, desc: "섬세함이 필요한 레시피에요! 요리 고수가 될거에요!" },
   ];
 
   return (
@@ -23,8 +25,8 @@ const ClassModal = () => {
         </TouchLineArea>
         <ModalHeadTitle>직접 요리해보고 싶나요?</ModalHeadTitle>
         <ModalPicture></ModalPicture>
-        <DifficultyContainer>
-          <DifficultyText>난이도 선택</DifficultyText>
+        <Container>
+          <Text>난이도 선택</Text>
           <div style={{ display: "flex", alignItems: "center" }}>
             {difficultyData.map((score, index) => (
               <FireContainer key={index} score={difficulty.score}>
@@ -35,7 +37,18 @@ const ClassModal = () => {
             ))}
             <Desc>{difficulty.desc}</Desc>
           </div>
-        </DifficultyContainer>
+        </Container>
+        <Container>
+          <Text>추천 수업</Text>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <ArrowIcon />
+            {Data.map((food, index) =>
+              food.difficulty === difficulty.score ? (
+                <ClassList key={index}>{food.name}</ClassList>
+              ) : null
+            )}
+          </div>
+        </Container>
       </ModalContainer>
     </Modal>
   );
@@ -82,15 +95,16 @@ const ModalPicture = styled.div`
   border-radius: 50%;
 `;
 
-const DifficultyContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding-left: 50px;
+  margin-bottom: 20px;
   width: calc(100% - 50px);
 `;
 
-const DifficultyText = styled.span`
+const Text = styled.span`
   margin-bottom: 5px;
   padding-left: 5px;
   font-size: 16px;
@@ -156,4 +170,27 @@ const Desc = styled.span`
   margin-left: 5px;
   font-size: 13px;
   color: #b89995;
+`;
+
+const MoveArrow = keyframes`
+  from {
+    transform: translateX(0);
+      opacity: 0.1;
+  }to {
+    transform: translateX(10px);
+      opacity: 1;
+  }
+`;
+
+const ArrowIcon = styled(BsArrowRight)`
+  margin-right: 5px;
+  font-size: 1.5rem;
+  color: #493c3b;
+  animation: ${MoveArrow} 1s infinite;
+`;
+
+const ClassList = styled.span`
+  margin: 0 10px;
+  color: #493c3b;
+  font-size: 16px;
 `;

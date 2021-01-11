@@ -48,7 +48,7 @@ const ModalContainer = styled.div`
   }
   > div {
     position: absolute;
-    bottom: -260px;
+    bottom: -400px;
     ${(props) =>
       props.visible &&
       css`
