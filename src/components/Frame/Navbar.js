@@ -23,8 +23,6 @@ const Navbar = () => {
     localStorage.removeItem("currentUser");
   };
 
-  console.log(showNav);
-
   return (
     <>
       <NavbarIcon onClick={() => setShowNav(true)} />

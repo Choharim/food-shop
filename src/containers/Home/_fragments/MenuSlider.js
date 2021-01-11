@@ -39,7 +39,7 @@ const MenuContainer = styled(Slider)`
   display: flex;
   width: 100%;
   height: 370px;
-  margin-top: 150px;
+  margin-top: 15px;
   .slick-dots {
     > li {
       margin: 0 -2px;
