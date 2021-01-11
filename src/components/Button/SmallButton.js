@@ -21,8 +21,4 @@ const Button = styled.button`
   cursor: pointer;
   background-color: ${(props) => props.color};
   color: #7d6765;
-
-  &:hover {
-    background-color: #c9aca9;
-  }
 `;

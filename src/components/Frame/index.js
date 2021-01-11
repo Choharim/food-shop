@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Navbar from "./Navbar";
 
 const Frame = ({ children }) => {
   const [height, setHeight] = useState(0);
@@ -14,6 +15,7 @@ const Frame = ({ children }) => {
 
   return (
     <div style={{ background: "#ccc" }}>
+      <Navbar />
       <Body height={height}>{children}</Body>
     </div>
   );

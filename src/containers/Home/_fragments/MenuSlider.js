@@ -61,7 +61,7 @@ const MenuItemContainer = styled.button`
   padding: 60px 0 20px;
   outline: none;
   border: none;
-  background-color: #eadedd;
+  background-color: #e0cfcd;
   border-radius: 15px;
   cursor: pointer;
 `;

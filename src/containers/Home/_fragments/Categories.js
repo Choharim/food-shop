@@ -3,7 +3,7 @@ import styled from "styled-components";
 import drink from "icons/drink.png";
 import dish from "icons/food.png";
 import snack from "icons/snack.png";
-import SmallButton from "components/Button.js/SmallButton";
+import SmallButton from "components/Button/SmallButton";
 
 const Categories = ({ filterFoodArray }) => {
   const [choice, setChoice] = useState("all");
@@ -11,7 +11,7 @@ const Categories = ({ filterFoodArray }) => {
   return (
     <MenuFilterContainer>
       <MenuFilterItem
-        color={choice === "dish" ? "#c9aca9" : "#eadedd"}
+        color={choice === "dish" ? "#e0cfcd" : "#c9aca9"}
         onClick={() => {
           setChoice("dish");
           filterFoodArray("dish");
@@ -21,7 +21,7 @@ const Categories = ({ filterFoodArray }) => {
         <MenuFilterText>Dish</MenuFilterText>
       </MenuFilterItem>
       <MenuFilterItem
-        color={choice === "drink" ? "#c9aca9" : "#eadedd"}
+        color={choice === "drink" ? "#e0cfcd" : "#c9aca9"}
         onClick={() => {
           setChoice("drink");
           filterFoodArray("drink");
@@ -31,7 +31,7 @@ const Categories = ({ filterFoodArray }) => {
         <MenuFilterText>Drink</MenuFilterText>
       </MenuFilterItem>
       <MenuFilterItem
-        color={choice === "snack" ? "#c9aca9" : "#eadedd"}
+        color={choice === "snack" ? "#e0cfcd" : "#c9aca9"}
         onClick={() => {
           setChoice("snack");
           filterFoodArray("snack");
@@ -60,6 +60,10 @@ const MenuFilterItem = styled(SmallButton)`
   justify-content: center;
   height: 95px;
   width: 95px;
+
+  &:hover {
+    background-color: #e0cfcd;
+  }
 `;
 
 const MenuFilterIcon = styled.img`

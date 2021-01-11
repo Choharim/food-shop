@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "containers/Home/index";
-import Frame from "components/Frame";
+import Frame from "components/Frame/index";
 
 const HomePage = () => {
   return (
