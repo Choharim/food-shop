@@ -49,9 +49,9 @@ const ClassModal = () => {
           <Text>추천 수업</Text>
           <div style={{ display: "flex", alignItems: "center" }}>
             <ArrowIcon />
-            {Data.map((food, index) =>
-              food.difficulty === difficulty.score ? (
-                <ClassList key={index}>{food.name}</ClassList>
+            {Data.map((foodClass, index) =>
+              foodClass.difficulty === difficulty.score ? (
+                <ClassList key={index}>{foodClass.name}</ClassList>
               ) : null
             )}
           </div>

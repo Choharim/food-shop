@@ -1,5 +1,6 @@
 import React from "react";
 import HomePage from "pages/Home/index";
+import ClassPage from "pages/Class/index";
 import { createGlobalStyle } from "styled-components";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -9,8 +10,11 @@ function App() {
       <Router>
         <GlobalStyle />
         <Switch>
-          <Route path="/">
+          <Route path="/" exact>
             <HomePage />
+          </Route>
+          <Route path="/class">
+            <ClassPage />
           </Route>
         </Switch>
       </Router>
