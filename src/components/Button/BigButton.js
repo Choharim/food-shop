@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const BigButton = ({ children, ...props }) => {
   return (
-    <ButtonContainer>
+    <ButtonContainer {...props}>
       <Button {...props}>{children}</Button>
     </ButtonContainer>
   );
@@ -16,6 +16,7 @@ const ButtonContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+  width: ${(props) => props.width};
 `;
 
 const Button = styled.button`

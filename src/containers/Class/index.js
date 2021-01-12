@@ -143,7 +143,6 @@ const Price = styled.span`
 `;
 
 const PageMoveBtnContainer = styled.div`
-  max-width: 600px;
   width: 100%;
   display: flex;
   justify-content: space-evenly;

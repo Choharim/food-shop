@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { BsPlusSquare } from "react-icons/bs";
 import { RiArrowGoBackLine } from "react-icons/ri";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BigButton from "components/Button/BigButton";
-import Input from "components/Input";
 import { useHistory } from "react-router-dom";
+import OneStep from "./_fragments/OneStep";
 
 const SingUp = () => {
-  // let history = useHistory();
+  let history = useHistory();
   const [userObj, setUserObj] = useState({
     id: "",
     pw: "",
@@ -29,47 +29,31 @@ const SingUp = () => {
     };
     reader.readAsDataURL(e.target.files[0]);
   };
+  const handleChange = (input) => (e) => {
+    setUserObj((pre) => ({ ...pre, [input]: e.target.value }));
+  };
 
   return (
     <SignUpContainer>
+      <BackBtn onClick={() => history.push("/")} />
       <SignUpForm>
-        {userObj.userPicture === "" ? (
-          <UserPictureLabel htmlFor="userPicture">
-            <PicturePlusIcon />
-          </UserPictureLabel>
-        ) : (
-          <PreviewPicture image={userObj.userPicture} />
+        {step === 1 && (
+          <OneStep
+            userObj={userObj}
+            handleChange={handleChange}
+            showPicture={showPicture}
+          />
         )}
-        <UserPicture
-          id="userPicture"
-          type="file"
-          accept="image/jpg,impge/png,image/jpeg,image/gif"
-          onChange={showPicture}
-        />
-        <Input type="text" width="100%">
-          아이디
-        </Input>
-        <Input type="text" width="100%">
-          이름
-        </Input>
-        <Input
-          autocomplete="current-password"
-          type="password"
-          placeholder="4글자 이상"
-          width="100%"
-        >
-          비밀번호
-        </Input>
-        <Input
-          type="tel"
-          pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
-          placeholder="ex) 010-1234-5678"
-          width="100%"
-        >
-          전화번호
-        </Input>
       </SignUpForm>
-      <BigButton type="submit" color={validation ? "#9e8380" : "#d7d2cb"}>
+      <PageMoveBtnContainer>
+        <PrevBtn onClick={() => (step === 1 ? null : setStep(step - 1))} />
+        <NextBtn onClick={() => (step === 3 ? null : setStep(step + 1))} />
+      </PageMoveBtnContainer>
+      <BigButton
+        width="calc(100% - 120px)"
+        type="submit"
+        color={validation ? "#9e8380" : "#d7d2cb"}
+      >
         확인
       </BigButton>
     </SignUpContainer>
@@ -83,45 +67,41 @@ const SignUpContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 0 60px;
+`;
+
+const BackBtn = styled(RiArrowGoBackLine)`
+  align-self: flex-start;
+  padding: 5px;
+  font-size: 2rem;
+  cursor: pointer;
 `;
 
 const SignUpForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: calc(100% - 120px);
   height: 100%;
-  margin-top: 120px;
+  padding: 0 60px;
+  margin-top: 100px;
 `;
 
-const UserPicture = styled.input`
-  display: none;
-`;
-
-const UserPictureLabel = styled.label`
+const PageMoveBtnContainer = styled.div`
+  position: absolute;
+  bottom: 120px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 180px;
-  height: 180px;
-  margin-bottom: 30px;
-  //background-image:url();
-  background-color: powderblue;
-  border-radius: 50%;
+  justify-content: space-evenly;
+  width: 100%;
+`;
+
+const PrevBtn = styled(IoIosArrowBack)`
+  padding: 2px;
+  font-size: 2rem;
   cursor: pointer;
 `;
 
-const PreviewPicture = styled.div`
-  width: 180px;
-  height: 180px;
-  margin-bottom: 30px;
-  border-radius: 50%;
-  background-image: url(${(props) => props.image});
-  background-size: cover;
-`;
-
-const PicturePlusIcon = styled(BsPlusSquare)`
-  font-size: 1.2rem;
-  color: white;
+const NextBtn = styled(IoIosArrowForward)`
+  padding: 2px;
+  font-size: 2rem;
+  cursor: pointer;
 `;

@@ -98,5 +98,5 @@ const LineText = styled.div`
 `;
 
 const SignUpBtn = styled(BigButton)`
-  bottom: 200px;
+  bottom: 100px;
 `;
