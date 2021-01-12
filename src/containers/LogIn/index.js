@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Input from "components/Input";
 import BigButton from "components/Button/BigButton";
-import logo from "icons/logo-2.png";
+import logo from "images/logo.png";
 import { useHistory } from "react-router-dom";
 
 const LogIn = () => {

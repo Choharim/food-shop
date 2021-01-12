@@ -2,19 +2,21 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 const Modal = ({
+  center,
   bottom,
+  position,
   closeModal,
   visible,
   children,
-  position,
   ...props
 }) => {
   return (
     <ModalBackground {...props} visible={visible} onClick={closeModal}>
       <ModalContainer
+        position={position}
+        center={center}
         bottom={bottom}
         visible={visible}
-        position={position}
         onClick={(e) => e.stopPropagation()}
       >
         {children}
@@ -26,14 +28,15 @@ const Modal = ({
 export default Modal;
 
 const ModalBackground = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  z-index: 90;
   visibility: hidden;
   background-color: rgba(0, 0, 0, 0.5);
   transition: 0.2s ease;
@@ -46,6 +49,8 @@ const ModalBackground = styled.div`
 `;
 
 const ModalContainer = styled.div`
+  display: flex;
+  justify-content: center;
   max-width: 600px;
   width: 100%;
   z-index: 100;
@@ -54,13 +59,30 @@ const ModalContainer = styled.div`
   > div {
     transition: 0.2s ease;
   }
-  > div {
-    position: absolute;
-    bottom: ${(props) => props.bottom};
-    ${(props) =>
-      props.visible &&
-      css`
-        bottom: 0px;
-      `}
-  }
+  ${(props) =>
+    props.position === "bottom" &&
+    css`
+      > div {
+        position: absolute;
+        bottom: ${(props) => props.bottom};
+        ${(props) =>
+          props.visible &&
+          css`
+            bottom: 0px;
+          `}
+      }
+    `}
+  ${(props) =>
+    props.position === "middle" &&
+    css`
+      > div {
+        position: absolute;
+        bottom: ${(props) => props.bottom};
+        ${(props) =>
+          props.visible &&
+          css`
+            bottom: 20%;
+          `}
+      }
+    `}
 `;

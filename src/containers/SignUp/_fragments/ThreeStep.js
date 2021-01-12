@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Input from "components/Input";
+import Modal from "components/Modal";
 import DaumPostcode from "react-daum-postcode";
 
 const ThreeStep = ({ userObj, setUserObj, handleChange }) => {
@@ -26,6 +27,7 @@ const ThreeStep = ({ userObj, setUserObj, handleChange }) => {
       address += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
     setUserObj({ ...userObj, zoneCode, address });
+    setSearchAddress(false);
   };
 
   return (
@@ -58,9 +60,16 @@ const ThreeStep = ({ userObj, setUserObj, handleChange }) => {
         상세 주소
       </Input>
       {searchAddress && (
-        <>
-          <DaumPostcode onComplete={handleAddress} />
-        </>
+        <Modal
+          position="middle"
+          bottom="0"
+          visible={searchAddress}
+          closeModal={() => setSearchAddress(false)}
+        >
+          <ModalContainer>
+            <DaumPostcode onComplete={handleAddress} autoClose="true" />
+          </ModalContainer>
+        </Modal>
       )}
     </>
   );
@@ -94,4 +103,11 @@ const SearchBtn = styled.button`
     background-color: #9e8380;
     color: #f3eceb;
   }
+`;
+
+const ModalContainer = styled.div`
+  width: 450px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: white;
 `;

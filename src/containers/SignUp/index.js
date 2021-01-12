@@ -82,9 +82,9 @@ const SignUpContainer = styled.div`
 `;
 
 const Logo = styled.div`
-  width: 150px;
-  height: 150px;
-  margin-bottom: 30px;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 40px;
   background-image: url(${logo});
   background-size: cover;
   cursor: pointer;
@@ -97,7 +97,7 @@ const SignUpForm = styled.form`
   width: calc(100% - 120px);
   height: 100%;
   padding: 0 60px;
-  margin-top: 120px;
+  margin-top: 180px;
 `;
 
 const PageMoveBtnContainer = styled.div`
