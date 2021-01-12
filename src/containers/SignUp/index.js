@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BigButton from "components/Button/BigButton";
 import { useHistory } from "react-router-dom";
@@ -7,6 +7,7 @@ import logo from "images/logo.png";
 import OneStep from "./_fragments/OneStep";
 import TwoStep from "./_fragments/TwoStep";
 import ThreeStep from "./_fragments/ThreeStep";
+import ConfirmStep from "./_fragments/ConfirmStep";
 
 const SingUp = () => {
   let history = useHistory();
@@ -54,12 +55,12 @@ const SingUp = () => {
             handleChange={handleChange}
           />
         ) : (
-          "success"
+          <ConfirmStep userObj={userObj} />
         )}
       </SignUpForm>
       <PageMoveBtnContainer>
-        <PrevBtn onClick={() => (step === 1 ? null : setStep(step - 1))} />
-        <NextBtn onClick={() => (step === 4 ? null : setStep(step + 1))} />
+        <PrevBtn step={step} onClick={() => setStep(step - 1)} />
+        <NextBtn step={step} onClick={() => setStep(step + 1)} />
       </PageMoveBtnContainer>
       <BigButton
         width="calc(100% - 120px)"
@@ -112,10 +113,20 @@ const PrevBtn = styled(IoIosArrowBack)`
   padding: 2px;
   font-size: 2rem;
   cursor: pointer;
+  ${(props) =>
+    props.step === 1 &&
+    css`
+      visibility: hidden;
+    `}
 `;
 
 const NextBtn = styled(IoIosArrowForward)`
   padding: 2px;
   font-size: 2rem;
   cursor: pointer;
+  ${(props) =>
+    props.step === 4 &&
+    css`
+      visibility: hidden;
+    `}
 `;

@@ -9,7 +9,7 @@ const MainText = () => {
     </TextContainer>
   );
 };
-
+//한글짜식 써지게
 export default MainText;
 
 const TextContainer = styled.div`

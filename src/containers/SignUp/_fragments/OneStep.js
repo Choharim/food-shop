@@ -25,6 +25,7 @@ const OneStep = ({ showPicture, userObj, handleChange }) => {
           <Input
             onChange={handleChange("name")}
             value={userObj.name}
+            autocomplete="off"
             type="text"
             width="100%"
           >
@@ -33,6 +34,7 @@ const OneStep = ({ showPicture, userObj, handleChange }) => {
           <Input
             onChange={handleChange("phone")}
             value={userObj.phone}
+            autocomplete="off"
             type="tel"
             pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
             placeholder="ex) 010-1234-5678"
