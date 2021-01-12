@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { AiFillStar } from "react-icons/ai";
+import { RiArrowGoBackLine } from "react-icons/ri";
 import { Data } from "Data";
+import { useHistory } from "react-router-dom";
 
 const Class = () => {
+  let history = useHistory();
   const [step, setStep] = useState(1);
   const pageCount = Math.ceil(Data.length / 6);
 
   return (
     <ClassContainer>
+      <HomeBtn onClick={() => history.push("/")} />
       <ClassText>요리 수업</ClassText>
       <CardContainer>
         {[...Array(pageCount)].map(
@@ -24,7 +28,12 @@ const Class = () => {
                     <ClassName>{foodClass.name} (Class)</ClassName>
                     <ClassContents>
                       <DiffText>난이도</DiffText>
-                      <div style={{ display: "flex", alignItems: "center" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                        }}
+                      >
                         {[...Array(foodClass.difficulty)].map((a, i) => (
                           <Star key={i} />
                         ))}
@@ -55,7 +64,15 @@ const ClassContainer = styled.div`
   width: 100%;
 `;
 
-const ClassText = styled.p`
+const HomeBtn = styled(RiArrowGoBackLine)`
+  align-self: flex-start;
+  padding: 5px;
+  font-size: 2rem;
+  cursor: pointer;
+`;
+
+const ClassText = styled.span`
+  margin-bottom: 10px;
   font-size: 23px;
   font-weight: bolder;
   color: #493c3b;
@@ -66,9 +83,11 @@ const CardContainer = styled.div`
   justify-content: space-evenly;
   flex-wrap: wrap;
   width: 100%;
-  /* &:nth-last-child(1) {
+  /*
+  &:nth-last-child(1) {
     justify-content: flex-start;
-  }*/
+  }
+  */
 `;
 
 const ClassCard = styled.div`
@@ -124,6 +143,7 @@ const Price = styled.span`
 `;
 
 const PageMoveBtnContainer = styled.div`
+  max-width: 600px;
   width: 100%;
   display: flex;
   justify-content: space-evenly;

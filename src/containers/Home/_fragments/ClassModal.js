@@ -32,31 +32,35 @@ const ClassModal = () => {
         </TouchLineArea>
         <ModalHeadTitle>직접 요리해보고 싶나요?</ModalHeadTitle>
         <ModalPicture></ModalPicture>
-        <Container>
-          <Text>난이도 선택</Text>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            {difficultyData.map((score, index) => (
-              <FireContainer key={index} score={difficulty.score}>
-                <FireIcon
-                  onClick={() => setDifficulty(difficultyData[index])}
-                />
-              </FireContainer>
-            ))}
-            <Desc>{difficulty.desc}</Desc>
-          </div>
-        </Container>
-        <RecommContainer>
-          <Text>추천 수업</Text>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <ArrowIcon />
-            {Data.map((foodClass, index) =>
-              foodClass.difficulty === difficulty.score ? (
-                <ClassList key={index}>{foodClass.name}</ClassList>
-              ) : null
-            )}
-          </div>
-        </RecommContainer>
-        <ClassBtn onClick={() => history.push("/class")}>수업 더보기</ClassBtn>
+        <div style={{ width: "calc(100% - 80px)", padding: "0 40px" }}>
+          <Container>
+            <Text>난이도 선택</Text>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              {difficultyData.map((score, index) => (
+                <FireContainer key={index} score={difficulty.score}>
+                  <FireIcon
+                    onClick={() => setDifficulty(difficultyData[index])}
+                  />
+                </FireContainer>
+              ))}
+              <Desc>{difficulty.desc}</Desc>
+            </div>
+          </Container>
+          <RecommContainer>
+            <Text>추천 수업</Text>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <ArrowIcon />
+              {Data.map((foodClass, index) =>
+                foodClass.difficulty === difficulty.score ? (
+                  <ClassList key={index}>{foodClass.name}</ClassList>
+                ) : null
+              )}
+            </div>
+          </RecommContainer>
+          <ClassBtn onClick={() => history.push("/class")}>
+            수업 더보기
+          </ClassBtn>
+        </div>
       </ModalContainer>
     </Modal>
   );
@@ -107,9 +111,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-left: 50px;
+  width: 100%;
   margin-bottom: 20px;
-  width: calc(100% - 50px);
 `;
 
 const Text = styled.span`

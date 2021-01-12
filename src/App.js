@@ -1,6 +1,7 @@
 import React from "react";
 import HomePage from "pages/Home/index";
 import ClassPage from "pages/Class/index";
+import LogInPage from "pages/LogIn/index";
 import { createGlobalStyle } from "styled-components";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -15,6 +16,9 @@ function App() {
           </Route>
           <Route path="/class">
             <ClassPage />
+          </Route>
+          <Route path="/logIn">
+            <LogInPage />
           </Route>
         </Switch>
       </Router>
