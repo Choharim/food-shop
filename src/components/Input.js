@@ -19,7 +19,7 @@ const InputContainer = styled.div`
   height: 40px;
   width: ${(props) => props.width};
   padding: 10px 0;
-  margin-bottom: 25px;
+  margin: 10px 0;
   border: 1px solid #c9aca9;
   border-radius: 35px;
   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
@@ -38,6 +38,7 @@ const InputTitle = styled.label`
 const InputBox = styled.input`
   height: 30px;
   width: 90%;
+  width: ${(props) => props.boxWidth};
   outline: none;
   border: none;
   border-bottom: 2px solid #c9aca9;

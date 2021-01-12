@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { RiArrowGoBackLine } from "react-icons/ri";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BigButton from "components/Button/BigButton";
 import { useHistory } from "react-router-dom";
+import logo from "images/logo.png";
 import OneStep from "./_fragments/OneStep";
+import TwoStep from "./_fragments/TwoStep";
+import ThreeStep from "./_fragments/ThreeStep";
 
 const SingUp = () => {
   let history = useHistory();
@@ -35,19 +37,29 @@ const SingUp = () => {
 
   return (
     <SignUpContainer>
-      <BackBtn onClick={() => history.push("/")} />
       <SignUpForm>
-        {step === 1 && (
+        <Logo onClick={() => history.push("/")} />
+        {step === 1 ? (
           <OneStep
             userObj={userObj}
             handleChange={handleChange}
             showPicture={showPicture}
           />
+        ) : step === 2 ? (
+          <TwoStep userObj={userObj} handleChange={handleChange} />
+        ) : step === 3 ? (
+          <ThreeStep
+            userObj={userObj}
+            setUserObj={setUserObj}
+            handleChange={handleChange}
+          />
+        ) : (
+          "success"
         )}
       </SignUpForm>
       <PageMoveBtnContainer>
         <PrevBtn onClick={() => (step === 1 ? null : setStep(step - 1))} />
-        <NextBtn onClick={() => (step === 3 ? null : setStep(step + 1))} />
+        <NextBtn onClick={() => (step === 4 ? null : setStep(step + 1))} />
       </PageMoveBtnContainer>
       <BigButton
         width="calc(100% - 120px)"
@@ -69,10 +81,12 @@ const SignUpContainer = styled.div`
   width: 100%;
 `;
 
-const BackBtn = styled(RiArrowGoBackLine)`
-  align-self: flex-start;
-  padding: 5px;
-  font-size: 2rem;
+const Logo = styled.div`
+  width: 150px;
+  height: 150px;
+  margin-bottom: 30px;
+  background-image: url(${logo});
+  background-size: cover;
   cursor: pointer;
 `;
 
@@ -83,7 +97,7 @@ const SignUpForm = styled.form`
   width: calc(100% - 120px);
   height: 100%;
   padding: 0 60px;
-  margin-top: 100px;
+  margin-top: 120px;
 `;
 
 const PageMoveBtnContainer = styled.div`
