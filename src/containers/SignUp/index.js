@@ -4,6 +4,7 @@ import { RiArrowGoBackLine } from "react-icons/ri";
 import BigButton from "components/Button/BigButton";
 import { useHistory } from "react-router-dom";
 import logo from "images/logo.png";
+import basicProfile from "images/basicProfile.jpg";
 import OneStep from "./_fragments/OneStep";
 import TwoStep from "./_fragments/TwoStep";
 import ThreeStep from "./_fragments/ThreeStep";
@@ -19,7 +20,7 @@ const SingUp = () => {
     zoneCode: "",
     address: "",
     phone: "",
-    userPicture: "",
+    userPicture: basicProfile,
   });
   const [step, setStep] = useState(1);
   const [users, setUsers] = useState([]);
@@ -47,13 +48,20 @@ const SingUp = () => {
       case 1:
         return (
           <OneStep
+            users={users}
             userObj={userObj}
             handleChange={handleChange}
             showPicture={showPicture}
           />
         );
       case 2:
-        return <TwoStep userObj={userObj} handleChange={handleChange} />;
+        return (
+          <TwoStep
+            users={users}
+            userObj={userObj}
+            handleChange={handleChange}
+          />
+        );
       case 3:
         return (
           <ThreeStep
@@ -69,12 +77,12 @@ const SingUp = () => {
     }
   };
   const checkValidaion = () => {
-    const phoneType = "[0-9]{3}-[0-9]{4}-[0-9]{4}";
     if (
       step === 1 &&
       userObj.name !== "" &&
       userObj.phone !== "" &&
-      userObj.phone.match(phoneType)
+      userObj.phone.match("[0-9]{3}-[0-9]{4}-[0-9]{4}") &&
+      users.every((user) => user.phone !== userObj.phone)
     ) {
       return true;
     } else if (
@@ -82,7 +90,8 @@ const SingUp = () => {
       userObj.id !== "" &&
       userObj.pw !== "" &&
       userObj.pw.length >= 3 &&
-      userObj.pw.length <= 10
+      userObj.pw.length <= 10 &&
+      users.every((user) => user.id !== userObj.id)
     ) {
       return true;
     } else if (

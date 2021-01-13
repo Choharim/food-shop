@@ -46,6 +46,7 @@ const ThreeStep = ({ userObj, setUserObj, handleChange }) => {
       <Input defaultValue={userObj.address} width="100%" type="text">
         주소
       </Input>
+      {userObj.address === "" && <Warning>주소를 검색하세요.</Warning>}
       <Input
         onChange={handleChange("extraAddress")}
         value={userObj.extraAddress}
@@ -54,6 +55,9 @@ const ThreeStep = ({ userObj, setUserObj, handleChange }) => {
       >
         상세 주소
       </Input>
+      {userObj.extraAddress === "" && (
+        <Warning>상세 주소를 입력해주세요.</Warning>
+      )}
       {searchAddress && (
         <Modal
           position="middle"
@@ -105,4 +109,9 @@ const ModalContainer = styled.div`
   padding: 20px;
   border-radius: 20px;
   background-color: white;
+`;
+
+const Warning = styled.span`
+  text-align: center;
+  font-size: 13px;
 `;

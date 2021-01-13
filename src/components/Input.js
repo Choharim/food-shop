@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const Input = ({ children, ...props }) => {
+const Input = ({ validaion, warning, children, ...props }) => {
   return (
-    <InputContainer {...props}>
-      <InputTitle>{children}</InputTitle>
-      <InputBox {...props} />
-    </InputContainer>
+    <>
+      <InputContainer {...props}>
+        <InputTitle>{children}</InputTitle>
+        <InputBox {...props} />
+      </InputContainer>
+    </>
   );
 };
 

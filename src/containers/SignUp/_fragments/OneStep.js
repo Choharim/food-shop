@@ -4,7 +4,7 @@ import { BsPlusSquare } from "react-icons/bs";
 import basicProfile from "images/basicProfile.jpg";
 import Input from "components/Input";
 
-const OneStep = ({ showPicture, userObj, handleChange }) => {
+const OneStep = ({ users, showPicture, userObj, handleChange }) => {
   return (
     <>
       <Container>
@@ -35,6 +35,7 @@ const OneStep = ({ showPicture, userObj, handleChange }) => {
           >
             이름
           </Input>
+          {userObj.name === "" && <Warning>이름을 적어주세요.</Warning>}
           <Input
             onChange={handleChange("phone")}
             value={userObj.phone}
@@ -45,6 +46,14 @@ const OneStep = ({ showPicture, userObj, handleChange }) => {
           >
             전화번호
           </Input>
+          {users.some((user) => user.phone === userObj.phone) && (
+            <Warning>이미 등록된 전화번호입니다.</Warning>
+          )}
+          {userObj.phone === "" && <Warning>전화번호를 적어주세요.</Warning>}
+          {!userObj.phone.match("[0-9]{3}-[0-9]{4}-[0-9]{4}") &&
+            userObj.phone !== "" && (
+              <Warning>010-1234-5678 형식으로 적어주세요.</Warning>
+            )}
         </InputContainer>
       </Container>
     </>
@@ -64,7 +73,6 @@ const UserPicture = styled.input`
 `;
 
 const PictureContainer = styled.div`
-  // align-self: flex-start;
   padding: 5px;
   margin-right: 10px;
   border: 2px solid #c9aca9;
@@ -99,4 +107,9 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+`;
+
+const Warning = styled.span`
+  text-align: center;
+  font-size: 13px;
 `;
