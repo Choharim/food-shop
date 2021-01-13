@@ -72,7 +72,8 @@ const HomeBtn = styled(RiArrowGoBackLine)`
 `;
 
 const ClassText = styled.span`
-  margin-bottom: 10px;
+  align-self: flex-start;
+  margin: 0 0 10px 40px;
   font-size: 23px;
   font-weight: bolder;
   color: #493c3b;
@@ -80,9 +81,10 @@ const ClassText = styled.span`
 
 const CardContainer = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-wrap: wrap;
-  width: 100%;
+  width: calc(100% - 80px);
+  margin: 0 40px;
   /*
   &:nth-last-child(1) {
     justify-content: flex-start;
@@ -94,7 +96,7 @@ const ClassCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 40%;
+  width: 48%;
   margin-bottom: 20px;
   background-color: white;
   border-radius: 10px;
