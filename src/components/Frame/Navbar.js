@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [showNav, setShowNav] = useState(false);
   const [isUser, setIsUser] = useState(false);
-
+  //logInSuccess를 받아와서  isUser대신 사용
   useEffect(() => {
     if (localStorage.getItem("currentUser")) {
       setIsUser(true);

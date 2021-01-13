@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { Context } from "components/ContextProvider/ContextProvider";
 
 const MenuSlider = ({ foodSlider }) => {
+  const { favorite, setFavorite } = useContext(Context);
+
   const settings = {
     className: "center",
     centerMode: true,
@@ -23,7 +26,15 @@ const MenuSlider = ({ foodSlider }) => {
     <MenuContainer {...settings}>
       {foodSlider.map((food, index) => (
         <MenuItemContainer key={index}>
-          <HeartIcon />
+          {food.name === favorite.find((item) => item === food.name) ? (
+            <FillHeartIcon
+              onClick={() =>
+                setFavorite(favorite.filter((item) => item !== food.name))
+              }
+            />
+          ) : (
+            <HeartIcon onClick={() => setFavorite([...favorite, food.name])} />
+          )}
           <FoodPicture image={food.image} />
           <FoodName>{food.name}</FoodName>
           <FoodPrice>{food.price} 원</FoodPrice>
@@ -71,6 +82,14 @@ const HeartIcon = styled(AiOutlineHeart)`
   top: 10px;
   right: 10px;
   font-size: 2rem;
+`;
+
+const FillHeartIcon = styled(AiFillHeart)`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2rem;
+  color: rgb(237, 73, 86);
 `;
 
 const FoodPicture = styled.div`

@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { BsPlusSquare } from "react-icons/bs";
 import basicProfile from "images/basicProfile.jpg";
 import Input from "components/Input";
+import { Context } from "components/ContextProvider/ContextProvider";
 
-const OneStep = ({ users, showPicture, userObj, handleChange }) => {
+const OneStep = ({ userObj, showPicture, handleChange }) => {
+  const { users } = useContext(Context);
+
   return (
     <>
       <Container>
-        {userObj.userPicture === "" ? (
+        {userObj.userPicture === basicProfile ? (
           <PictureContainer>
             <UserPictureLabel htmlFor="userPicture">
               <PicturePlusIcon />

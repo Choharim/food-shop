@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled, { css } from "styled-components";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import BigButton from "components/Button/BigButton";
@@ -9,9 +9,12 @@ import OneStep from "./_fragments/OneStep";
 import TwoStep from "./_fragments/TwoStep";
 import ThreeStep from "./_fragments/ThreeStep";
 import ConfirmStep from "./_fragments/ConfirmStep";
+import { Context } from "components/ContextProvider/ContextProvider";
 
 const SingUp = () => {
+  const { users, setUsers } = useContext(Context);
   let history = useHistory();
+  const [step, setStep] = useState(1);
   const [userObj, setUserObj] = useState({
     id: "",
     pw: "",
@@ -22,8 +25,6 @@ const SingUp = () => {
     phone: "",
     userPicture: basicProfile,
   });
-  const [step, setStep] = useState(1);
-  const [users, setUsers] = useState([]);
   const [signUpSuccess, setSignUpSuccess] = useState(false);
 
   useEffect(() => {
@@ -48,20 +49,13 @@ const SingUp = () => {
       case 1:
         return (
           <OneStep
-            users={users}
             userObj={userObj}
             handleChange={handleChange}
             showPicture={showPicture}
           />
         );
       case 2:
-        return (
-          <TwoStep
-            users={users}
-            userObj={userObj}
-            handleChange={handleChange}
-          />
-        );
+        return <TwoStep userObj={userObj} handleChange={handleChange} />;
       case 3:
         return (
           <ThreeStep

@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Input from "components/Input";
+import { Context } from "components/ContextProvider/ContextProvider";
 
-const TwoStep = ({ users, userObj, handleChange }) => {
+const TwoStep = ({ userObj, handleChange }) => {
+  const { users } = useContext(Context);
+
   return (
     <>
       <Input
