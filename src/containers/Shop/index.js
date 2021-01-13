@@ -20,7 +20,11 @@ const Shop = () => {
             >
               <Picture image={item.image}></Picture>
             </PictureContainer>
-            <TextContainer></TextContainer>
+            <TextContainer>
+              <Name>{item.name}</Name>
+              <Desc>{item.desc}</Desc>
+              <Price>{item.price} 원</Price>
+            </TextContainer>
           </ItemContainer>
         ))}
       </Container>
@@ -59,7 +63,7 @@ const Container = styled.div`
 const ItemContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 20px 0;
 `;
 
 const PictureContainer = styled.div`
@@ -80,4 +84,28 @@ const Picture = styled.div`
   background-size: cover;
 `;
 
-const TextContainer = styled.div``;
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 60%;
+  margin-left: 15px;
+`;
+
+const Name = styled.span`
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bolder;
+  color: #493c3b;
+`;
+
+const Desc = styled.span`
+  margin-bottom: 2px;
+  font-size: 12px;
+  color: #9e8380;
+`;
+
+const Price = styled.span`
+  font-size: 13px;
+  color: #d5bfbc;
+`;
