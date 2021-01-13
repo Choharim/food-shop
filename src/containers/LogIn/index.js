@@ -1,21 +1,27 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Input from "components/Input";
 import BigButton from "components/Button/BigButton";
 import logo from "images/logo.png";
 import { useHistory } from "react-router-dom";
+import { Context } from "components/ContextProvider/ContextProvider";
 
 const LogIn = () => {
   let history = useHistory();
-  const [currentUser, setCurrentUser] = useState({ id: "", pw: "" });
-  const [logInSuccess, setLogInSuccess] = useState(false);
+  const {
+    currentUser,
+    setCurrentUser,
+    logInSuccess,
+    setLogInSuccess,
+    users,
+  } = useContext(Context);
 
   const handleChange = (input) => (e) => {
     setCurrentUser({ ...currentUser, [input]: e.target.value });
   };
   const checkUser = () => {
     if (
-      JSON.parse(localStorage.getItem("users")).some(
+      users.some(
         (user) => user.id === currentUser.id && user.pw === currentUser.pw
       )
     ) {

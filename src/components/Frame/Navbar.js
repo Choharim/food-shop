@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext } from "react";
 import styled, { css } from "styled-components";
 import { FaBars } from "react-icons/fa";
 import {
@@ -8,22 +8,15 @@ import {
 } from "react-icons/ai";
 import { GiCook } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import { Context } from "components/ContextProvider/ContextProvider";
 
 const Navbar = () => {
+  const { logInSuccess, setLogInSuccess } = useContext(Context);
   const [showNav, setShowNav] = useState(false);
-  const [isUser, setIsUser] = useState(false);
-  //logInSuccess를 받아와서  isUser대신 사용
-  useEffect(() => {
-    if (localStorage.getItem("currentUser")) {
-      setIsUser(true);
-    } else {
-      setIsUser(false);
-    }
-  }, []);
 
   const logOut = () => {
     localStorage.removeItem("currentUser");
-    setIsUser(false);
+    setLogInSuccess(false);
   };
 
   return (
@@ -45,7 +38,7 @@ const Navbar = () => {
             <Text>Class</Text>
           </UrlBbtn>
           <div style={{ marginTop: "250px" }}>
-            {isUser ? (
+            {logInSuccess ? (
               <LogOutBtn onClick={logOut}>
                 <Text style={{ marginLeft: "0" }}>Log Out</Text>
               </LogOutBtn>

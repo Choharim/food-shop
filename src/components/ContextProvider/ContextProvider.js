@@ -5,6 +5,8 @@ export const Context = createContext();
 const ContextProvider = ({ children }) => {
   const [favorite, setFavorite] = useState([]);
   const [users, setUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState({ id: "", pw: "" });
+  const [logInSuccess, setLogInSuccess] = useState(false);
 
   return (
     <Context.Provider
@@ -13,6 +15,10 @@ const ContextProvider = ({ children }) => {
         setFavorite,
         users,
         setUsers,
+        currentUser,
+        setCurrentUser,
+        logInSuccess,
+        setLogInSuccess,
       }}
     >
       {children}
