@@ -16,7 +16,7 @@ const TwoStep = ({ userObj, handleChange }) => {
       <Input
         onChange={handleChange("pw")}
         value={userObj.pw}
-        autocomplete="off"
+        autocomplete="current-password"
         type="password"
         placeholder="4글자 이상"
         width="100%"

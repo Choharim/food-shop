@@ -67,7 +67,7 @@ const ThreeStep = ({ userObj, setUserObj, handleChange }) => {
           closeModal={() => setSearchAddress(false)}
         >
           <ModalContainer>
-            <DaumPostcode onComplete={handleAddress} autoClose="true" />
+            <DaumPostcode onComplete={handleAddress} autoClose={true} />
           </ModalContainer>
         </Modal>
       )}

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { RiArrowGoBackLine } from "react-icons/ri";
 import BigButton from "components/Button/BigButton";
 import { useHistory } from "react-router-dom";
 import logo from "images/logo.png";
@@ -24,6 +24,25 @@ const SingUp = () => {
   const [validation, setValidation] = useState(false);
   const [step, setStep] = useState(1);
 
+  useEffect(() => {
+    if (step === 1 && userObj.name !== "" && userObj.phone !== "") {
+      setValidation(true);
+    } else if (step === 2 && userObj.id !== "" && userObj.pw !== "") {
+      setValidation(true);
+    } else if (
+      step === 3 &&
+      userObj.zoneCode !== "" &&
+      userObj.address !== "" &&
+      userObj.extraAddress !== ""
+    ) {
+      setValidation(true);
+    } else if (step === 4) {
+      setValidation(true);
+    } else {
+      setValidation(false);
+    }
+  }, [userObj, step]);
+
   const showPicture = (e) => {
     e.preventDefault();
     let reader = new FileReader();
@@ -38,6 +57,7 @@ const SingUp = () => {
 
   return (
     <SignUpContainer>
+      <BackBtn step={step} onClick={() => setStep(step - 1)} />
       <SignUpForm>
         <Logo onClick={() => history.push("/")} />
         {step === 1 ? (
@@ -58,16 +78,13 @@ const SingUp = () => {
           <ConfirmStep userObj={userObj} />
         )}
       </SignUpForm>
-      <PageMoveBtnContainer>
-        <PrevBtn step={step} onClick={() => setStep(step - 1)} />
-        <NextBtn step={step} onClick={() => setStep(step + 1)} />
-      </PageMoveBtnContainer>
       <BigButton
         width="calc(100% - 120px)"
         type="submit"
         color={validation ? "#9e8380" : "#d7d2cb"}
+        onClick={() => validation && step !== 4 && setStep(step + 1)}
       >
-        확인
+        {step !== 4 ? "다음" : "완료"}
       </BigButton>
     </SignUpContainer>
   );
@@ -80,6 +97,18 @@ const SignUpContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+`;
+
+const BackBtn = styled(RiArrowGoBackLine)`
+  align-self: flex-start;
+  padding: 5px;
+  font-size: 2rem;
+  cursor: pointer;
+  ${(props) =>
+    props.step === 1 &&
+    css`
+      visibility: hidden;
+    `}
 `;
 
 const Logo = styled.div`
@@ -99,34 +128,4 @@ const SignUpForm = styled.form`
   height: 100%;
   padding: 0 60px;
   margin-top: 180px;
-`;
-
-const PageMoveBtnContainer = styled.div`
-  position: absolute;
-  bottom: 120px;
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-`;
-
-const PrevBtn = styled(IoIosArrowBack)`
-  padding: 2px;
-  font-size: 2rem;
-  cursor: pointer;
-  ${(props) =>
-    props.step === 1 &&
-    css`
-      visibility: hidden;
-    `}
-`;
-
-const NextBtn = styled(IoIosArrowForward)`
-  padding: 2px;
-  font-size: 2rem;
-  cursor: pointer;
-  ${(props) =>
-    props.step === 4 &&
-    css`
-      visibility: hidden;
-    `}
 `;

@@ -143,11 +143,12 @@ const Price = styled.span`
 `;
 
 const PageMoveBtnContainer = styled.div`
+  position: absolute;
+  bottom: 20px;
+  max-width: 600px;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  position: fixed;
-  bottom: 20px;
 `;
 
 const PrevBtn = styled(IoIosArrowBack)`

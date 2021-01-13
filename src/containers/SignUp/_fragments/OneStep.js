@@ -9,11 +9,15 @@ const OneStep = ({ showPicture, userObj, handleChange }) => {
     <>
       <Container>
         {userObj.userPicture === "" ? (
-          <UserPictureLabel htmlFor="userPicture">
-            <PicturePlusIcon />
-          </UserPictureLabel>
+          <PictureContainer>
+            <UserPictureLabel htmlFor="userPicture">
+              <PicturePlusIcon />
+            </UserPictureLabel>
+          </PictureContainer>
         ) : (
-          <PreviewPicture image={userObj.userPicture} />
+          <PictureContainer>
+            <PreviewPicture image={userObj.userPicture} />
+          </PictureContainer>
         )}
         <UserPicture
           id="userPicture"
@@ -53,7 +57,6 @@ export default OneStep;
 const Container = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-between;
   align-items: center;
 `;
 
@@ -61,34 +64,40 @@ const UserPicture = styled.input`
   display: none;
 `;
 
+const PictureContainer = styled.div`
+  // align-self: flex-start;
+  padding: 5px;
+  margin-right: 10px;
+  border: 2px solid #c9aca9;
+  border-radius: 50%;
+`;
+
 const UserPictureLabel = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 120px;
-  height: 120px;
+  width: 85px;
+  height: 85px;
   background-image: url(${basicProfile});
   background-size: cover;
-  border: 2px solid #c9aca9;
   border-radius: 50%;
   cursor: pointer;
 `;
 
 const PreviewPicture = styled.div`
-  width: 120px;
-  height: 120px;
+  width: 85px;
+  height: 85px;
   border-radius: 50%;
   background-image: url(${(props) => props.image});
   background-size: cover;
 `;
 
 const PicturePlusIcon = styled(BsPlusSquare)`
-  font-size: 1.2rem;
   color: white;
 `;
 
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
 `;

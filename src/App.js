@@ -15,13 +15,13 @@ function App() {
           <Route path="/" exact>
             <HomePage />
           </Route>
-          <Route path="/class">
+          <Route path="/class" exact>
             <ClassPage />
           </Route>
-          <Route path="/logIn">
+          <Route path="/logIn" exact>
             <LogInPage />
           </Route>
-          <Route path="/signUp">
+          <Route path="/signUp" exact>
             <SignUpPage />
           </Route>
         </Switch>
