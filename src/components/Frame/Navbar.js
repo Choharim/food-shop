@@ -60,6 +60,7 @@ const NavbarIcon = styled(FaBars)`
   position: fixed;
   right: 0;
   padding: 5px;
+  margin: 5px;
   font-size: 2rem;
   color: #493c3b;
   cursor: pointer;

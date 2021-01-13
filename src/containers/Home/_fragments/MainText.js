@@ -38,7 +38,7 @@ const MainText = () => {
     </TextContainer>
   );
 };
-//한글짜식 써지게
+
 export default MainText;
 
 const TextContainer = styled.div`
@@ -52,7 +52,7 @@ const ProfileContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: calc(100% - 50px);
-  margin: 5px 0 30px;
+  margin: 10px 0 30px;
 `;
 
 const PictureContainer = styled.div`

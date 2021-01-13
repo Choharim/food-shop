@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { ImFire } from "react-icons/im";
-import { RiArrowGoBackLine } from "react-icons/ri";
+import { BsArrowLeft } from "react-icons/bs";
 import { Data } from "Data";
 import { useHistory } from "react-router-dom";
 
@@ -67,9 +67,10 @@ const ClassContainer = styled.div`
   width: 100%;
 `;
 
-const HomeBtn = styled(RiArrowGoBackLine)`
+const HomeBtn = styled(BsArrowLeft)`
   align-self: flex-start;
   padding: 5px;
+  margin: 5px;
   font-size: 2rem;
   cursor: pointer;
 `;

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import { RiArrowGoBackLine } from "react-icons/ri";
+import { BsArrowLeft } from "react-icons/bs";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { Data } from "Data";
@@ -18,7 +18,7 @@ const Shop = () => {
     <ClassContainer>
       <HomeBtn onClick={() => history.push("/")} />
       <Container>
-        <Title>Shop</Title>
+        <Title>쇼핑</Title>
         {[...Array(pageCount)].map(
           (n, page) =>
             step === page + 1 &&
@@ -75,20 +75,25 @@ const ClassContainer = styled.div`
   width: 100%;
 `;
 
-const HomeBtn = styled(RiArrowGoBackLine)`
+const HomeBtn = styled(BsArrowLeft)`
   align-self: flex-start;
   padding: 5px;
+  margin: 5px;
   font-size: 2rem;
   cursor: pointer;
 `;
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
   width: calc(100% - 80px);
-  margin: 10px 40px 0;
+  margin: 0 40px;
 `;
 
 const Title = styled.span`
   align-self: flex-start;
+  margin-bottom: 10px;
   font-size: 23px;
   font-weight: bolder;
   color: #493c3b;
@@ -97,7 +102,7 @@ const Title = styled.span`
 const ItemContainer = styled.div`
   display: flex;
   align-items: center;
-  margin: 20px 0;
+  margin-bottom: 20px;
   cursor: pointer;
 `;
 
