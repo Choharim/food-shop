@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import Input from "components/Input";
 import BigButton from "components/Button/BigButton";
@@ -14,7 +14,14 @@ const LogIn = () => {
     logInSuccess,
     setLogInSuccess,
     users,
+    setUsers,
   } = useContext(Context);
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("users"))) {
+      setUsers(JSON.parse(localStorage.getItem("users")));
+    }
+  }, []);
 
   const handleChange = (input) => (e) => {
     setCurrentUser({ ...currentUser, [input]: e.target.value });
