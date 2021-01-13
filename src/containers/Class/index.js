@@ -37,6 +37,9 @@ const Class = () => {
                         {[...Array(foodClass.difficulty)].map((a, i) => (
                           <Fire key={i} />
                         ))}
+                        {[...Array(5 - foodClass.difficulty)].map((a, i) => (
+                          <FakeFire key={i} />
+                        ))}
                       </div>
                       <Price>{foodClass.price * 2} 원</Price>
                     </ClassContents>
@@ -138,6 +141,11 @@ const DiffText = styled.span`
 const Fire = styled(ImFire)`
   font-size: 1.1rem;
   color: #ff5733;
+`;
+
+const FakeFire = styled(ImFire)`
+  font-size: 1.1rem;
+  color: #e3e0db;
 `;
 
 const Price = styled.span`
