@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { AiFillStar } from "react-icons/ai";
+import { ImFire } from "react-icons/im";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { Data } from "Data";
 import { useHistory } from "react-router-dom";
@@ -27,15 +27,15 @@ const Class = () => {
                     <ClassPicture image={foodClass.image2}></ClassPicture>
                     <ClassName>{foodClass.name} (Class)</ClassName>
                     <ClassContents>
-                      <DiffText>난이도</DiffText>
                       <div
                         style={{
                           display: "flex",
                           alignItems: "center",
                         }}
                       >
+                        <DiffText>난이도</DiffText>
                         {[...Array(foodClass.difficulty)].map((a, i) => (
-                          <Star key={i} />
+                          <Fire key={i} />
                         ))}
                       </div>
                       <Price>{foodClass.price * 2} 원</Price>
@@ -128,13 +128,14 @@ const ClassContents = styled.div`
 `;
 
 const DiffText = styled.span`
+  margin-right: 5px;
   color: #493c3b;
   font-size: 13px;
 `;
 
-const Star = styled(AiFillStar)`
-  font-size: 1.3rem;
-  color: #ffdc00;
+const Fire = styled(ImFire)`
+  font-size: 1.1rem;
+  color: #ff5733;
 `;
 
 const Price = styled.span`
