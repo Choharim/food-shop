@@ -37,18 +37,13 @@ const ThreeStep = ({ userObj, setUserObj, handleChange }) => {
           defaultValue={userObj.zoneCode}
           type="number"
           width="30%"
-          boxWidth="80%"
+          boxWidth="70%"
         >
           우편번호
         </ZoneCode>
         <SearchBtn onClick={() => setSearchAddress(true)}>검색</SearchBtn>
       </ZoneCodeContainer>
-      <Input
-        onChange={handleChange("address")}
-        value={userObj.address}
-        width="100%"
-        type="text"
-      >
+      <Input defaultValue={userObj.address} width="100%" type="text">
         주소
       </Input>
       <Input

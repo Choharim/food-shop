@@ -21,39 +21,15 @@ const SingUp = () => {
     phone: "",
     userPicture: "",
   });
-  const [validation, setValidation] = useState(false);
   const [step, setStep] = useState(1);
-  const phoneType = "[0-9]{3}-[0-9]{4}-[0-9]{4}";
+  const [users, setUsers] = useState([]);
+  const [signUpSuccess, setSignUpSuccess] = useState(false);
 
   useEffect(() => {
-    if (
-      step === 1 &&
-      userObj.name !== "" &&
-      userObj.phone !== "" &&
-      userObj.phone.match(phoneType)
-    ) {
-      setValidation(true);
-    } else if (
-      step === 2 &&
-      userObj.id !== "" &&
-      userObj.pw !== "" &&
-      userObj.pw.length >= 3 &&
-      userObj.pw.length <= 10
-    ) {
-      setValidation(true);
-    } else if (
-      step === 3 &&
-      userObj.zoneCode !== "" &&
-      userObj.address !== "" &&
-      userObj.extraAddress !== ""
-    ) {
-      setValidation(true);
-    } else if (step === 4) {
-      setValidation(true);
-    } else {
-      setValidation(false);
+    if (JSON.parse(localStorage.getItem("users"))) {
+      setUsers(JSON.parse(localStorage.getItem("users")));
     }
-  }, [userObj, step]);
+  }, []);
 
   const showPicture = (e) => {
     e.preventDefault();
@@ -64,37 +40,93 @@ const SingUp = () => {
     reader.readAsDataURL(e.target.files[0]);
   };
   const handleChange = (input) => (e) => {
-    setUserObj((pre) => ({ ...pre, [input]: e.target.value }));
+    setUserObj({ ...userObj, [input]: e.target.value });
   };
-
-  return (
-    <SignUpContainer>
-      <BackBtn step={step} onClick={() => setStep(step - 1)} />
-      <SignUpForm>
-        <Logo onClick={() => history.push("/")} />
-        {step === 1 ? (
+  const formContents = (step) => {
+    switch (step) {
+      case 1:
+        return (
           <OneStep
             userObj={userObj}
             handleChange={handleChange}
             showPicture={showPicture}
           />
-        ) : step === 2 ? (
-          <TwoStep userObj={userObj} handleChange={handleChange} />
-        ) : step === 3 ? (
+        );
+      case 2:
+        return <TwoStep userObj={userObj} handleChange={handleChange} />;
+      case 3:
+        return (
           <ThreeStep
             userObj={userObj}
             setUserObj={setUserObj}
             handleChange={handleChange}
           />
-        ) : (
-          <ConfirmStep userObj={userObj} />
-        )}
+        );
+      case 4:
+        return <ConfirmStep userObj={userObj} />;
+      default:
+        return null;
+    }
+  };
+  const checkValidaion = () => {
+    const phoneType = "[0-9]{3}-[0-9]{4}-[0-9]{4}";
+    if (
+      step === 1 &&
+      userObj.name !== "" &&
+      userObj.phone !== "" &&
+      userObj.phone.match(phoneType)
+    ) {
+      return true;
+    } else if (
+      step === 2 &&
+      userObj.id !== "" &&
+      userObj.pw !== "" &&
+      userObj.pw.length >= 3 &&
+      userObj.pw.length <= 10
+    ) {
+      return true;
+    } else if (
+      step === 3 &&
+      userObj.zoneCode !== "" &&
+      userObj.address !== "" &&
+      userObj.extraAddress !== ""
+    ) {
+      return true;
+    } else if (step === 4) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (checkValidaion()) {
+      if (step === 4) {
+        setUsers([...users, userObj]);
+        setSignUpSuccess(true);
+      } else {
+        setStep(step + 1);
+        setSignUpSuccess(false);
+      }
+    }
+  };
+  if (signUpSuccess) {
+    localStorage.setItem("users", JSON.stringify(users));
+    history.push("/");
+  }
+
+  return (
+    <SignUpContainer>
+      <BackBtn step={step} onClick={() => setStep(step - 1)} />
+      <SignUpForm onSubmit={(e) => e.preventDefault()}>
+        {step !== 4 && <Logo onClick={() => history.push("/")} />}
+        {formContents(step)}
       </SignUpForm>
       <BigButton
         width="calc(100% - 120px)"
         type="submit"
-        color={validation ? "#9e8380" : "#d7d2cb"}
-        onClick={() => validation && step !== 4 && setStep(step + 1)}
+        color={checkValidaion() ? "#9e8380" : "#d7d2cb"}
+        onClick={handleSubmit}
       >
         {step !== 4 ? "다음" : "완료"}
       </BigButton>
