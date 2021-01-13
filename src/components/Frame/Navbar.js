@@ -11,16 +11,19 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showNav, setShowNav] = useState(false);
-  const [isUser, setIsUser] = useState();
+  const [isUser, setIsUser] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("currentUser")) {
       setIsUser(true);
+    } else {
+      setIsUser(false);
     }
   }, []);
 
   const logOut = () => {
     localStorage.removeItem("currentUser");
+    setIsUser(false);
   };
 
   return (

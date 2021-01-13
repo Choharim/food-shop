@@ -8,20 +8,38 @@ import { useHistory } from "react-router-dom";
 const LogIn = () => {
   let history = useHistory();
   const [currentUser, setCurrentUser] = useState({ id: "", pw: "" });
-  const [validation, setValidation] = useState(false);
+  const [logInSuccess, setLogInSuccess] = useState(false);
 
-  //context api 로 users가져와서 filter돌려서 currentUser의 id,pw 같으면 validaion true
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
   const handleChange = (input) => (e) => {
     setCurrentUser({ ...currentUser, [input]: e.target.value });
   };
+  const checkUser = () => {
+    if (
+      JSON.parse(localStorage.getItem("users")).some(
+        (user) => user.id === currentUser.id && user.pw === currentUser.pw
+      )
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (checkUser()) {
+      setLogInSuccess(true);
+    } else {
+      setLogInSuccess(false);
+    }
+  };
+  if (logInSuccess) {
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    history.push("/");
+  }
 
   return (
     <LogInContainer>
-      <LogInForm onSubmit={handleSubmit}>
+      <LogInForm>
         <Logo onClick={() => history.push("/")} />
         <Input
           onChange={handleChange("id")}
@@ -31,6 +49,7 @@ const LogIn = () => {
         >
           아이디
         </Input>
+        {!checkUser() && <Warning>등록되지 않은 정보입니다.</Warning>}
         <Input
           onChange={handleChange("pw")}
           value={currentUser.pw}
@@ -40,10 +59,15 @@ const LogIn = () => {
         >
           비밀번호
         </Input>
+        {!checkUser() && <Warning>등록되지 않은 정보입니다.</Warning>}
         <LineText>OR</LineText>
       </LogInForm>
       <SignUpBtn onClick={() => history.push("/signUp")}>회원가입</SignUpBtn>
-      <BigButton type="submit" color={validation ? "#9e8380" : "#d7d2cb"}>
+      <BigButton
+        onClick={handleSubmit}
+        type="submit"
+        color={checkUser() ? "#9e8380" : "#d7d2cb"}
+      >
         확인
       </BigButton>
     </LogInContainer>
@@ -99,4 +123,9 @@ const LineText = styled.div`
 
 const SignUpBtn = styled(BigButton)`
   bottom: 100px;
+`;
+
+const Warning = styled.span`
+  text-align: center;
+  font-size: 13px;
 `;
