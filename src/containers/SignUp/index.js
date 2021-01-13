@@ -23,11 +23,23 @@ const SingUp = () => {
   });
   const [validation, setValidation] = useState(false);
   const [step, setStep] = useState(1);
+  const phoneType = "[0-9]{3}-[0-9]{4}-[0-9]{4}";
 
   useEffect(() => {
-    if (step === 1 && userObj.name !== "" && userObj.phone !== "") {
+    if (
+      step === 1 &&
+      userObj.name !== "" &&
+      userObj.phone !== "" &&
+      userObj.phone.match(phoneType)
+    ) {
       setValidation(true);
-    } else if (step === 2 && userObj.id !== "" && userObj.pw !== "") {
+    } else if (
+      step === 2 &&
+      userObj.id !== "" &&
+      userObj.pw !== "" &&
+      userObj.pw.length >= 3 &&
+      userObj.pw.length <= 10
+    ) {
       setValidation(true);
     } else if (
       step === 3 &&

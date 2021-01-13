@@ -40,7 +40,6 @@ const OneStep = ({ showPicture, userObj, handleChange }) => {
             value={userObj.phone}
             autocomplete="off"
             type="tel"
-            pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
             placeholder="ex) 010-1234-5678"
             width="100%"
           >
