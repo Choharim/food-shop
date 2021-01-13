@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 
 const Shop = () => {
   let history = useHistory();
-  // const color = [];
+  const color = ["#FBB1B5", "#F0B791", "#F3AF97", "#FBB9AB", "#F9D7D1"];
 
   return (
     <ClassContainer>
@@ -15,7 +15,9 @@ const Shop = () => {
         <Title>Shop</Title>
         {Data.map((item, index) => (
           <ItemContainer key={index}>
-            <PictureContainer>
+            <PictureContainer
+              bg={color[Math.floor(Math.random() * color.length)]}
+            >
               <Picture image={item.image}></Picture>
             </PictureContainer>
             <TextContainer></TextContainer>
@@ -67,7 +69,7 @@ const PictureContainer = styled.div`
   width: 120px;
   height: 120px;
   border-radius: 20px;
-  background-color: beige;
+  background-color: ${(props) => props.bg};
 `;
 
 const Picture = styled.div`
