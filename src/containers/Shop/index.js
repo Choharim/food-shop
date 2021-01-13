@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { Data } from "Data";
 import { useHistory } from "react-router-dom";
+import { Context } from "components/ContextProvider/ContextProvider";
 
 const Shop = () => {
   let history = useHistory();
+  const { favorite, setFavorite } = useContext(Context);
+  const [step, setStep] = useState(1);
   const color = ["#FBB1B5", "#F0B791", "#F3AF97", "#FBB9AB", "#F9D7D1"];
   const pageCount = Math.ceil(Data.length / 5);
-  const [step, setStep] = useState(1);
 
   return (
     <ClassContainer>
@@ -20,20 +23,34 @@ const Shop = () => {
           (n, page) =>
             step === page + 1 &&
             Data.map(
-              (item, index) =>
+              (food, index) =>
                 index < 5 * (page + 1) &&
                 index >= 5 * page && (
                   <ItemContainer key={index}>
                     <PictureContainer
                       bg={color[Math.floor(Math.random() * color.length)]}
                     >
-                      <Picture image={item.image}></Picture>
+                      <Picture image={food.image}></Picture>
                     </PictureContainer>
                     <TextContainer>
-                      <Name>{item.name}</Name>
-                      <Desc>{item.desc}</Desc>
-                      <Price>{item.price} 원</Price>
+                      <Name>{food.name}</Name>
+                      <Desc>{food.desc}</Desc>
+                      <Price>{food.price} 원</Price>
                     </TextContainer>
+                    {food.name ===
+                    favorite.find((item) => item === food.name) ? (
+                      <FillHeartIcon
+                        onClick={() =>
+                          setFavorite(
+                            favorite.filter((item) => item !== food.name)
+                          )
+                        }
+                      />
+                    ) : (
+                      <HeartIcon
+                        onClick={() => setFavorite([...favorite, food.name])}
+                      />
+                    )}
                   </ItemContainer>
                 )
             )
@@ -82,6 +99,21 @@ const ItemContainer = styled.div`
   align-items: center;
   margin: 20px 0;
   cursor: pointer;
+`;
+
+const HeartIcon = styled(AiOutlineHeart)`
+  position: relative;
+  bottom: -45px;
+  right: -45px;
+  font-size: 1.5rem;
+`;
+
+const FillHeartIcon = styled(AiFillHeart)`
+  position: relative;
+  bottom: -45px;
+  right: -45px;
+  font-size: 1.5rem;
+  color: rgb(237, 73, 86);
 `;
 
 const PictureContainer = styled.div`
