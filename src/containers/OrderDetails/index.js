@@ -5,13 +5,12 @@ import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { Context } from "components/ContextProvider/ContextProvider";
-import Details from "./_fragments/Details";
+import Intro from "./_fragments/Intro";
 
 const OrderDetails = () => {
   const { favorite, setFavorite } = useContext(Context);
   let history = useHistory();
   const location = useLocation();
-  //const foodObj = location.state.food;
 
   return (
     <>
@@ -41,7 +40,7 @@ const OrderDetails = () => {
                   }
                 />
               )}
-              <Details food={location.state.food} />
+              <Intro food={location.state.food} />
             </ContentsContainer>
           </ContainerBg>
         </DetailsContainer>
