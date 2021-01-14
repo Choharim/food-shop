@@ -8,6 +8,7 @@ const animatedComponents = makeAnimated();
 
 const MenuSelect = ({ setFilterMenu }) => {
   const options = [
+    { value: "all", label: "All" },
     { value: "0 4000", label: "0 ~ 4000원" },
     { value: "4000 7000", label: "4000원 ~ 7000원" },
     { value: "7000 11000", label: "7000원 ~ 11000원" },
@@ -36,9 +37,11 @@ const MenuSelect = ({ setFilterMenu }) => {
       priceFilterMenu.push(Data[priceFilterIndex[index]]);
     }
 
-    setFilterMenu(priceFilterMenu);
-    console.log(option);
-    //option없을시 setFilterMenu(Data);
+    if (valueArray.some((array) => array.length === 1)) {
+      setFilterMenu(Data);
+    } else {
+      setFilterMenu(priceFilterMenu);
+    }
   };
 
   return (
