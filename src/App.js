@@ -4,6 +4,7 @@ import ClassPage from "pages/Class/index";
 import LogInPage from "pages/LogIn/index";
 import SignUpPage from "pages/SignUp/index";
 import ShopPage from "pages/Shop/index";
+import OrderDetailsPage from "pages/OrderDetails/index";
 import { createGlobalStyle } from "styled-components";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import ContextProvider from "components/ContextProvider/ContextProvider";
@@ -29,6 +30,9 @@ function App() {
             </Route>
             <Route path="/shop" exact>
               <ShopPage />
+            </Route>
+            <Route path="/orderDetails" exact>
+              <OrderDetailsPage />
             </Route>
           </Switch>
         </Router>

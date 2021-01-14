@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import styled from "styled-components";
 import { Context } from "components/ContextProvider/ContextProvider";
+import { useHistory } from "react-router-dom";
 
 const Menu = ({ filterMenu, pageCount, step }) => {
+  let history = useHistory();
   const { favorite, setFavorite } = useContext(Context);
   const color = ["#FBB1B5", "#F0B791", "#F3AF97", "#FBB9AB", "#F9D7D1"];
 
@@ -16,7 +18,15 @@ const Menu = ({ filterMenu, pageCount, step }) => {
             (food, index) =>
               index < 5 * (page + 1) &&
               index >= 5 * page && (
-                <ItemContainer key={index}>
+                <ItemContainer
+                  key={index}
+                  onClick={() =>
+                    history.push({
+                      pathname: "/orderDetails",
+                      state: { food },
+                    })
+                  }
+                >
                   <PictureContainer
                     bg={color[Math.floor(Math.random() * color.length)]}
                   >
