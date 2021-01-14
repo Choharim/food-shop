@@ -20,14 +20,7 @@ const MainText = () => {
                 }
               ></ProfilePicture>
             </PictureContainer>
-            <ProfileID>
-              {
-                users.find(
-                  (user) =>
-                    user.id === currentUser.id && user.pw === currentUser.pw
-                ).id
-              }
-            </ProfileID>
+            <ProfileID>{currentUser.id}</ProfileID>
           </>
         ) : (
           <ProfileText>로그인을 해주세요</ProfileText>

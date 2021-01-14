@@ -62,7 +62,10 @@ const LogIn = () => {
         >
           아이디
         </Input>
-        {!checkUser() && <Warning>등록되지 않은 정보입니다.</Warning>}
+        {currentUser.id === "" && <Warning>아이디를 적어주세요.</Warning>}
+        {!checkUser() && currentUser.id !== "" && (
+          <Warning>등록되지 않은 정보입니다.</Warning>
+        )}
         <Input
           onChange={handleChange("pw")}
           value={currentUser.pw}
@@ -72,7 +75,10 @@ const LogIn = () => {
         >
           비밀번호
         </Input>
-        {!checkUser() && <Warning>등록되지 않은 정보입니다.</Warning>}
+        {currentUser.pw === "" && <Warning>비밀번호를 적어주세요.</Warning>}
+        {!checkUser() && currentUser.pw !== "" && (
+          <Warning>등록되지 않은 정보입니다.</Warning>
+        )}
         <LineText>OR</LineText>
       </LogInForm>
       <SignUpBtn onClick={() => history.push("/signUp")}>회원가입</SignUpBtn>

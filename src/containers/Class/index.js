@@ -89,11 +89,6 @@ const CardContainer = styled.div`
   flex-wrap: wrap;
   width: calc(100% - 80px);
   margin: 0 40px;
-  /*
-  &:nth-last-child(1) {
-    justify-content: flex-start;
-  }
-  */
 `;
 
 const ClassCard = styled.div`

@@ -17,7 +17,7 @@ const Home = () => {
     <HomeContainer>
       <MainText />
       <MenuSlider foodSlider={foodSlider} />
-      <Categories filterFoodArray={filterFoodArray} />
+      <Categories foodSlider={foodSlider} filterFoodArray={filterFoodArray} />
       <ClassModal />
     </HomeContainer>
   );

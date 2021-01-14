@@ -83,7 +83,7 @@ const SingUp = () => {
       step === 2 &&
       userObj.id !== "" &&
       userObj.pw !== "" &&
-      userObj.pw.length >= 3 &&
+      userObj.pw.length >= 4 &&
       userObj.pw.length <= 10 &&
       users.every((user) => user.id !== userObj.id)
     ) {

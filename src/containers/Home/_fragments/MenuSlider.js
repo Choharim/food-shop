@@ -26,7 +26,7 @@ const MenuSlider = ({ foodSlider }) => {
     <MenuContainer {...settings}>
       {foodSlider.map((food, index) => (
         <MenuItemContainer key={index}>
-          {food.name === favorite.find((item) => item === food.name) ? (
+          {favorite.some((item) => item === food.name) ? (
             <FillHeartIcon
               onClick={() =>
                 setFavorite(favorite.filter((item) => item !== food.name))

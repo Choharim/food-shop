@@ -32,7 +32,7 @@ const TwoStep = ({ userObj, handleChange }) => {
         비밀번호
       </Input>
       {userObj.pw === "" && <Warning>비밀번호를 적어주세요.</Warning>}
-      {(userObj.pw.length < 3 || userObj.pw.length > 10) &&
+      {(userObj.pw.length < 4 || userObj.pw.length > 10) &&
         userObj.pw.length !== 0 && (
           <Warning>4글자 이상 10글자 이하로 적어주세요.</Warning>
         )}
