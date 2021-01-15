@@ -57,8 +57,7 @@ const OrderDetails = () => {
         setOrderSuccess(false);
       }
     } else {
-      alert("주문이 완료되었습니다.");
-      history.push("/");
+      history.push("/order");
     }
   };
   ///////alert두번 나옴 두번 렌더링되는 이유는???????
@@ -126,7 +125,7 @@ const OrderDetails = () => {
               </Btn>
             ) : (
               <Btn color={"#9e8380"} onClick={check}>
-                완료
+                저장
               </Btn>
             )}
           </ContainerBg>

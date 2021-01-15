@@ -8,6 +8,13 @@ const ContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({ id: "", pw: "" });
   const [logInSuccess, setLogInSuccess] = useState(false);
   const [orderData, setOrderData] = useState([]);
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    phone: "",
+    extraAddress: "",
+    zoneCode: "",
+    address: "",
+  });
 
   return (
     <Context.Provider
@@ -22,6 +29,8 @@ const ContextProvider = ({ children }) => {
         setLogInSuccess,
         orderData,
         setOrderData,
+        userInfo,
+        setUserInfo,
       }}
     >
       {children}

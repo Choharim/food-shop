@@ -5,6 +5,7 @@ import LogInPage from "pages/LogIn/index";
 import SignUpPage from "pages/SignUp/index";
 import ShopPage from "pages/Shop/index";
 import OrderDetailsPage from "pages/OrderDetails/index";
+import OrderPage from "pages/Order/index";
 import { createGlobalStyle } from "styled-components";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import ContextProvider from "components/ContextProvider/ContextProvider";
@@ -30,6 +31,9 @@ function App() {
             </Route>
             <Route path="/shop" exact>
               <ShopPage />
+            </Route>
+            <Route path="/order" exact>
+              <OrderPage />
             </Route>
             <Route path="/orderDetails" exact>
               <OrderDetailsPage />

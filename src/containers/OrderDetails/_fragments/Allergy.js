@@ -36,7 +36,7 @@ const Allergy = ({ order, setOrder, index }) => {
           O
         </SmallButton>
       </BtnContainer>
-      {order[index].allergy === "yes" && (
+      {copy[index].allergy === "yes" && (
         <AllergyInput
           onChange={handleChoice("allergyText", index)}
           type="text"

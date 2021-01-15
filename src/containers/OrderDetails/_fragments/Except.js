@@ -37,7 +37,7 @@ const Except = ({ food, order, setOrder, index }) => {
             name="except"
             value="no"
             onChange={handleChoice(index)}
-            checked={copy[index].except.some((item) => item === "no")}
+            checked={order[index].except.some((item) => item === "no")}
           />
         </CheckBoxContainer>
       </HeadContainer>

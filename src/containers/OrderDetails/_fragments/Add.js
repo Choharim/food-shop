@@ -38,7 +38,7 @@ const Add = ({ order, setOrder, index }) => {
             name="add"
             value="no"
             onChange={handleChoice(index)}
-            checked={copy[index].add.some((item) => item === "no")}
+            checked={order[index].add.some((item) => item === "no")}
           />
         </CheckBoxContainer>
       </HeadContainer>
