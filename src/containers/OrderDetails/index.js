@@ -7,6 +7,7 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { Context } from "components/ContextProvider/ContextProvider";
 import Intro from "./_fragments/Intro";
 import Except from "./_fragments/Except";
+import Add from "./_fragments/Add";
 
 const OrderDetails = () => {
   const { favorite, setFavorite } = useContext(Context);
@@ -59,13 +60,15 @@ const OrderDetails = () => {
                 order={order}
               />
               {[...Array(count)].map((detail, index) => (
-                <Except
-                  key={index}
-                  food={location.state.food}
-                  order={order}
-                  setOrder={setOrder}
-                  index={index}
-                />
+                <Container key={index}>
+                  <Except
+                    food={location.state.food}
+                    order={order}
+                    setOrder={setOrder}
+                    index={index}
+                  />
+                  <Add order={order} setOrder={setOrder} index={index} />
+                </Container>
               ))}
             </ContentsContainer>
           </ContainerBg>
@@ -155,4 +158,14 @@ const FillHeartIcon = styled(AiFillHeart)`
   border-radius: 50%;
   font-size: 2.5rem;
   cursor: pointer;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 90%;
+  margin-top: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px dashed #b89995;
 `;

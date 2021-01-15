@@ -2,55 +2,57 @@ import React from "react";
 import styled from "styled-components";
 import SmallButton from "components/Button/SmallButton";
 
-const Except = ({ food, order, setOrder, index }) => {
+const Add = ({ order, setOrder, index }) => {
+  const addItemArray = ["맛보기 랜덤", "맛보기 연어쿠키", "미니 양치츄"];
   let check;
   let copy = order.slice();
 
   const handleChoice = (index) => (e) => {
     if (e.target.value === "no") {
-      copy[index].except = ["no"];
+      copy[index].add = ["no"];
     } else {
-      if (order[index].except.some((item) => item === e.target.value)) {
-        //제외 재료 눌렀을 때 똑같은 값을 눌렀으면 삭제되고, 이전에 no 눌렀으면 no 사라지게
-        check = order[index].except.filter(
+      if (order[index].add.some((item) => item === e.target.value)) {
+        //추가 재료 눌렀을 때 똑같은 값을 눌렀으면 삭제되고, 이전에 no 눌렀으면 no 사라지게
+        check = order[index].add.filter(
           (item) => item !== e.target.value && item !== "no"
         );
-        copy[index].except = check;
+        copy[index].add = check;
       } else {
-        //제외 재료 눌렀을 때 같은 값이 없으면 추가, 이전에 no 눌렀으면 no 사라지게
-        check = order[index].except.filter((item) => item !== "no");
-        copy[index].except = check;
-        copy[index].except.push(e.target.value);
+        //추가 재료 눌렀을 때 같은 값이 없으면 추가, 이전에 no 눌렀으면 no 사라지게
+        check = order[index].add.filter((item) => item !== "no");
+        copy[index].add = check;
+        copy[index].add.push(e.target.value);
       }
     }
     setOrder(copy);
   };
+  console.log(order);
 
   return (
     <>
       <HeadContainer>
-        <Title>제외할 재료</Title>
+        <Title>추가할 재료</Title>
         <CheckBoxContainer>
           <CheckBoxLabel>없음</CheckBoxLabel>
           <CheckBox
             type="checkbox"
-            name="except"
+            name="add"
             value="no"
             onChange={handleChoice(index)}
-            checked={copy[index].except.some((item) => item === "no")}
+            checked={copy[index].add.some((item) => item === "no")}
           />
         </CheckBoxContainer>
       </HeadContainer>
       <BtnContainer>
-        {food.ingredients.map((ing, i) => (
+        {addItemArray.map((ing, i) => (
           <SmallButton
             key={i}
             color={
-              order[index].except.some((item) => item === ing)
+              order[index].add.some((item) => item === ing)
                 ? "#b89995"
                 : "#d7d2cb"
             }
-            name="except"
+            name="add"
             value={ing}
             onClick={handleChoice(index)}
           >
@@ -62,7 +64,7 @@ const Except = ({ food, order, setOrder, index }) => {
   );
 };
 
-export default Except;
+export default Add;
 
 const HeadContainer = styled.div`
   display: flex;
