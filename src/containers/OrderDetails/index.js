@@ -7,6 +7,7 @@ import Intro from "./_fragments/Intro";
 import Except from "./_fragments/Except";
 import Add from "./_fragments/Add";
 import Allergy from "./_fragments/Allergy";
+import OrderBtn from "./_fragments/OrderBtn";
 
 const OrderDetails = () => {
   let history = useHistory();
@@ -53,6 +54,7 @@ const OrderDetails = () => {
                 </Container>
               ))}
             </ContentsContainer>
+            <OrderBtn order={order} food={location.state.food} />
           </ContainerBg>
         </DetailsContainer>
       )}
@@ -70,9 +72,9 @@ const DetailsContainer = styled.div`
 
 const FoodPicture = styled.div`
   width: 100%;
-  height: 400px;
+  height: 300px;
   background-image: url(${(props) => props.image});
-  background-size: cover;
+  background-size: contain;
 `;
 
 const BackBtn = styled(BsArrowLeft)`
@@ -107,8 +109,8 @@ const ContentsContainer = styled.div`
   align-items: center;
   width: 100%;
   max-width: 600px;
-  height: 500px;
-  margin-bottom: 80px;
+  height: 520px;
+  margin-bottom: 100px;
   z-index: 100;
   overflow-y: auto;
   visibility: visible;

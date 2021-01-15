@@ -41,6 +41,7 @@ const Button = styled.button`
       ? "#493c3b"
       : null};
   &:hover {
-    background-color: ${(props) => props.color};
+    background-color: #9e8380;
+    color: #493c3b;
   }
 `;
