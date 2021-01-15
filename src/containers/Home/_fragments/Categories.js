@@ -1,35 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import drink from "icons/drink.png";
 import dish from "icons/food.png";
 import snack from "icons/snack.png";
 import SmallButton from "components/Button/SmallButton";
 
-const Categories = ({ foodSlider, filterFoodArray }) => {
+const Categories = ({ filterFoodArray }) => {
+  const [filter, setFilter] = useState("all");
+
   return (
     <MenuFilterContainer>
       <MenuFilterItem
-        color={foodSlider[0].category === "dish" ? "#e0cfcd" : "#c9aca9"}
+        color={filter === "dish" ? "#e0cfcd" : "#c9aca9"}
         onClick={() => {
           filterFoodArray("dish");
+          setFilter("dish");
         }}
       >
         <MenuFilterIcon src={dish} />
         <MenuFilterText>Dish</MenuFilterText>
       </MenuFilterItem>
       <MenuFilterItem
-        color={foodSlider[0].category === "drink" ? "#e0cfcd" : "#c9aca9"}
+        color={filter === "drink" ? "#e0cfcd" : "#c9aca9"}
         onClick={() => {
           filterFoodArray("drink");
+          setFilter("drink");
         }}
       >
         <MenuFilterIcon src={drink} />
         <MenuFilterText>Drink</MenuFilterText>
       </MenuFilterItem>
       <MenuFilterItem
-        color={foodSlider[0].category === "snack" ? "#e0cfcd" : "#c9aca9"}
+        color={filter === "snack" ? "#e0cfcd" : "#c9aca9"}
         onClick={() => {
           filterFoodArray("snack");
+          setFilter("snack");
         }}
       >
         <MenuFilterIcon src={snack} />

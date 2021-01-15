@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { Context } from "components/ContextProvider/ContextProvider";
 import Intro from "./_fragments/Intro";
+import Choice from "./_fragments/Choice";
 
 const OrderDetails = () => {
   const { favorite, setFavorite } = useContext(Context);
@@ -41,6 +42,7 @@ const OrderDetails = () => {
                 />
               )}
               <Intro food={location.state.food} />
+              <Choice />
             </ContentsContainer>
           </ContainerBg>
         </DetailsContainer>
