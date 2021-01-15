@@ -59,8 +59,7 @@ const OrderDetails = () => {
       history.push("/");
     }
   };
-
-  console.log(orderData);
+  ///////alert두번 나옴 두번 렌더링되는 이유는???????
 
   return (
     <>

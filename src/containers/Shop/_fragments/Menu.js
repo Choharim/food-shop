@@ -9,6 +9,15 @@ const Menu = ({ filterMenu, pageCount, step }) => {
   const { favorite, setFavorite } = useContext(Context);
   const color = ["#FBB1B5", "#F0B791", "#F3AF97", "#FBB9AB", "#F9D7D1"];
 
+  const clickCard = (food) => (e) => {
+    if (e.target.id === "card") {
+      history.push({
+        pathname: "/orderDetails",
+        state: { food },
+      });
+    }
+  };
+
   return (
     <>
       {[...Array(pageCount)].map(
@@ -18,15 +27,7 @@ const Menu = ({ filterMenu, pageCount, step }) => {
             (food, index) =>
               index < 5 * (page + 1) &&
               index >= 5 * page && (
-                <ItemContainer
-                  key={index}
-                  onClick={() =>
-                    history.push({
-                      pathname: "/orderDetails",
-                      state: { food },
-                    })
-                  }
-                >
+                <ItemContainer key={index} id="card" onClick={clickCard(food)}>
                   <PictureContainer
                     bg={color[Math.floor(Math.random() * color.length)]}
                   >
@@ -92,6 +93,7 @@ const PictureContainer = styled.div`
   height: 120px;
   border-radius: 20px;
   background-color: ${(props) => props.bg};
+  pointer-events: none;
 `;
 
 const Picture = styled.div`
@@ -108,6 +110,7 @@ const TextContainer = styled.div`
   align-items: flex-start;
   width: 60%;
   margin-left: 15px;
+  pointer-events: none;
 `;
 
 const Name = styled.span`
