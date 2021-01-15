@@ -20,5 +20,15 @@ const Button = styled.button`
   font-size: 16px;
   cursor: pointer;
   background-color: ${(props) => props.color};
-  color: #7d6765;
+  color: ${(props) =>
+    props.color === "#d7d2cb"
+      ? "#faf9f8"
+      : props.color === "#b89995"
+      ? "#f3eceb"
+      : null};
+
+  &:hover {
+    background-color: #b89995;
+    color: #f3eceb;
+  }
 `;

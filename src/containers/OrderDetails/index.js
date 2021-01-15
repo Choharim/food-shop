@@ -64,6 +64,7 @@ const OrderDetails = () => {
                   food={location.state.food}
                   order={order}
                   setOrder={setOrder}
+                  index={index}
                 />
               ))}
             </ContentsContainer>
