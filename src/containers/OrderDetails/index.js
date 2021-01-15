@@ -107,10 +107,10 @@ const ContentsContainer = styled.div`
   align-items: center;
   width: 100%;
   max-width: 600px;
-  height: 600px;
+  height: 500px;
+  margin-bottom: 80px;
   z-index: 100;
   overflow-y: auto;
-
   visibility: visible;
   background-color: white;
   border-top-left-radius: 30px;

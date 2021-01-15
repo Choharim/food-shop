@@ -80,7 +80,7 @@ const HeartIcon = styled(AiOutlineHeart)`
   color: white;
   background-color: #b89995;
   border-radius: 50%;
-  font-size: 2.5rem;
+  font-size: 2rem;
   cursor: pointer;
 `;
 
@@ -93,7 +93,7 @@ const FillHeartIcon = styled(AiFillHeart)`
   color: rgb(237, 73, 86);
   background-color: #b89995;
   border-radius: 50%;
-  font-size: 2.5rem;
+  font-size: 2rem;
   cursor: pointer;
 `;
 
