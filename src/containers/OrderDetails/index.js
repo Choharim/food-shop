@@ -8,6 +8,8 @@ import Except from "./_fragments/Except";
 import Add from "./_fragments/Add";
 import Allergy from "./_fragments/Allergy";
 import Confirm from "./_fragments/Confirm";
+import ControlBtns from "./_fragments/ControlBtns";
+import ToggleBtn from "components/ToggleBtn";
 import BigButton from "components/Button/BigButton";
 import { Context } from "components/ContextProvider/ContextProvider";
 
@@ -82,7 +84,16 @@ const OrderDetails = () => {
                     order={order}
                   />
                   {[...Array(count)].map((detail, index) => (
-                    <Container key={index}>
+                    <ToggleBtn
+                      key={index}
+                      food={location.state.food}
+                      index={index}
+                    >
+                      <ControlBtns
+                        index={index}
+                        order={order}
+                        setOrder={setOrder}
+                      />
                       <Except
                         food={location.state.food}
                         order={order}
@@ -95,7 +106,7 @@ const OrderDetails = () => {
                         setOrder={setOrder}
                         index={index}
                       />
-                    </Container>
+                    </ToggleBtn>
                   ))}
                 </>
               ) : (
@@ -181,16 +192,6 @@ const ContentsContainer = styled.div`
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   box-shadow: 0 -7px 20px 0 rgba(0, 0, 0, 0.14);
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 90%;
-  margin-top: 20px;
-  padding-bottom: 10px;
-  border-bottom: 2px dashed #b89995;
 `;
 
 const Btn = styled(BigButton)`
