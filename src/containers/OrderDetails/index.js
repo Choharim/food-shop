@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { BsArrowLeft } from "react-icons/bs";
 import { useLocation } from "react-router";
@@ -6,12 +6,22 @@ import { useHistory } from "react-router-dom";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { Context } from "components/ContextProvider/ContextProvider";
 import Intro from "./_fragments/Intro";
-import Choice from "./_fragments/Choice";
+import Except from "./_fragments/Except";
 
 const OrderDetails = () => {
   const { favorite, setFavorite } = useContext(Context);
   let history = useHistory();
   const location = useLocation();
+  const [count, setCount] = useState(1);
+  const [order, setOrder] = useState([
+    {
+      foodName: "",
+      except: [],
+      add: [],
+      allergy: "",
+      allergyText: "",
+    },
+  ]);
 
   return (
     <>
@@ -41,8 +51,21 @@ const OrderDetails = () => {
                   }
                 />
               )}
-              <Intro food={location.state.food} />
-              <Choice />
+              <Intro
+                food={location.state.food}
+                count={count}
+                setCount={setCount}
+                setOrder={setOrder}
+                order={order}
+              />
+              {[...Array(count)].map((detail, index) => (
+                <Except
+                  key={index}
+                  food={location.state.food}
+                  order={order}
+                  setOrder={setOrder}
+                />
+              ))}
             </ContentsContainer>
           </ContainerBg>
         </DetailsContainer>
@@ -92,7 +115,7 @@ const ContainerBg = styled.div`
 
 const ContentsContainer = styled.div`
   position: absolute;
-  bottom: -375px;
+  //bottom: -375px;
   display: flex;
   flex-direction: column;
   align-items: center;

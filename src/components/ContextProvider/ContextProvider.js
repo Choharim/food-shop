@@ -7,17 +7,7 @@ const ContextProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState({ id: "", pw: "" });
   const [logInSuccess, setLogInSuccess] = useState(false);
-  const [orderData, setOrderData] = useState([
-    {
-      foodName: "",
-      totalPrice: 0,
-      allergy: "",
-      allergyText: "",
-      except: [],
-      add: [],
-    },
-  ]);
-  const [count, setCount] = useState(1);
+  const [orderData, setOrderData] = useState([]);
 
   return (
     <Context.Provider
@@ -32,8 +22,6 @@ const ContextProvider = ({ children }) => {
         setLogInSuccess,
         orderData,
         setOrderData,
-        count,
-        setCount,
       }}
     >
       {children}

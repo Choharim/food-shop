@@ -96,6 +96,7 @@ export const Data = [
     price: 5000,
     desc:
       "식이섬유가 풍부하고 비타민D가 많이 함유되어 있어 장건강과 면역력에 좋습니다.",
+    ingredients: ["시금치", "파프리카", "대추", "오이"],
     difficulty: 1,
   },
   {

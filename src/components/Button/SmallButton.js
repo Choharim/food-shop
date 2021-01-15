@@ -11,9 +11,9 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25%;
-  height: 40px;
-  padding: 5px;
+  width: 30%;
+  height: 45px;
+  margin-bottom: 10px;
   border-radius: 8px;
   outline: none;
   border: none;

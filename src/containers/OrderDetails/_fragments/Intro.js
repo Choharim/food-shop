@@ -1,11 +1,28 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import { Context } from "components/ContextProvider/ContextProvider";
 
-const Intro = ({ food }) => {
-  const { count, setCount } = useContext(Context);
+const Intro = ({ food, count, setCount, setOrder, order }) => {
+  const clickMinus = () => {
+    if (count !== 1) {
+      setCount(count - 1);
+      setOrder(order.slice(0, -1));
+    }
+  };
 
+  const clickPlus = () => {
+    setCount(count + 1);
+    setOrder(
+      order.concat({
+        foodName: "",
+        except: [],
+        add: [],
+        allergy: "",
+        allergyText: "",
+      })
+    );
+  };
+  console.log(order);
   return (
     <Container>
       <h1 style={{ margin: "0 0 10px" }}>{food.name}</h1>
@@ -18,9 +35,13 @@ const Intro = ({ food }) => {
         <TextContainer>
           <Title>개수</Title>
           <CountContainer>
-            <MinusBtn onClick={() => count !== 1 && setCount(count - 1)} />
-            <Text>{count}</Text>
-            <PlusBtn onClick={() => setCount(count + 1)} />
+            <MinusBtn onClick={clickMinus} />
+            <Text style={{ fontSize: "23px" }}>{count}</Text>
+            <PlusBtn onClick={clickPlus} />
+          </CountContainer>
+          <CountContainer>
+            <Title>총 금액</Title>
+            <Text>{food.price * count} 원</Text>
           </CountContainer>
         </TextContainer>
       </TextContainer>
@@ -55,26 +76,29 @@ const Title = styled.span`
 
 const Text = styled.span`
   font-size: 18px;
+  color: #7d6765;
 `;
 
 const CountContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 130px;
+  justify-content: flex-start;
+  width: 200px;
 `;
 const MinusBtn = styled(AiOutlineMinus)`
-  background-color: #f3eceb;
-  font-size: 1.2rem;
   padding: 2px;
+  margin-right: 25px;
+  background-color: #b89995;
   border-radius: 50%;
+  color: white;
   cursor: pointer;
 `;
 
 const PlusBtn = styled(AiOutlinePlus)`
-  background-color: #f3eceb;
-  font-size: 1.2rem;
   padding: 2px;
+  margin-left: 25px;
+  background-color: #b89995;
+  color: white;
   border-radius: 50%;
   cursor: pointer;
 `;
