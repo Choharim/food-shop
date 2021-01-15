@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import { Context } from "components/ContextProvider/ContextProvider";
 
 const Intro = ({ food, count, setCount, setOrder, order }) => {
+  const { favorite, setFavorite } = useContext(Context);
   const clickMinus = () => {
     if (count !== 1) {
       setCount(count - 1);
@@ -25,6 +28,15 @@ const Intro = ({ food, count, setCount, setOrder, order }) => {
   console.log(order);
   return (
     <Container>
+      {favorite.some((item) => item === food.name) ? (
+        <FillHeartIcon
+          onClick={() =>
+            setFavorite(favorite.filter((item) => item !== food.name))
+          }
+        />
+      ) : (
+        <HeartIcon onClick={() => setFavorite([...favorite, food.name])} />
+      )}
       <h1 style={{ margin: "0 0 10px" }}>{food.name}</h1>
       <Text> {food.desc}</Text>
       <TextContainer>
@@ -57,6 +69,32 @@ const Container = styled.div`
   align-items: flex-start;
   width: 90%;
   border-bottom: 1px solid #b89995;
+`;
+
+const HeartIcon = styled(AiOutlineHeart)`
+  align-self: flex-end;
+  position: relative;
+  top: 10px;
+  right: -20px;
+  padding: 5px;
+  color: white;
+  background-color: #b89995;
+  border-radius: 50%;
+  font-size: 2.5rem;
+  cursor: pointer;
+`;
+
+const FillHeartIcon = styled(AiFillHeart)`
+  align-self: flex-end;
+  position: relative;
+  top: 10px;
+  right: -20px;
+  padding: 5px;
+  color: rgb(237, 73, 86);
+  background-color: #b89995;
+  border-radius: 50%;
+  font-size: 2.5rem;
+  cursor: pointer;
 `;
 
 const TextContainer = styled.div`
