@@ -25,7 +25,7 @@ const Intro = ({ food, count, setCount, setOrder, order }) => {
       })
     );
   };
-  console.log(order);
+
   return (
     <Container>
       {favorite.some((item) => item === food.name) ? (

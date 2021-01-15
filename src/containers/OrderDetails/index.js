@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { BsArrowLeft } from "react-icons/bs";
 import { useLocation } from "react-router";
@@ -7,11 +7,16 @@ import Intro from "./_fragments/Intro";
 import Except from "./_fragments/Except";
 import Add from "./_fragments/Add";
 import Allergy from "./_fragments/Allergy";
-import OrderBtn from "./_fragments/OrderBtn";
+import Confirm from "./_fragments/Confirm";
+import BigButton from "components/Button/BigButton";
+import { Context } from "components/ContextProvider/ContextProvider";
 
 const OrderDetails = () => {
   let history = useHistory();
+  const { orderData, setOrderData } = useContext(Context);
   const location = useLocation();
+  const [step, setStep] = useState(1);
+  const [orderSuccess, setOrderSuccess] = useState(false);
   const [count, setCount] = useState(1);
   const [order, setOrder] = useState([
     {
@@ -22,6 +27,41 @@ const OrderDetails = () => {
       allergyText: "",
     },
   ]);
+  let copy = order.slice();
+
+  const check = () => {
+    if (location.state !== undefined) {
+      if (
+        order.every(
+          (obj) => obj.except.length && obj.add.length && obj.allergy !== ""
+        )
+      ) {
+        if (
+          order.some((obj) => obj.allergy === "yes" && obj.allergyText === "")
+        ) {
+          setOrderSuccess(false);
+          alert("알러지 종류를 적어주세요!");
+        } else {
+          for (let i = 0; i < order.length; i++) {
+            copy[i].foodName = location.state.food.name;
+          }
+          setOrderSuccess(true);
+          setOrder(copy);
+          setStep(step + 1);
+        }
+      } else {
+        alert("제외할 재료, 추가할 재료, 알러지 유무를 모두 체크해주세요!");
+        setOrderSuccess(false);
+      }
+    }
+  };
+  const success = () => {
+    setOrderData([...orderData, copy]);
+    alert("주문이 완료되었습니다.");
+    history.push("/");
+  };
+
+  console.log(orderData);
 
   return (
     <>
@@ -34,27 +74,50 @@ const OrderDetails = () => {
           </FoodPicture>
           <ContainerBg>
             <ContentsContainer>
-              <Intro
-                food={location.state.food}
-                count={count}
-                setCount={setCount}
-                setOrder={setOrder}
-                order={order}
-              />
-              {[...Array(count)].map((detail, index) => (
-                <Container key={index}>
-                  <Except
+              {step === 1 ? (
+                <>
+                  <Intro
                     food={location.state.food}
-                    order={order}
+                    count={count}
+                    setCount={setCount}
                     setOrder={setOrder}
-                    index={index}
+                    order={order}
                   />
-                  <Add order={order} setOrder={setOrder} index={index} />
-                  <Allergy order={order} setOrder={setOrder} index={index} />
-                </Container>
-              ))}
+                  {[...Array(count)].map((detail, index) => (
+                    <Container key={index}>
+                      <Except
+                        food={location.state.food}
+                        order={order}
+                        setOrder={setOrder}
+                        index={index}
+                      />
+                      <Add order={order} setOrder={setOrder} index={index} />
+                      <Allergy
+                        order={order}
+                        setOrder={setOrder}
+                        index={index}
+                      />
+                    </Container>
+                  ))}
+                </>
+              ) : (
+                <Confirm
+                  food={location.state.food}
+                  order={order}
+                  step={step}
+                  setStep={setStep}
+                />
+              )}
             </ContentsContainer>
-            <OrderBtn order={order} food={location.state.food} />
+            {step === 1 ? (
+              <Btn color={orderSuccess ? "#9e8380" : "#d7d2cb"} onClick={check}>
+                주문하기 / 총 {count * location.state.food.price} 원
+              </Btn>
+            ) : (
+              <Btn color={"#9e8380"} onClick={success}>
+                완료
+              </Btn>
+            )}
           </ContainerBg>
         </DetailsContainer>
       )}
@@ -128,4 +191,11 @@ const Container = styled.div`
   margin-top: 20px;
   padding-bottom: 10px;
   border-bottom: 2px dashed #b89995;
+`;
+
+const Btn = styled(BigButton)`
+  position: absolute;
+  bottom: 0;
+  width: 75%;
+  visibility: visible;
 `;

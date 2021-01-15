@@ -26,7 +26,6 @@ const Add = ({ order, setOrder, index }) => {
     }
     setOrder(copy);
   };
-  console.log(order);
 
   return (
     <>
