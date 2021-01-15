@@ -89,11 +89,6 @@ const OrderDetails = () => {
                       food={location.state.food}
                       index={index}
                     >
-                      <ControlBtns
-                        index={index}
-                        order={order}
-                        setOrder={setOrder}
-                      />
                       <Except
                         food={location.state.food}
                         order={order}
@@ -105,6 +100,11 @@ const OrderDetails = () => {
                         order={order}
                         setOrder={setOrder}
                         index={index}
+                      />
+                      <ControlBtns
+                        index={index}
+                        order={order}
+                        setOrder={setOrder}
                       />
                     </ToggleBtn>
                   ))}
