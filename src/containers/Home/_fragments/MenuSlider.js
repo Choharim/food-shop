@@ -5,8 +5,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { Context } from "components/ContextProvider/ContextProvider";
+import { useHistory } from "react-router-dom";
 
 const MenuSlider = ({ foodSlider }) => {
+  let history = useHistory();
   const { favorite, setFavorite } = useContext(Context);
 
   const settings = {
@@ -22,10 +24,19 @@ const MenuSlider = ({ foodSlider }) => {
     autoplay: true,
   };
 
+  const clickCard = (food) => (e) => {
+    if (e.target.id === "card") {
+      history.push({
+        pathname: "/orderDetails",
+        state: { food },
+      });
+    }
+  };
+
   return (
     <MenuContainer {...settings}>
       {foodSlider.map((food, index) => (
-        <MenuItemContainer key={index}>
+        <MenuItemContainer key={index} id="card" onClick={clickCard(food)}>
           {favorite.some((item) => item === food.name) ? (
             <FillHeartIcon
               onClick={() =>
