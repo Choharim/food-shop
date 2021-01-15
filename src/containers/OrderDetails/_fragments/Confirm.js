@@ -2,7 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { BsArrowLeft } from "react-icons/bs";
 
-const Confirm = ({ food, order, step, setStep }) => {
+const Confirm = ({ food, order, step, setStep, orderData, setOrderData }) => {
+  const backStep = () => {
+    setOrderData(orderData.slice(0, -1));
+    setStep(step - 1);
+  };
+
   return (
     <>
       <Container>
@@ -10,7 +15,9 @@ const Confirm = ({ food, order, step, setStep }) => {
           <DataContainer key={index}>
             <TextContainer>
               <Dot />
-              <Title>{obj.foodName}</Title>
+              <Title>
+                {obj.foodName} {index + 1}
+              </Title>
             </TextContainer>
             <Card>
               <TextContainer>
@@ -46,7 +53,7 @@ const Confirm = ({ food, order, step, setStep }) => {
         ))}
       </Container>
       <TotalContainer>
-        <BackBtn onClick={() => setStep(step - 1)} />
+        <BackBtn onClick={backStep} />
         <Total>
           <TotalPrice>Total</TotalPrice>
           <TotalPrice> {order.length * food.price} 원</TotalPrice>
@@ -63,8 +70,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   width: 80%;
-  height: 100%;
-  margin-top: 10px;
+  height: auto;
+  margin-top: 20px;
   border-left: 3px solid #9e8380;
 `;
 

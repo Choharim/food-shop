@@ -30,7 +30,7 @@ const OrderDetails = () => {
   let copy = order.slice();
 
   const check = () => {
-    if (location.state !== undefined) {
+    if (step === 1) {
       if (
         order.every(
           (obj) => obj.except.length && obj.add.length && obj.allergy !== ""
@@ -47,18 +47,17 @@ const OrderDetails = () => {
           }
           setOrderSuccess(true);
           setOrder(copy);
+          setOrderData([...orderData, copy]);
           setStep(step + 1);
         }
       } else {
         alert("제외할 재료, 추가할 재료, 알러지 유무를 모두 체크해주세요!");
         setOrderSuccess(false);
       }
+    } else {
+      alert("주문이 완료되었습니다.");
+      history.push("/");
     }
-  };
-  const success = () => {
-    setOrderData([...orderData, copy]);
-    alert("주문이 완료되었습니다.");
-    history.push("/");
   };
 
   console.log(orderData);
@@ -106,6 +105,8 @@ const OrderDetails = () => {
                   order={order}
                   step={step}
                   setStep={setStep}
+                  orderData={orderData}
+                  setOrderData={setOrderData}
                 />
               )}
             </ContentsContainer>
@@ -114,7 +115,7 @@ const OrderDetails = () => {
                 주문하기 / 총 {count * location.state.food.price} 원
               </Btn>
             ) : (
-              <Btn color={"#9e8380"} onClick={success}>
+              <Btn color={"#9e8380"} onClick={check}>
                 완료
               </Btn>
             )}

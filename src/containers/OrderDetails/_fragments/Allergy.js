@@ -41,6 +41,7 @@ const Allergy = ({ order, setOrder, index }) => {
           onChange={handleChoice("allergyText", index)}
           type="text"
           placeholder="알러지 종류를 적어주세요."
+          value={order[index].allergyText}
         />
       )}
     </>
