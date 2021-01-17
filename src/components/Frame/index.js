@@ -14,20 +14,28 @@ const Frame = ({ children }) => {
   }, []);
 
   return (
-    <div style={{ background: "#ccc" }}>
-      <Navbar />
-      <Body height={height}>{children}</Body>
-    </div>
+    <Container>
+      <Body height={height}>
+        <Navbar height={height} />
+        {children}
+      </Body>
+    </Container>
   );
 };
 
 export default Frame;
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  background-color: #ccc;
+`;
+
 const Body = styled.div`
+  position: relative;
   display: flex;
   max-width: 600px;
   width: 100%;
   min-height: ${(props) => `${props.height}px`};
-  margin: 0 auto;
   background: #fff;
 `;

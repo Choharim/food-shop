@@ -124,37 +124,45 @@ const SingUp = () => {
   }
 
   return (
-    <SignUpContainer>
+    <Container>
       <BackBtn step={step} onClick={() => setStep(step - 1)} />
-      <SignUpForm onSubmit={(e) => e.preventDefault()}>
+      <SignUpContainer>
         {step !== 4 && <Logo onClick={() => history.push("/")} />}
-        {formContents(step)}
-      </SignUpForm>
-      <BigButton
-        width="calc(100% - 120px)"
-        type="submit"
-        color={checkValidaion() ? "#9e8380" : "#d7d2cb"}
-        onClick={handleSubmit}
-      >
-        {step !== 4 ? "다음" : "완료"}
-      </BigButton>
-    </SignUpContainer>
+        <SignUpForm onSubmit={(e) => e.preventDefault()}>
+          {formContents(step)}
+        </SignUpForm>
+        <BigButton
+          type="submit"
+          color={checkValidaion() ? "#7d6765" : "#d7d2cb"}
+          onClick={handleSubmit}
+        >
+          {step !== 4 ? "다음" : "완료"}
+        </BigButton>
+      </SignUpContainer>
+    </Container>
   );
 };
 
 export default SingUp;
+
+const Container = styled.div`
+  display: flex;
+  width: 100%;
+`;
 
 const SignUpContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin: 180px 20px 0;
 `;
 
 const BackBtn = styled(RiArrowGoBackLine)`
-  align-self: flex-start;
-  padding: 5px;
-  font-size: 2rem;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.5rem;
   cursor: pointer;
   ${(props) =>
     props.step === 1 &&
@@ -164,9 +172,9 @@ const BackBtn = styled(RiArrowGoBackLine)`
 `;
 
 const Logo = styled.div`
-  width: 120px;
-  height: 120px;
-  margin-bottom: 40px;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 30px;
   background-image: url(${logo});
   background-size: cover;
   cursor: pointer;
@@ -175,9 +183,7 @@ const Logo = styled.div`
 const SignUpForm = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: calc(100% - 120px);
-  height: 100%;
-  padding: 0 60px;
-  margin-top: 180px;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 10px;
 `;

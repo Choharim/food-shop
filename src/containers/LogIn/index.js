@@ -107,8 +107,16 @@ const LogInContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100%;
   margin: 180px 20px 0;
+`;
+
+const Logo = styled.div`
+  width: 100px;
+  height: 100px;
+  margin-bottom: 30px;
+  background-image: url(${logo});
+  background-size: cover;
+  cursor: pointer;
 `;
 
 const LogInForm = styled.form`
@@ -119,20 +127,12 @@ const LogInForm = styled.form`
   margin-bottom: 10px;
 `;
 
-const Logo = styled.div`
-  width: 100px;
-  height: 100px;
-  margin-bottom: 20px;
-  background-image: url(${logo});
-  background-size: cover;
-  cursor: pointer;
-`;
-
 const LineContainer = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
   width: 100%;
+  margin-bottom: 20px;
   border-top: 1px solid #7d6765;
 `;
 
@@ -145,9 +145,16 @@ const LineText = styled.span`
   padding: 0 10px 0;
 `;
 
-const SignUpBtn = styled(BigButton)`
-  bottom: 200px;
+const SignUpBtn = styled.button`
+  padding: 15px;
+  border-radius: 30px;
+  outline: none;
+  border: none;
+  font-size: 23px;
+  cursor: pointer;
   background-color: #7d6765;
+  width: 100%;
+  color: white;
 `;
 
 const Warning = styled.span`

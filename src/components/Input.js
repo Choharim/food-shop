@@ -42,5 +42,6 @@ const InputBox = styled.input`
   width: 90%;
   outline: none;
   border: none;
+  border-radius: 35px;
   background-color: white;
 `;
