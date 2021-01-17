@@ -45,24 +45,24 @@ const Navbar = () => {
         <UrlContainer>
           <UrlBbtn to="/">
             <HomeIcon image={home} />
-            <Text>Home</Text>
+            <Text>홈</Text>
           </UrlBbtn>
           <UrlBbtn to="/shop">
             <ShopIcon image={shop} />
-            <Text>Shop</Text>
+            <Text>쇼핑</Text>
           </UrlBbtn>
           <UrlBbtn to="/class">
             <ClassIcon image={foodClass} />
-            <Text>Class</Text>
+            <Text>수업</Text>
           </UrlBbtn>
         </UrlContainer>
         {logInSuccess ? (
           <LogOutBtn onClick={logOut}>
-            <Text>Log Out</Text>
+            <Text>로그 아웃</Text>
           </LogOutBtn>
         ) : (
           <UrlBbtn to="/logIn" style={{ justifyContent: "center" }}>
-            <Text>Log In</Text>
+            <Text>로그인</Text>
           </UrlBbtn>
         )}
       </NavbarBox>

@@ -10,7 +10,11 @@ const Home = () => {
   const [foodSlider, setFoodSlider] = useState(Data);
 
   const filterFoodArray = (category) => {
-    setFoodSlider(Data.filter((food) => food.category === category));
+    if (category === "all") {
+      setFoodSlider(Data);
+    } else {
+      setFoodSlider(Data.filter((food) => food.category === category));
+    }
   };
 
   return (

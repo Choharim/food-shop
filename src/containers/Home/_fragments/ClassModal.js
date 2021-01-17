@@ -23,7 +23,7 @@ const ClassModal = () => {
   return (
     <Modal
       position="bottom"
-      bottom={"-480px"}
+      bottom={"-600px"}
       visible={showModal}
       closeModal={() => setShowModal(false)}
     >

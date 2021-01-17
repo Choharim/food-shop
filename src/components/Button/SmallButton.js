@@ -21,14 +21,9 @@ const Button = styled.button`
   cursor: pointer;
   background-color: ${(props) => props.color};
   color: ${(props) =>
-    props.color === "#d7d2cb"
-      ? "#faf9f8"
-      : props.color === "#b89995"
-      ? "#f3eceb"
+    props.color === "#fff"
+      ? "#7d6765"
+      : props.color === "#7d6765"
+      ? "#fff"
       : null};
-
-  &:hover {
-    background-color: #b89995;
-    color: #f3eceb;
-  }
 `;
