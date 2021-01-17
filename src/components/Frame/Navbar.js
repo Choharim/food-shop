@@ -11,7 +11,9 @@ import { Link } from "react-router-dom";
 import { Context } from "components/ContextProvider/ContextProvider";
 
 const Navbar = () => {
-  const { logInSuccess, setLogInSuccess } = useContext(Context);
+  const { logInSuccess, setLogInSuccess, users, currentUser } = useContext(
+    Context
+  );
   const [showNav, setShowNav] = useState(false);
 
   const logOut = () => {
@@ -23,8 +25,23 @@ const Navbar = () => {
     <>
       <NavbarIcon onClick={() => setShowNav(true)} />
       <NavbarBox showNav={showNav}>
-        <NavCloseBtn onClick={() => setShowNav(false)} />
-        <div style={{ marginTop: "200px", width: "100%" }}>
+        <HeadContainer>
+          <ProfileContainer logInSuccess={logInSuccess}>
+            <PictureContainer>
+              <ProfilePicture
+                image={
+                  users.find(
+                    (user) =>
+                      user.id === currentUser.id && user.pw === currentUser.pw
+                  ).userPicture
+                }
+              ></ProfilePicture>
+            </PictureContainer>
+            <ProfileID>{currentUser.id}</ProfileID>
+          </ProfileContainer>
+          <NavCloseBtn onClick={() => setShowNav(false)} />
+        </HeadContainer>
+        <UrlContainer>
           <UrlBbtn to="/">
             <HomeIcon />
             <Text>Home</Text>
@@ -37,18 +54,16 @@ const Navbar = () => {
             <ClassIcon />
             <Text>Class</Text>
           </UrlBbtn>
-          <div style={{ marginTop: "250px" }}>
-            {logInSuccess ? (
-              <LogOutBtn onClick={logOut}>
-                <Text style={{ marginLeft: "0" }}>Log Out</Text>
-              </LogOutBtn>
-            ) : (
-              <UrlBbtn to="/logIn" style={{ justifyContent: "center" }}>
-                <Text style={{ marginLeft: "0" }}>Log In</Text>
-              </UrlBbtn>
-            )}
-          </div>
-        </div>
+        </UrlContainer>
+        {logInSuccess ? (
+          <LogOutBtn onClick={logOut}>
+            <Text>Log Out</Text>
+          </LogOutBtn>
+        ) : (
+          <UrlBbtn to="/logIn" style={{ justifyContent: "center" }}>
+            <Text>Log In</Text>
+          </UrlBbtn>
+        )}
       </NavbarBox>
     </>
   );
@@ -58,10 +73,9 @@ export default Navbar;
 
 const NavbarIcon = styled(FaBars)`
   position: fixed;
-  right: 0;
-  padding: 5px;
-  margin: 5px;
-  font-size: 2rem;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5em;
   color: #493c3b;
   cursor: pointer;
 `;
@@ -71,11 +85,11 @@ const NavbarBox = styled.div`
   flex-direction: column;
   align-items: center;
   position: fixed;
-  right: -250px;
-  width: 250px;
+  right: -330px;
+  width: 330px;
   height: 100%;
   z-index: 100;
-  background-color: #493c3b;
+  background-color: white;
   transition: 0.2s ease;
   ${(props) =>
     props.showNav &&
@@ -84,49 +98,89 @@ const NavbarBox = styled.div`
     `}
 `;
 
+const HeadContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 const NavCloseBtn = styled(AiOutlineClose)`
-  align-self: flex-start;
-  padding: 5px;
-  font-size: 2rem;
-  color: #b89995;
+  margin-right: 20px;
+  font-size: 1.5rem;
+  color: #493c3b;
   cursor: pointer;
+`;
+
+const ProfileContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  margin: 20px 0 0 20px;
+  ${(props) =>
+    !props.logInSuccess &&
+    css`
+      visibility: hidden;
+    `}
+`;
+
+const PictureContainer = styled.div`
+  margin-right: 10px;
+  padding: 2px;
+  border: 2px solid #7d6765;
+  border-radius: 50%;
+`;
+
+const ProfilePicture = styled.div`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-image: url(${(props) => props.image});
+  background-size: cover;
+`;
+
+const ProfileID = styled.span`
+  font-size: 20px;
+  color: #7d6765;
+`;
+
+const UrlContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin: 150px 0;
 `;
 
 const UrlBbtn = styled(Link)`
   display: flex;
-  justify-content: flex-start;
   align-items: flex-end;
-  width: 100%;
-  padding: 15px 0;
+  margin: 20px;
   color: #f3eceb;
   text-decoration: none;
   cursor: pointer;
-  &:hover {
-    background-color: #b89995;
-  }
 `;
 
 const HomeIcon = styled(AiOutlineHome)`
-  margin-left: 50px;
+  margin-right: 10px;
   font-size: 2rem;
-  color: #e0cfcd;
+  color: #7d6765;
 `;
 
 const ShopIcon = styled(AiOutlineShopping)`
-  margin-left: 50px;
+  margin-right: 10px;
   font-size: 2rem;
-  color: #e0cfcd;
+  color: #7d6765;
 `;
 
 const ClassIcon = styled(GiCook)`
-  margin-left: 50px;
+  margin-right: 10px;
   font-size: 2rem;
-  color: #e0cfcd;
+  color: #7d6765;
 `;
 
 const Text = styled.span`
-  margin-left: 40px;
-  font-size: 1.3rem;
+  font-size: 23px;
+  color: #7d6765;
 `;
 
 const LogOutBtn = styled.div`
@@ -135,10 +189,7 @@ const LogOutBtn = styled.div`
   align-items: flex-end;
   width: 100%;
   padding: 15px 0;
-  color: #f3eceb;
+  color: #7d6765;
   text-decoration: none;
   cursor: pointer;
-  &:hover {
-    background-color: #b89995;
-  }
 `;
