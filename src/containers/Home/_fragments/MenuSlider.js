@@ -80,12 +80,13 @@ const MenuItemContainer = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 0 20px;
+  padding: 50px 0 20px;
   outline: none;
   border: none;
-  background-color: #e0cfcd;
+  background-color: white;
   border-radius: 15px;
   cursor: pointer;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);
 `;
 
 const HeartIcon = styled(AiOutlineHeart)`

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import styled, { css } from "styled-components";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import BigButton from "components/Button/BigButton";
@@ -27,11 +27,16 @@ const SingUp = () => {
   });
   const [signUpSuccess, setSignUpSuccess] = useState(false);
 
-  useEffect(() => {
-    if (JSON.parse(localStorage.getItem("users"))) {
-      setUsers(JSON.parse(localStorage.getItem("users")));
+  const getUsers_LS = useCallback(async () => {
+    const res = await JSON.parse(localStorage.getItem("users"));
+    if (res) {
+      setUsers(res);
     }
-  }, []);
+  }, [setUsers]);
+
+  useEffect(() => {
+    getUsers_LS();
+  }, [getUsers_LS]);
 
   const showPicture = (e) => {
     e.preventDefault();

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import Input from "components/Input";
 import BigButton from "components/Button/BigButton";
@@ -17,11 +17,16 @@ const LogIn = () => {
     setUsers,
   } = useContext(Context);
 
-  useEffect(() => {
-    if (JSON.parse(localStorage.getItem("users"))) {
-      setUsers(JSON.parse(localStorage.getItem("users")));
+  const getUsers_LS = useCallback(async () => {
+    const res = await JSON.parse(localStorage.getItem("users"));
+    if (res) {
+      setUsers(res);
     }
-  }, []);
+  }, [setUsers]);
+
+  useEffect(() => {
+    getUsers_LS();
+  }, [getUsers_LS]);
 
   const handleChange = (input) => (e) => {
     setCurrentUser({ ...currentUser, [input]: e.target.value });

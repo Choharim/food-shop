@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { Context } from "components/ContextProvider/ContextProvider";
 import Address from "./_fragments/Address";
@@ -7,7 +7,6 @@ const Order = () => {
   /*
   -logInsccess가 true이면 users에서 currentUser find해서  
   이름,주소,핸드폰번호 기본값으로 지정
-  - provider에 userInfo쓰고 가져와서 userInfo에 input값 넣음
   -완료버튼 누르면 성공멘트나오고 cart페이지로
 
   -cart페이지에는 orderData와 userInfo나와있음
@@ -20,7 +19,7 @@ const Order = () => {
     users,
   } = useContext(Context);
 
-  useEffect(() => {
+  const checkLogIn = useCallback(() => {
     if (logInSuccess) {
       setUserInfo({
         ...userInfo,
@@ -32,7 +31,11 @@ const Order = () => {
         ).phone,
       });
     }
-  }, []);
+  }, [setUserInfo, logInSuccess, userInfo, users, currentUser]);
+
+  useEffect(() => {
+    checkLogIn();
+  }, [checkLogIn]);
 
   const handleChange = (input) => (e) => {
     setUserInfo({ ...userInfo, [input]: e.target.value });
@@ -102,7 +105,7 @@ const InputLabel = styled.label`
 `;
 
 const InputBox = styled.input`
-  width: 50%;
+  width: 100%;
   height: 30px;
   outline: none;
 `;
