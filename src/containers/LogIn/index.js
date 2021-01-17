@@ -28,6 +28,13 @@ const LogIn = () => {
     getUsers_LS();
   }, [getUsers_LS]);
 
+  useEffect(() => {
+    if (logInSuccess) {
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
+      history.push("/");
+    }
+  }, [logInSuccess, history, currentUser]);
+
   const handleChange = (input) => (e) => {
     setCurrentUser({ ...currentUser, [input]: e.target.value });
   };
@@ -50,10 +57,6 @@ const LogIn = () => {
       setLogInSuccess(false);
     }
   };
-  if (logInSuccess) {
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    history.push("/");
-  }
 
   return (
     <LogInContainer>

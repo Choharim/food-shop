@@ -27,7 +27,7 @@ const SingUp = () => {
   });
   const [signUpSuccess, setSignUpSuccess] = useState(false);
 
-  const getUsers_LS = useCallback(async () => {
+  const users_LS = useCallback(async () => {
     const res = await JSON.parse(localStorage.getItem("users"));
     if (res) {
       setUsers(res);
@@ -35,8 +35,15 @@ const SingUp = () => {
   }, [setUsers]);
 
   useEffect(() => {
-    getUsers_LS();
-  }, [getUsers_LS]);
+    users_LS();
+  }, [users_LS]);
+
+  useEffect(() => {
+    if (signUpSuccess) {
+      localStorage.setItem("users", JSON.stringify(users));
+      history.push("/");
+    }
+  }, [signUpSuccess, history, users]);
 
   const showPicture = (e) => {
     e.preventDefault();
@@ -118,10 +125,6 @@ const SingUp = () => {
       }
     }
   };
-  if (signUpSuccess) {
-    localStorage.setItem("users", JSON.stringify(users));
-    history.push("/");
-  }
 
   return (
     <Container>

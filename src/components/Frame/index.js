@@ -16,7 +16,7 @@ const Frame = ({ children }) => {
   return (
     <Container>
       <Body height={height}>
-        <Navbar height={height} />
+        <Navbar />
         {children}
       </Body>
     </Container>

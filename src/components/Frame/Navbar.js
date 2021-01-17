@@ -8,7 +8,7 @@ import home from "icons/home.png";
 import shop from "icons/shop.png";
 import foodClass from "icons/foodClass.png";
 
-const Navbar = ({ height }) => {
+const Navbar = () => {
   const { logInSuccess, setLogInSuccess, users, currentUser } = useContext(
     Context
   );
@@ -22,7 +22,7 @@ const Navbar = ({ height }) => {
   return (
     <>
       <NavbarIcon onClick={() => setShowNav(true)} />
-      <NavbarBox height={height} showNav={showNav}>
+      <NavbarBox showNav={showNav}>
         <HeadContainer>
           <ProfileContainer logInSuccess={logInSuccess}>
             <PictureContainer>
@@ -100,7 +100,7 @@ const NavbarBox = styled.div`
       visibility: visible;
       opacity: 1;
     `}
-  min-height: ${(props) => `${props.height}px`};
+  height:100%;
 `;
 
 const HeadContainer = styled.div`
