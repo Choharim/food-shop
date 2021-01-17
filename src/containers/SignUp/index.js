@@ -4,7 +4,7 @@ import { RiArrowGoBackLine } from "react-icons/ri";
 import BigButton from "components/Button/BigButton";
 import { useHistory } from "react-router-dom";
 import logo from "images/logo.png";
-import basicProfile from "images/basicProfile.jpg";
+import basicProfile from "icons/basicProfile.png";
 import OneStep from "./_fragments/OneStep";
 import TwoStep from "./_fragments/TwoStep";
 import ThreeStep from "./_fragments/ThreeStep";

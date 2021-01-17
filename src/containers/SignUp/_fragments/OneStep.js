@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { BsPlusSquare } from "react-icons/bs";
-import basicProfile from "images/basicProfile.jpg";
+import basicProfile from "icons/basicProfile.png";
 import Input from "components/Input";
 import { Context } from "components/ContextProvider/ContextProvider";
 
@@ -84,10 +84,10 @@ const PictureContainer = styled.div`
 
 const UserPictureLabel = styled.label`
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 85px;
-  height: 85px;
+  justify-content: center;
+  width: 75px;
+  height: 75px;
   background-image: url(${basicProfile});
   background-size: cover;
   border-radius: 50%;
@@ -95,8 +95,8 @@ const UserPictureLabel = styled.label`
 `;
 
 const PreviewPicture = styled.div`
-  width: 85px;
-  height: 85px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   background-image: url(${(props) => props.image});
   background-size: cover;

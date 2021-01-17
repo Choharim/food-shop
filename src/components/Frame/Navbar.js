@@ -1,14 +1,12 @@
 import React, { useState, useContext } from "react";
 import styled, { css } from "styled-components";
 import { FaBars } from "react-icons/fa";
-import {
-  AiOutlineClose,
-  AiOutlineHome,
-  AiOutlineShopping,
-} from "react-icons/ai";
-import { GiCook } from "react-icons/gi";
+import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Context } from "components/ContextProvider/ContextProvider";
+import home from "icons/home.png";
+import shop from "icons/shop.png";
+import foodClass from "icons/foodClass.png";
 
 const Navbar = () => {
   const { logInSuccess, setLogInSuccess, users, currentUser } = useContext(
@@ -30,10 +28,13 @@ const Navbar = () => {
             <PictureContainer>
               <ProfilePicture
                 image={
-                  users.find(
-                    (user) =>
-                      user.id === currentUser.id && user.pw === currentUser.pw
-                  ).userPicture
+                  logInSuccess
+                    ? users.find(
+                        (user) =>
+                          user.id === currentUser.id &&
+                          user.pw === currentUser.pw
+                      ).userPicture
+                    : null
                 }
               ></ProfilePicture>
             </PictureContainer>
@@ -43,15 +44,15 @@ const Navbar = () => {
         </HeadContainer>
         <UrlContainer>
           <UrlBbtn to="/">
-            <HomeIcon />
+            <HomeIcon image={home} />
             <Text>Home</Text>
           </UrlBbtn>
           <UrlBbtn to="/shop">
-            <ShopIcon />
+            <ShopIcon image={shop} />
             <Text>Shop</Text>
           </UrlBbtn>
           <UrlBbtn to="/class">
-            <ClassIcon />
+            <ClassIcon image={foodClass} />
             <Text>Class</Text>
           </UrlBbtn>
         </UrlContainer>
@@ -160,26 +161,34 @@ const UrlBbtn = styled(Link)`
   cursor: pointer;
 `;
 
-const HomeIcon = styled(AiOutlineHome)`
+const HomeIcon = styled.div`
+  width: 30px;
+  height: 30px;
   margin-right: 10px;
-  font-size: 2rem;
-  color: #7d6765;
+  background-image: url(${(props) => props.image});
+  background-size: cover;
 `;
 
-const ShopIcon = styled(AiOutlineShopping)`
+const ShopIcon = styled.div`
+  width: 30px;
+  height: 30px;
   margin-right: 10px;
   font-size: 2rem;
-  color: #7d6765;
+  background-image: url(${(props) => props.image});
+  background-size: cover;
 `;
 
-const ClassIcon = styled(GiCook)`
+const ClassIcon = styled.div`
+  width: 30px;
+  height: 30px;
   margin-right: 10px;
   font-size: 2rem;
-  color: #7d6765;
+  background-image: url(${(props) => props.image});
+  background-size: cover;
 `;
 
 const Text = styled.span`
-  font-size: 23px;
+  font-size: 20px;
   color: #7d6765;
 `;
 

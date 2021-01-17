@@ -1,5 +1,5 @@
 import React from "react";
-import basicProfile from "images/basicProfile.jpg";
+import basicProfile from "icons/basicProfile.png";
 import styled from "styled-components";
 
 const ConfirmStep = ({ userObj }) => {
