@@ -23,7 +23,7 @@ const ClassModal = () => {
   return (
     <Modal
       position="bottom"
-      bottom={"-600px"}
+      bottom={"-400px"}
       visible={showModal}
       closeModal={() => setShowModal(false)}
     >
@@ -33,7 +33,7 @@ const ClassModal = () => {
         </TouchLineArea>
         <ModalHeadTitle>직접 요리해보고 싶나요?</ModalHeadTitle>
         <ModalPicture></ModalPicture>
-        <div style={{ width: "calc(100% - 80px)", padding: "0 40px" }}>
+        <div style={{ width: "calc(100% - 40px)", margin: "0 20px" }}>
           <Container>
             <Text>난이도 선택</Text>
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -82,14 +82,17 @@ const ModalContainer = styled.div`
 `;
 
 const TouchLineArea = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  height: 45px;
   cursor: pointer;
 `;
 
 const TouchLine = styled.div`
   width: 70px;
   height: 6px;
-  margin: 18px auto 35px;
   background-color: rgb(217, 217, 217);
   border-radius: 20px;
 `;
@@ -100,11 +103,11 @@ const ModalHeadTitle = styled.span`
 `;
 
 const ModalPicture = styled.div`
-  margin: 20px 0;
+  margin: 10px 0;
   background-image: url(${cookingClass});
   background-size: cover;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
 `;
 
@@ -113,14 +116,13 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 const Text = styled.span`
   margin-bottom: 5px;
-  padding-left: 5px;
   font-size: 16px;
-  color: #7d6765;
+  color: #493c3b;
 `;
 
 const FireContainer = styled.div`
@@ -172,8 +174,8 @@ const FireContainer = styled.div`
 `;
 
 const FireIcon = styled(ImFire)`
-  padding: 5px;
-  font-size: 1.7rem;
+  margin-right: 5px;
+  font-size: 1.5rem;
   color: #e3e0db;
   cursor: pointer;
 `;
@@ -187,10 +189,8 @@ const Desc = styled.span`
 const MoveArrow = keyframes`
   from {
     transform: translateX(0);
-      opacity: 0.1;
   }to {
     transform: translateX(10px);
-      opacity: 1;
   }
 `;
 
@@ -213,8 +213,5 @@ const ClassList = styled.span`
 
 const ClassBtn = styled(BigButton)`
   background-color: #b89995;
-  color: #fbf9f9;
-  &:hover {
-    background-color: #c9aca9;
-  }
+  color: #fff;
 `;
