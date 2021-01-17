@@ -57,8 +57,8 @@ const LogIn = () => {
 
   return (
     <LogInContainer>
+      <Logo onClick={() => history.push("/")} />
       <LogInForm>
-        <Logo onClick={() => history.push("/")} />
         <Input
           onChange={handleChange("id")}
           value={currentUser.id}
@@ -84,13 +84,15 @@ const LogIn = () => {
         {!checkUser() && currentUser.pw !== "" && (
           <Warning>등록되지 않은 정보입니다.</Warning>
         )}
-        <LineText>OR</LineText>
       </LogInForm>
+      <LineContainer>
+        <LineText>OR</LineText>
+      </LineContainer>
       <SignUpBtn onClick={() => history.push("/signUp")}>회원가입</SignUpBtn>
       <BigButton
         onClick={handleSubmit}
         type="submit"
-        color={checkUser() ? "#9e8380" : "#d7d2cb"}
+        color={checkUser() ? "#7d6765" : "#d7d2cb"}
       >
         확인
       </BigButton>
@@ -105,51 +107,51 @@ const LogInContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 0 60px;
+  height: 100%;
+  margin: 180px 20px 0;
 `;
 
 const LogInForm = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  height: 100%;
-  margin-top: 180px;
+  margin-bottom: 10px;
 `;
 
 const Logo = styled.div`
-  width: 120px;
-  height: 120px;
-  margin-bottom: 40px;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
   background-image: url(${logo});
-  background-size: contain;
+  background-size: cover;
   cursor: pointer;
 `;
 
-const LineText = styled.div`
+const LineContainer = styled.div`
   display: flex;
-  flex-basis: 10%;
-  align-items: center;
+  justify-content: center;
+  position: relative;
   width: 100%;
-  color: #b89995;
-  font-size: 12px;
-  &::after,
-  &::before {
-    content: "";
-    flex-grow: 1;
-    background: #b89995;
-    height: 1px;
-    font-size: 0px;
-    line-height: 0px;
-    margin: 0px 16px;
-  }
+  border-top: 1px solid #7d6765;
+`;
+
+const LineText = styled.span`
+  font-size: 13px;
+  color: #7d6765;
+  position: absolute;
+  top: -11px;
+  background-color: white;
+  padding: 0 10px 0;
 `;
 
 const SignUpBtn = styled(BigButton)`
-  bottom: 100px;
+  bottom: 200px;
+  background-color: #7d6765;
 `;
 
 const Warning = styled.span`
-  text-align: center;
+  margin: 0 0 5px 20px;
   font-size: 13px;
+  color: #493c3b;
 `;

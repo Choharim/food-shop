@@ -2,22 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const BigButton = ({ children, ...props }) => {
-  return (
-    <ButtonContainer {...props}>
-      <Button {...props}>{children}</Button>
-    </ButtonContainer>
-  );
+  return <Button {...props}>{children}</Button>;
 };
 
 export default BigButton;
-
-const ButtonContainer = styled.div`
-  width: 100%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  width: ${(props) => props.width};
-`;
 
 const Button = styled.button`
   position: absolute;
@@ -25,7 +13,7 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: calc(100% - 40px);
   margin: auto 0 25px;
   padding: 15px;
   border-radius: 30px;
@@ -34,14 +22,5 @@ const Button = styled.button`
   font-size: 23px;
   cursor: pointer;
   background-color: ${(props) => props.color};
-  color: ${(props) =>
-    props.color === "#d7d2cb"
-      ? "#faf9f8"
-      : props.color === "#9e8380"
-      ? "#493c3b"
-      : null};
-  &:hover {
-    background-color: #9e8380;
-    color: #493c3b;
-  }
+  color: white;
 `;
