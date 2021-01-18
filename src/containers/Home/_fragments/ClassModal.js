@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Modal from "components/Modal";
 import styled, { css, keyframes } from "styled-components";
 import { ImFire } from "react-icons/im";
@@ -19,15 +19,26 @@ const ClassModal = () => {
     { score: 5, desc: "섬세함이 필요한 레시피에요! 요리 고수가 될거에요!" },
   ];
   const [difficulty, setDifficulty] = useState(difficultyData[2]);
+  const [height, setHeight] = useState(0);
+  const modal = useRef();
+
+  useEffect(() => {
+    const updateModalHeight = () => {
+      setHeight(window.innerHeight - 420);
+    };
+    updateModalHeight();
+    window.addEventListener("resize", updateModalHeight);
+    return window.removeEventListener("resize", updateModalHeight);
+  }, []);
 
   return (
     <Modal
       position="bottom"
-      bottom={"-400px"}
+      bottom={`-${height}px`}
       visible={showModal}
       closeModal={() => setShowModal(false)}
     >
-      <ModalContainer>
+      <ModalContainer ref={modal}>
         <TouchLineArea onClick={() => setShowModal(!showModal)}>
           <TouchLine></TouchLine>
         </TouchLineArea>
@@ -86,7 +97,7 @@ const TouchLineArea = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 45px;
+  height: 50px;
   cursor: pointer;
 `;
 
@@ -106,8 +117,8 @@ const ModalPicture = styled.div`
   margin: 10px 0;
   background-image: url(${cookingClass});
   background-size: cover;
-  width: 250px;
-  height: 250px;
+  width: 270px;
+  height: 270px;
   border-radius: 50%;
 `;
 

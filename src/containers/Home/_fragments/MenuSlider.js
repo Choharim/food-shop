@@ -15,13 +15,13 @@ const MenuSlider = ({ foodSlider }) => {
     className: "center",
     centerMode: true,
     infinite: true,
-    slidesToShow: 1.666,
+    slidesToShow: 1.6666,
     slidesToScroll: 1,
     autoplaySpeed: 2000,
     pauseOnHover: true,
     arrows: false,
     dots: true,
-    autoplay: true,
+    // autoplay: true,
   };
 
   const clickCard = (food) => (e) => {
@@ -60,18 +60,15 @@ export default MenuSlider;
 const MenuContainer = styled(Slider)`
   display: flex;
   width: 100%;
-  height: 370px;
-  margin-top: 15px;
+  margin: 5px 0 10px;
   .slick-dots {
     > li {
-      margin: 0 -2px;
+      margin: 2px -2px;
     }
   }
+
   .slick-slide > div {
-    padding: 0 20px;
-  }
-  .slick-track {
-    height: 100%;
+    padding: 0 5%;
   }
 `;
 
@@ -80,34 +77,36 @@ const MenuItemContainer = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px 0 20px;
+  margin: 10px 0;
   outline: none;
   border: none;
   background-color: white;
   border-radius: 15px;
   cursor: pointer;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 0px 8px;
 `;
 
 const HeartIcon = styled(AiOutlineHeart)`
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size: 2rem;
+  font-size: 1.7rem;
+  color: #493c3b;
 `;
 
 const FillHeartIcon = styled(AiFillHeart)`
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size: 2rem;
+  font-size: 1.7rem;
   color: rgb(237, 73, 86);
 `;
 
 const FoodPicture = styled.div`
-  width: 190px;
-  height: 190px;
-  margin-bottom: 25px;
+  width: 120px;
+  height: 120px;
+  margin: 30px 0 20px;
   background-image: url(${(props) => props.image});
   background-size: cover;
   border-radius: 50%;
@@ -115,13 +114,14 @@ const FoodPicture = styled.div`
 `;
 
 const FoodName = styled.p`
-  margin-bottom: 10px;
-  font-size: 1.2rem;
+  margin: 0 0 5px;
+  font-size: 16px;
   font-weight: bold;
   pointer-events: none;
 `;
-const FoodPrice = styled.span`
-  font-size: 1.2rem;
+const FoodPrice = styled.p`
+  margin: 0 0 15px;
+  font-size: 16px;
   font-weight: 300;
   pointer-events: none;
 `;

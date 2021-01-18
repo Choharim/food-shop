@@ -105,22 +105,21 @@ const NavbarBox = styled.div`
 
 const HeadContainer = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: calc(100% - 40px);
+  margin: 20px 20px 0;
 `;
 
 const NavCloseBtn = styled(AiOutlineClose)`
-  margin-right: 20px;
-  font-size: 1.5rem;
   color: #493c3b;
+  height: 30px;
+  width: 30px;
   cursor: pointer;
 `;
 
 const ProfileContainer = styled.div`
   display: flex;
-  align-items: flex-start;
-  margin: 20px 0 0 20px;
+  align-items: center;
   ${(props) =>
     !props.logInSuccess &&
     css`
@@ -130,8 +129,6 @@ const ProfileContainer = styled.div`
 
 const PictureContainer = styled.div`
   margin-right: 10px;
-  padding: 2px;
-  border: 2px solid #7d6765;
   border-radius: 50%;
 `;
 

@@ -61,7 +61,7 @@ const MenuFilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: calc(100% - 40px);
-  margin: 30px 20px 0;
+  margin: 25px 20px 0;
 `;
 
 const MenuFilterItem = styled(SmallButton)`

@@ -16,7 +16,7 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: calc(100% - 40px);
-  margin: 100px 20px 10px;
+  margin: 100px 20px 0;
 `;
 
 const Text = styled.span`

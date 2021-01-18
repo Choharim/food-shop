@@ -56,6 +56,7 @@ const ModalContainer = styled.div`
   z-index: 100;
   opacity: 1;
   visibility: visible;
+  transition: 0.2s ease;
   > div {
     transition: 0.2s ease;
   }
