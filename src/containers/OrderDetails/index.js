@@ -99,27 +99,33 @@ const OrderDetails = () => {
                   setOrder={setOrder}
                   order={order}
                 />
-                {[...Array(count)].map((detail, index) => (
-                  <ToggleBtn
-                    key={index}
-                    food={location.state.food}
-                    index={index}
-                  >
-                    <Except
+                <ScrollContainer>
+                  {[...Array(count)].map((detail, index) => (
+                    <ToggleBtn
+                      key={index}
                       food={location.state.food}
-                      order={order}
-                      setOrder={setOrder}
                       index={index}
-                    />
-                    <Add order={order} setOrder={setOrder} index={index} />
-                    <Allergy order={order} setOrder={setOrder} index={index} />
-                    <ControlBtns
-                      index={index}
-                      order={order}
-                      setOrder={setOrder}
-                    />
-                  </ToggleBtn>
-                ))}
+                    >
+                      <Except
+                        food={location.state.food}
+                        order={order}
+                        setOrder={setOrder}
+                        index={index}
+                      />
+                      <Add order={order} setOrder={setOrder} index={index} />
+                      <Allergy
+                        order={order}
+                        setOrder={setOrder}
+                        index={index}
+                      />
+                      <ControlBtns
+                        index={index}
+                        order={order}
+                        setOrder={setOrder}
+                      />
+                    </ToggleBtn>
+                  ))}
+                </ScrollContainer>
               </>
             ) : (
               <Confirm
@@ -181,8 +187,8 @@ const BackBtn = styled(BsArrowLeft)`
 
 const HeartIcon = styled(AiOutlineHeart)`
   position: absolute;
-  top: 180px;
-  right: 45px;
+  top: 190px;
+  right: 50px;
   padding: 8px;
   border-radius: 50%;
   color: white;
@@ -194,8 +200,8 @@ const HeartIcon = styled(AiOutlineHeart)`
 
 const FillHeartIcon = styled(AiFillHeart)`
   position: absolute;
-  top: 180px;
-  right: 45px;
+  top: 190px;
+  right: 50px;
   padding: 8px;
   border-radius: 50%;
   color: rgb(237, 73, 86);
@@ -211,13 +217,19 @@ const ContentsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: calc(100% - 40px);
+  width: 100%;
   max-width: 600px;
-  height: 500px;
-  padding: 0 20px;
-  margin-bottom: 110px;
-  overflow-y: auto;
+  height: 510px;
+  margin-bottom: 100px;
   background-color: white;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
+`;
+
+const ScrollContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  overflow-y: auto;
 `;

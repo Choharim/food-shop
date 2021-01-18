@@ -3,7 +3,7 @@ import styled from "styled-components";
 import SmallButton from "components/Button/SmallButton";
 
 const Add = ({ order, setOrder, index }) => {
-  const addItemArray = ["맛보기 랜덤", "맛보기 연어쿠키", "미니 양치츄"];
+  const addItemArray = ["랜덤", "연어쿠키", "양치츄"];
   let check;
   let copy = order.slice();
 
@@ -47,9 +47,7 @@ const Add = ({ order, setOrder, index }) => {
           <SmallButton
             key={i}
             color={
-              order[index].add.some((item) => item === ing)
-                ? "#b89995"
-                : "#d7d2cb"
+              order[index].add.some((item) => item === ing) ? "#b89995" : "#fff"
             }
             name="add"
             value={ing}
@@ -73,8 +71,9 @@ const HeadContainer = styled.div`
 `;
 
 const Title = styled.span`
-  font-size: 20px;
-  margin-bottom: 10px;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #493c3b;
 `;
 
 const CheckBoxContainer = styled.div`
@@ -83,9 +82,11 @@ const CheckBoxContainer = styled.div`
 `;
 
 const CheckBoxLabel = styled.label`
+  margin-right: 5px;
   font-size: 13px;
-  color: #7d6765;
+  color: #493c3b;
 `;
+
 const CheckBox = styled.input`
   width: 18px;
   height: 18px;

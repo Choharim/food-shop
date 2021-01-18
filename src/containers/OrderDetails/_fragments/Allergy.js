@@ -22,14 +22,14 @@ const Allergy = ({ order, setOrder, index }) => {
       <Title>알러지 유무</Title>
       <BtnContainer>
         <SmallButton
-          color={order[index].allergy === "no" ? "#b89995" : "#d7d2cb"}
+          color={order[index].allergy === "no" ? "#b89995" : "#fff"}
           onClick={handleChoice("allergy", index)}
           value="no"
         >
           X
         </SmallButton>
         <SmallButton
-          color={order[index].allergy === "yes" ? "#b89995" : "#d7d2cb"}
+          color={order[index].allergy === "yes" ? "#b89995" : "#fff"}
           onClick={handleChoice("allergy", index)}
           value="yes"
         >
@@ -51,8 +51,9 @@ const Allergy = ({ order, setOrder, index }) => {
 export default Allergy;
 
 const Title = styled.span`
-  font-size: 20px;
-  margin-bottom: 10px;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #493c3b;
 `;
 
 const BtnContainer = styled.div`
@@ -65,9 +66,9 @@ const BtnContainer = styled.div`
 
 const AllergyInput = styled.textarea`
   outline: none;
-  border: 2px solid #b89995;
+  border: 1px solid #b89995;
   width: calc(100% - 20px);
-  margin: 15px 0;
+  margin: 5px 0;
   padding: 5px 10px;
   height: 40px;
   border-radius: 10px;

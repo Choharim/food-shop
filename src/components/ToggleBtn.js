@@ -24,8 +24,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 90%;
-  margin-top: 20px;
+  width: calc(100% - 40px);
+  margin: 10px 20px 0;
   padding-bottom: 10px;
   border-bottom: 2px dashed #b89995;
 `;
@@ -40,12 +40,13 @@ const HeadContainer = styled.div`
 const Title = styled.span`
   font-size: 20px;
   font-weight: bolder;
+  color: #493c3b;
 `;
 
 const UpBtn = styled(IoIosArrowUp)`
-  margin-left: 10px;
-  padding: 5px;
+  margin-left: 15px;
   font-size: 1.2rem;
+  color: #493c3b;
   ${(props) =>
     props.show === "up"
       ? css`

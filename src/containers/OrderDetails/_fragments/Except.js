@@ -48,7 +48,7 @@ const Except = ({ food, order, setOrder, index }) => {
             color={
               order[index].except.some((item) => item === ing)
                 ? "#b89995"
-                : "#d7d2cb"
+                : "#fff"
             }
             name="except"
             value={ing}
@@ -72,8 +72,9 @@ const HeadContainer = styled.div`
 `;
 
 const Title = styled.span`
-  font-size: 20px;
-  margin-bottom: 10px;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #493c3b;
 `;
 
 const CheckBoxContainer = styled.div`
@@ -82,9 +83,11 @@ const CheckBoxContainer = styled.div`
 `;
 
 const CheckBoxLabel = styled.label`
+  margin-right: 5px;
   font-size: 13px;
-  color: #7d6765;
+  color: #493c3b;
 `;
+
 const CheckBox = styled.input`
   width: 18px;
   height: 18px;

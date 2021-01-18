@@ -34,7 +34,7 @@ const Container = styled.div`
 `;
 
 const ResetBtn = styled(GrPowerReset)`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #493c3b;
   cursor: pointer;
 `;
