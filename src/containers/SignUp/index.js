@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import BigButton from "components/Button/BigButton";
 import { useHistory } from "react-router-dom";
@@ -128,7 +128,9 @@ const SingUp = () => {
 
   return (
     <Container>
-      <BackBtn step={step} onClick={() => setStep(step - 1)} />
+      <BackBtn
+        onClick={() => (step !== 1 ? setStep(step - 1) : history.push("/"))}
+      />
       <SignUpContainer>
         {step !== 4 && <Logo onClick={() => history.push("/")} />}
         <SignUpForm onSubmit={(e) => e.preventDefault()}>
@@ -167,11 +169,6 @@ const BackBtn = styled(RiArrowGoBackLine)`
   left: 20px;
   font-size: 1.5rem;
   cursor: pointer;
-  ${(props) =>
-    props.step === 1 &&
-    css`
-      visibility: hidden;
-    `}
 `;
 
 const Logo = styled.div`
