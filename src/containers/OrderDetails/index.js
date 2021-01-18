@@ -35,35 +35,34 @@ const OrderDetails = () => {
   let copy = order.slice();
 
   const check = () => {
-    if (step === 1) {
+    if (
+      order.every(
+        (obj) => obj.except.length && obj.add.length && obj.allergy !== ""
+      )
+    ) {
       if (
-        order.every(
-          (obj) => obj.except.length && obj.add.length && obj.allergy !== ""
-        )
+        order.some((obj) => obj.allergy === "yes" && obj.allergyText === "")
       ) {
-        if (
-          order.some((obj) => obj.allergy === "yes" && obj.allergyText === "")
-        ) {
-          setOrderSuccess(false);
-          alert("알러지 종류를 적어주세요!");
-        } else {
-          for (let i = 0; i < order.length; i++) {
-            copy[i].foodName = location.state.food.name;
-          }
-          setOrderSuccess(true);
-          setOrder(copy);
-          setOrderData([...orderData, copy]);
-          setStep(step + 1);
-        }
-      } else {
-        alert("제외할 재료, 추가할 재료, 알러지 유무를 모두 체크해주세요!");
         setOrderSuccess(false);
+        alert("알러지 종류를 적어주세요!");
+      } else {
+        for (let i = 0; i < order.length; i++) {
+          copy[i].foodName = location.state.food.name;
+        }
+        setOrderSuccess(true);
+        setOrder(copy);
+        setOrderData([...orderData, copy]);
+        setStep(step + 1);
       }
     } else {
-      history.push("/order");
+      alert("제외할 재료, 추가할 재료, 알러지 유무를 모두 체크해주세요!");
+      setOrderSuccess(false);
     }
   };
-  ///////alert두번 나옴 두번 렌더링되는 이유는???????
+
+  const successOrder = () => {
+    history.push("/order");
+  };
 
   return (
     <>
@@ -143,11 +142,11 @@ const OrderDetails = () => {
               color={orderSuccess ? "#7d6765" : "#d7d2cb"}
               onClick={check}
             >
-              주문하기 / 총 {count * location.state.food.price} 원
+              다음
             </BigButton>
           ) : (
-            <BigButton color={"#7d6765"} onClick={check}>
-              저장
+            <BigButton color={"#7d6765"} onClick={successOrder}>
+              주문하기 / 총 {count * location.state.food.price} 원
             </BigButton>
           )}
         </DetailsContainer>

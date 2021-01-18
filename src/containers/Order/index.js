@@ -46,27 +46,30 @@ const Order = () => {
     <ClassContainer>
       <Title>주문자 정보</Title>
       <Form>
-        <InputLabel>이름</InputLabel>
-        <InputBox
-          onChange={handleChange("name")}
-          value={userInfo.name}
-          autocomplete="off"
-          type="text"
-        />
-        {userInfo.name === "" && <Warning>이름을 적어주세요.</Warning>}
-        <InputLabel>전화번호</InputLabel>
-        <InputBox
-          onChange={handleChange("phone")}
-          value={userInfo.phone}
-          autocomplete="off"
-          type="tel"
-          placeholder="ex) 010-1234-5678"
-        />
-        {userInfo.phone === "" && <Warning>전화번호를 적어주세요.</Warning>}
-        {!userInfo.phone.match("[0-9]{3}-[0-9]{4}-[0-9]{4}") &&
-          userInfo.phone !== "" && (
-            <Warning>010-1234-5678 형식으로 적어주세요.</Warning>
-          )}
+        <InputContainer>
+          <InputLabel>이름</InputLabel>
+          <Input
+            onChange={handleChange("name")}
+            value={userInfo.name}
+            type="text"
+          />
+          {userInfo.name === "" && <Warning>이름을 적어주세요.</Warning>}
+        </InputContainer>
+        <InputContainer>
+          <InputLabel>전화번호</InputLabel>
+          <Input
+            onChange={handleChange("phone")}
+            value={userInfo.phone}
+            autocomplete="off"
+            type="tel"
+            placeholder="ex) 010 - 1234 - 5678"
+          />
+          {userInfo.phone === "" && <Warning>전화번호를 적어주세요.</Warning>}
+          {!userInfo.phone.match("[0-9]{3}-[0-9]{4}-[0-9]{4}") &&
+            userInfo.phone !== "" && (
+              <Warning>010 - 1234 - 5678 형식으로 적어주세요.</Warning>
+            )}
+        </InputContainer>
         <Address />
       </Form>
     </ClassContainer>
@@ -78,12 +81,12 @@ export default Order;
 const ClassContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
+  align-items: flex-start;
+  width: calc(100% - 40px);
+  margin: 120px 20px 0;
 `;
 
 const Title = styled.span`
-  margin-top: 100px;
   font-size: 23px;
   font-weight: bolder;
   color: #493c3b;
@@ -93,25 +96,35 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: calc(100% - 120px);
-  height: 100%;
-  padding: 0 60px;
+  width: 100%;
   margin-top: 50px;
 `;
 
-const InputLabel = styled.label`
-  margin: 10px 0 5px;
-  font-size: 13px;
+const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100px;
+  margin-bottom: 20px;
 `;
 
-const InputBox = styled.input`
-  width: 100%;
+const InputLabel = styled.label`
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #493c3b;
+`;
+
+const Input = styled.input`
+  width: calc(100% - 10px);
   height: 30px;
+  padding: 0 5px;
   outline: none;
+  border: none;
+  border-bottom: 2px solid #7d6765;
 `;
 
 const Warning = styled.span`
   margin-top: 5px;
-  text-align: center;
   font-size: 13px;
+  color: #493c3b;
 `;
