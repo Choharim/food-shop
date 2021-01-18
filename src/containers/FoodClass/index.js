@@ -6,7 +6,7 @@ import { BsArrowLeft } from "react-icons/bs";
 import { Data } from "Data";
 import { useHistory } from "react-router-dom";
 
-const Class = () => {
+const FoodClass = () => {
   let history = useHistory();
   const [step, setStep] = useState(1);
   const pageCount = Math.ceil(Data.length / 6);
@@ -58,7 +58,7 @@ const Class = () => {
   );
 };
 
-export default Class;
+export default FoodClass;
 
 const ClassContainer = styled.div`
   display: flex;

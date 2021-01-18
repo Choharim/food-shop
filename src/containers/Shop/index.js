@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { BsArrowLeft } from "react-icons/bs";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { RiArrowGoBackLine } from "react-icons/ri";
 import { Data } from "Data";
 import { useHistory } from "react-router-dom";
 import MenuSelect from "./_fragments/MenuSelect";
@@ -14,81 +13,50 @@ const Shop = () => {
   const pageCount = Math.ceil(filterMenu.length / 5);
 
   return (
-    <ClassContainer>
+    <ShopContainer>
       <HomeBtn onClick={() => history.push("/")} />
       <Container>
-        <HeadContainer>
-          <Title>쇼핑</Title>
-          <MenuSelect setFilterMenu={setFilterMenu} />
-        </HeadContainer>
+        <MenuSelect setFilterMenu={setFilterMenu} />
         <Menu filterMenu={filterMenu} pageCount={pageCount} step={step} />
       </Container>
-      <PageMoveBtnContainer>
-        <PrevBtn onClick={() => (step === 1 ? null : setStep(step - 1))} />
-        <NextBtn
-          onClick={() => (step === pageCount ? null : setStep(step + 1))}
-        />
-      </PageMoveBtnContainer>
-    </ClassContainer>
+    </ShopContainer>
   );
 };
 
 export default Shop;
 
-const ClassContainer = styled.div`
+const ShopContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 `;
 
-const HomeBtn = styled(BsArrowLeft)`
+const HomeBtn = styled(RiArrowGoBackLine)`
   align-self: flex-start;
-  padding: 5px;
-  margin: 5px;
-  font-size: 2rem;
+  margin: 20px 0 0 20px;
+  font-size: 1.5rem;
+  color: #493c3b;
   cursor: pointer;
 `;
 
 const HeadContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 10px;
+`;
+
+const Title = styled.span`
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bolder;
+  color: #493c3b;
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-self: flex-start;
-  width: calc(100% - 80px);
-  margin: 0 40px;
-`;
-
-const Title = styled.span`
-  align-self: flex-start;
-  font-size: 23px;
-  font-weight: bolder;
-  color: #493c3b;
-`;
-
-const PageMoveBtnContainer = styled.div`
-  position: absolute;
-  bottom: 20px;
-  max-width: 600px;
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-`;
-
-const PrevBtn = styled(IoIosArrowBack)`
-  padding: 2px;
-  font-size: 2rem;
-  cursor: pointer;
-`;
-
-const NextBtn = styled(IoIosArrowForward)`
-  padding: 2px;
-  font-size: 2rem;
-  cursor: pointer;
+  align-items: flex-start;
+  width: calc(100% - 40px);
+  margin: 0 20px;
 `;

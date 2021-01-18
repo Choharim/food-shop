@@ -73,7 +73,7 @@ const Navbar = () => {
 export default Navbar;
 
 const NavbarIcon = styled(FaBars)`
-  position: fixed;
+  position: absolute;
   top: 20px;
   right: 20px;
   font-size: 1.5em;

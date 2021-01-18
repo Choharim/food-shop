@@ -120,6 +120,7 @@ const BackBtn = styled(RiArrowGoBackLine)`
   top: 20px;
   left: 20px;
   font-size: 1.5rem;
+  color: #493c3b;
   cursor: pointer;
 `;
 

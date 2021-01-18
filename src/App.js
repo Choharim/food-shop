@@ -1,6 +1,6 @@
 import React from "react";
 import HomePage from "pages/Home/index";
-import ClassPage from "pages/Class/index";
+import FoodClassPage from "pages/FoodClass/index";
 import LogInPage from "pages/LogIn/index";
 import SignUpPage from "pages/SignUp/index";
 import ShopPage from "pages/Shop/index";
@@ -21,7 +21,7 @@ function App() {
               <HomePage />
             </Route>
             <Route path="/class" exact>
-              <ClassPage />
+              <FoodClassPage />
             </Route>
             <Route path="/logIn" exact>
               <LogInPage />

@@ -62,5 +62,6 @@ const MenuSelect = ({ setFilterMenu }) => {
 export default MenuSelect;
 
 const FilterSelect = styled(Select)`
-  width: 60%;
+  width: 100%;
+  margin-bottom: 20px;
 `;

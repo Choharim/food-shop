@@ -7,7 +7,6 @@ import { useHistory } from "react-router-dom";
 const Menu = ({ filterMenu, pageCount, step }) => {
   let history = useHistory();
   const { favorite, setFavorite } = useContext(Context);
-  const color = ["#FBB1B5", "#F0B791", "#F3AF97", "#FBB9AB", "#F9D7D1"];
 
   const clickCard = (food) => (e) => {
     if (e.target.id === "card") {
@@ -28,14 +27,10 @@ const Menu = ({ filterMenu, pageCount, step }) => {
               index < 5 * (page + 1) &&
               index >= 5 * page && (
                 <ItemContainer key={index} id="card" onClick={clickCard(food)}>
-                  <PictureContainer
-                    bg={color[Math.floor(Math.random() * color.length)]}
-                  >
-                    <Picture image={food.image}></Picture>
-                  </PictureContainer>
+                  <Picture image={food.image}></Picture>
                   <TextContainer>
                     <Name>{food.name}</Name>
-                    <Desc>{food.desc}</Desc>
+                    <Desc>{food.desc.slice(0, 20)}...</Desc>
                     <Price>{food.price} 원</Price>
                   </TextContainer>
                   {food.name === favorite.find((item) => item === food.name) ? (
@@ -62,43 +57,36 @@ const Menu = ({ filterMenu, pageCount, step }) => {
 export default Menu;
 
 const ItemContainer = styled.div`
+  position: relative;
   display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+  width: calc(100% - 40px);
+  padding: 20px;
+  margin-bottom: 15px;
   border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.4px 1.4px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
   cursor: pointer;
 `;
 
 const HeartIcon = styled(AiOutlineHeart)`
-  position: relative;
-  bottom: -40px;
-  right: -40px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   font-size: 1.5rem;
+  color: #493c3b;
 `;
 
 const FillHeartIcon = styled(AiFillHeart)`
-  position: relative;
-  bottom: -40px;
-  right: -40px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   font-size: 1.5rem;
   color: rgb(237, 73, 86);
 `;
 
-const PictureContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 120px;
-  height: 120px;
-  border-radius: 20px;
-  background-color: ${(props) => props.bg};
-  pointer-events: none;
-`;
-
 const Picture = styled.div`
-  width: 70%;
-  height: 70%;
+  width: 70px;
+  height: 70px;
+  margin-right: 20px;
   border-radius: 50%;
   background-image: url(${(props) => props.image});
   background-size: cover;
@@ -108,25 +96,22 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 60%;
-  margin-left: 15px;
   pointer-events: none;
 `;
 
 const Name = styled.span`
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   font-size: 16px;
   font-weight: bolder;
   color: #493c3b;
 `;
 
-const Desc = styled.span`
-  margin-bottom: 2px;
-  font-size: 12px;
-  color: #9e8380;
-`;
-
 const Price = styled.span`
   font-size: 13px;
-  color: #d5bfbc;
+  color: #7d6765;
+`;
+
+const Desc = styled(Price)`
+  margin-bottom: 5px;
+  font-size: 12px;
 `;
