@@ -45,10 +45,10 @@ const MenuSelect = ({ setFilterMenu }) => {
   const customStyles = {
     control: (base) => ({
       ...base,
-      background: "rgba(27, 31, 35, 0.15)",
+      background: "#e9e9e9",
       borderRadius: "10px",
       padding: "3px 5px",
-      borderColor: "rgba(27, 31, 35, 0.15)",
+      borderColor: "#e9e9e9",
       boxShadow: "none",
     }),
     menu: (base) => ({

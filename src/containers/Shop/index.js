@@ -8,9 +8,7 @@ import Menu from "./_fragments/Menu";
 
 const Shop = () => {
   let history = useHistory();
-  const [step, setStep] = useState(1);
   const [filterMenu, setFilterMenu] = useState(Data);
-  const pageCount = Math.ceil(filterMenu.length / 5);
 
   return (
     <>
@@ -21,7 +19,7 @@ const Shop = () => {
         </HeadContainer>
         <Container>
           <MenuSelect setFilterMenu={setFilterMenu} />
-          <Menu filterMenu={filterMenu} pageCount={pageCount} step={step} />
+          <Menu filterMenu={filterMenu} />
         </Container>
       </ShopContainer>
     </>
@@ -67,5 +65,5 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: calc(100% - 40px);
-  margin: 20px 20px 0;
+  margin: 20px 20px 40px;
 `;
