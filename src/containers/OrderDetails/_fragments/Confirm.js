@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BsArrowLeft } from "react-icons/bs";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const Confirm = ({ food, order, step, setStep, orderData, setOrderData }) => {
   const backStep = () => {
@@ -13,12 +14,10 @@ const Confirm = ({ food, order, step, setStep, orderData, setOrderData }) => {
       <Container>
         {order.map((obj, index) => (
           <DataContainer key={index}>
-            <TextContainer>
-              <Dot />
-              <Title>
-                {obj.foodName} {index + 1}
-              </Title>
-            </TextContainer>
+            <Cart />
+            <Name>
+              {obj.foodName} {index + 1}
+            </Name>
             <Card>
               <TextContainer>
                 <Title>제외할 재료 : </Title>
@@ -69,33 +68,33 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
-  height: auto;
-  margin-top: 20px;
-  border-left: 3px solid #9e8380;
+  width: calc(100% - 40px);
+  margin: 20px 20px 0;
+  border-left: 3px solid #b89995;
 `;
 
 const DataContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   width: 100%;
   margin-top: 30px;
 `;
 
-const Dot = styled.div`
-  position: relative;
-  left: -9px;
-  width: 15px;
-  height: 15px;
-  background-color: #9e8380;
+const Cart = styled(AiOutlineShoppingCart)`
+  position: absolute;
+  left: -16px;
+  font-size: 1.2rem;
+  padding: 5px;
+  color: white;
+  background-color: #b89995;
   border-radius: 50%;
 `;
 
-const Title = styled.span`
+const Name = styled.span`
+  margin-left: 20px;
   font-size: 16px;
   font-weight: bolder;
-  margin-right: 5px;
   color: #493c3b;
 `;
 
@@ -103,41 +102,44 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: calc(100% - 30px);
+  width: calc(100% - 40px);
+  margin: 10px 0 10px 20px;
   padding: 10px;
-  margin: 0 0 10px 10px;
-  border-radius: 5px;
-  background-color: #e0cfcd;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 10px;
+  background-color: #b89995;
 `;
 
 const TextContainer = styled.div`
   display: flex;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 10px;
+  align-items: baseline;
+  margin-bottom: 5px;
+`;
+
+const Title = styled.span`
+  margin-right: 10px;
+  font-size: 16px;
+  color: #fff;
 `;
 
 const Text = styled.span`
-  margin-right: 15px;
+  margin-right: 10px;
   font-size: 13px;
-  color: #493c3b;
+  color: #fff;
 `;
 
 const TotalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 90%;
-  margin-top: 15px;
-  padding: 10px 0;
+  width: calc(100% - 40px);
+  margin: 15px 20px 0;
+  padding-top: 10px;
   border-top: 1px solid #b89995;
 `;
 
 const BackBtn = styled(BsArrowLeft)`
-  font-size: 2rem;
-  color: #9e8380;
+  font-size: 1.5rem;
+  color: #493c3b;
   cursor: pointer;
 `;
 
@@ -149,7 +151,7 @@ const Total = styled.div`
 `;
 
 const TotalPrice = styled.span`
-  font-size: 23px;
+  font-size: 20px;
   font-weight: bolder;
   color: #493c3b;
 `;
