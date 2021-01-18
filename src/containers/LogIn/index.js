@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useCallback } from "react";
 import styled from "styled-components";
+import { RiArrowGoBackLine } from "react-icons/ri";
 import Input from "components/Input";
 import BigButton from "components/Button/BigButton";
 import logo from "images/logo.png";
@@ -60,6 +61,7 @@ const LogIn = () => {
 
   return (
     <LogInContainer>
+      <BackBtn onClick={() => history.push("/")} />
       <Logo onClick={() => history.push("/")} />
       <LogInForm>
         <Input
@@ -111,6 +113,14 @@ const LogInContainer = styled.div`
   align-items: center;
   width: 100%;
   margin: 180px 20px 0;
+`;
+
+const BackBtn = styled(RiArrowGoBackLine)`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
 `;
 
 const Logo = styled.div`
