@@ -1,42 +1,41 @@
-import React, { useContext, useEffect, useCallback } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { Context } from "components/ContextProvider/ContextProvider";
 import Address from "./_fragments/Address";
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router";
 
 const Order = () => {
-  /*
-  -logInsccess가 true이면 users에서 currentUser find해서  
-  이름,주소,핸드폰번호 기본값으로 지정
-  -완료버튼 누르면 성공멘트나오고 cart페이지로
-
-  -cart페이지에는 orderData와 userInfo나와있음
- */
-  const {
-    userInfo,
-    setUserInfo,
-    logInSuccess,
-    currentUser,
-    users,
-  } = useContext(Context);
-
-  const checkLogIn = useCallback(() => {
-    if (logInSuccess) {
-      setUserInfo({
-        ...userInfo,
-        name: users.find(
-          (user) => user.id === currentUser.id && user.pw === currentUser.pw
-        ).name,
-        phone: users.find(
-          (user) => user.id === currentUser.id && user.pw === currentUser.pw
-        ).phone,
-      });
-    }
-  }, [setUserInfo, logInSuccess, userInfo, users, currentUser]);
+  let history = useHistory();
+  const location = useLocation();
+  const { userInfo, setUserInfo } = useContext(Context);
 
   useEffect(() => {
-    checkLogIn();
-  }, [checkLogIn]);
+    if (location.state === undefined) {
+      history.push("/");
+    }
+  }, [history, location]);
+  /*
+  const getUserInfo = useCallback(() => {
+    if (location.state !== undefined && logInSuccess) {
+      let info= users.find(
+          (user) => user.id === currentUser.id && user.pw === currentUser.pw
+        )
+      setUserInfo({
+        ...userInfo,
+        name: info.name,
+        phone: info.phone,
+        zoneCode: info.zoneCode,
+        address: info.address,
+        extraAddress: info.extraAddress,
+      });
+    }
+  }, [logInSuccess, setUserInfo, userInfo, location]);
 
+  useEffect(() => {
+    getUserInfo();
+  }, [getUserInfo]);
+*/
   const handleChange = (input) => (e) => {
     setUserInfo({ ...userInfo, [input]: e.target.value });
   };
@@ -50,7 +49,7 @@ const Order = () => {
           <InputLabel>이름</InputLabel>
           <Input
             onChange={handleChange("name")}
-            value={userInfo.name}
+            defaultValue={userInfo.name !== "" ? userInfo.name : ""}
             type="text"
           />
           {userInfo.name === "" && <Warning>이름을 적어주세요.</Warning>}
@@ -59,7 +58,7 @@ const Order = () => {
           <InputLabel>전화번호</InputLabel>
           <Input
             onChange={handleChange("phone")}
-            value={userInfo.phone}
+            defaultValue={userInfo.phone !== "" ? userInfo.phone : ""}
             autocomplete="off"
             type="tel"
             placeholder="ex) 010 - 1234 - 5678"
@@ -70,7 +69,7 @@ const Order = () => {
               <Warning>010 - 1234 - 5678 형식으로 적어주세요.</Warning>
             )}
         </InputContainer>
-        <Address />
+        <Address handleChange={handleChange} />
       </Form>
     </ClassContainer>
   );
@@ -105,7 +104,7 @@ const InputContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 `;
 
 const InputLabel = styled.label`

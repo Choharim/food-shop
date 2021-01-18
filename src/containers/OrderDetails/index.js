@@ -61,7 +61,10 @@ const OrderDetails = () => {
   };
 
   const successOrder = () => {
-    history.push("/order");
+    history.push({
+      pathname: "/order",
+      state: { orderSuccess },
+    });
   };
 
   return (

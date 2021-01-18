@@ -71,6 +71,7 @@ const Container = styled.div`
   width: calc(100% - 40px);
   margin: 20px 20px 0;
   border-left: 3px solid #b89995;
+  overflow-y: auto;
 `;
 
 const DataContainer = styled.div`
@@ -111,8 +112,9 @@ const Card = styled.div`
 
 const TextContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 `;
 
 const Title = styled.span`
