@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { BsArrowLeft } from "react-icons/bs";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import Intro from "./_fragments/Intro";
@@ -15,7 +16,9 @@ import { Context } from "components/ContextProvider/ContextProvider";
 
 const OrderDetails = () => {
   let history = useHistory();
-  const { orderData, setOrderData } = useContext(Context);
+  const { orderData, setOrderData, favorite, setFavorite } = useContext(
+    Context
+  );
   const location = useLocation();
   const [step, setStep] = useState(1);
   const [orderSuccess, setOrderSuccess] = useState(false);
@@ -71,64 +74,76 @@ const OrderDetails = () => {
           <FoodPicture image={location.state.food.image2}>
             <BackBtn onClick={() => history.push("/shop")} />
           </FoodPicture>
-          <ContainerBg>
-            <ContentsContainer>
-              {step === 1 ? (
-                <>
-                  <Intro
-                    food={location.state.food}
-                    count={count}
-                    setCount={setCount}
-                    setOrder={setOrder}
-                    order={order}
-                  />
-                  {[...Array(count)].map((detail, index) => (
-                    <ToggleBtn
-                      key={index}
-                      food={location.state.food}
-                      index={index}
-                    >
-                      <Except
-                        food={location.state.food}
-                        order={order}
-                        setOrder={setOrder}
-                        index={index}
-                      />
-                      <Add order={order} setOrder={setOrder} index={index} />
-                      <Allergy
-                        order={order}
-                        setOrder={setOrder}
-                        index={index}
-                      />
-                      <ControlBtns
-                        index={index}
-                        order={order}
-                        setOrder={setOrder}
-                      />
-                    </ToggleBtn>
-                  ))}
-                </>
-              ) : (
-                <Confirm
-                  food={location.state.food}
-                  order={order}
-                  step={step}
-                  setStep={setStep}
-                  orderData={orderData}
-                  setOrderData={setOrderData}
-                />
-              )}
-            </ContentsContainer>
+          {favorite.some((item) => item === location.state.food.name) ? (
+            <FillHeartIcon
+              onClick={() =>
+                setFavorite(
+                  favorite.filter((item) => item !== location.state.food.name)
+                )
+              }
+            />
+          ) : (
+            <HeartIcon
+              onClick={() =>
+                setFavorite([...favorite, location.state.food.name])
+              }
+            />
+          )}
+          <ContentsContainer>
             {step === 1 ? (
-              <Btn color={orderSuccess ? "#9e8380" : "#d7d2cb"} onClick={check}>
-                주문하기 / 총 {count * location.state.food.price} 원
-              </Btn>
+              <>
+                <Intro
+                  food={location.state.food}
+                  count={count}
+                  setCount={setCount}
+                  setOrder={setOrder}
+                  order={order}
+                />
+                {[...Array(count)].map((detail, index) => (
+                  <ToggleBtn
+                    key={index}
+                    food={location.state.food}
+                    index={index}
+                  >
+                    <Except
+                      food={location.state.food}
+                      order={order}
+                      setOrder={setOrder}
+                      index={index}
+                    />
+                    <Add order={order} setOrder={setOrder} index={index} />
+                    <Allergy order={order} setOrder={setOrder} index={index} />
+                    <ControlBtns
+                      index={index}
+                      order={order}
+                      setOrder={setOrder}
+                    />
+                  </ToggleBtn>
+                ))}
+              </>
             ) : (
-              <Btn color={"#9e8380"} onClick={check}>
-                저장
-              </Btn>
+              <Confirm
+                food={location.state.food}
+                order={order}
+                step={step}
+                setStep={setStep}
+                orderData={orderData}
+                setOrderData={setOrderData}
+              />
             )}
-          </ContainerBg>
+          </ContentsContainer>
+          {step === 1 ? (
+            <BigButton
+              color={orderSuccess ? "#7d6765" : "#d7d2cb"}
+              onClick={check}
+            >
+              주문하기 / 총 {count * location.state.food.price} 원
+            </BigButton>
+          ) : (
+            <BigButton color={"#7d6765"} onClick={check}>
+              저장
+            </BigButton>
+          )}
         </DetailsContainer>
       )}
     </>
@@ -138,8 +153,10 @@ const OrderDetails = () => {
 export default OrderDetails;
 
 const DetailsContainer = styled.div`
+  position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 `;
 
@@ -151,27 +168,41 @@ const FoodPicture = styled.div`
 `;
 
 const BackBtn = styled(BsArrowLeft)`
-  align-self: flex-start;
-  padding: 5px;
-  margin: 5px;
-  background-color: #f3eceb;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 3px;
+  font-size: 1.7rem;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
-  opacity: 0.8;
-  font-size: 2rem;
+  color: #fff;
   cursor: pointer;
 `;
 
-const ContainerBg = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  z-index: 90;
-  visibility: hidden;
+const HeartIcon = styled(AiOutlineHeart)`
+  position: absolute;
+  top: 180px;
+  right: 45px;
+  padding: 8px;
+  border-radius: 50%;
+  color: white;
+  background-color: #b89995;
+  font-size: 2rem;
+  z-index: 10;
+  cursor: pointer;
+`;
+
+const FillHeartIcon = styled(AiFillHeart)`
+  position: absolute;
+  top: 180px;
+  right: 45px;
+  padding: 8px;
+  border-radius: 50%;
+  color: rgb(237, 73, 86);
+  background-color: #b89995;
+  font-size: 2rem;
+  z-index: 10;
+  cursor: pointer;
 `;
 
 const ContentsContainer = styled.div`
@@ -180,22 +211,13 @@ const ContentsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: calc(100% - 40px);
   max-width: 600px;
-  height: 520px;
-  margin-bottom: 100px;
-  z-index: 100;
+  height: 500px;
+  padding: 0 20px;
+  margin-bottom: 110px;
   overflow-y: auto;
-  visibility: visible;
   background-color: white;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
-  box-shadow: 0 -7px 20px 0 rgba(0, 0, 0, 0.14);
-`;
-
-const Btn = styled(BigButton)`
-  position: absolute;
-  bottom: 0;
-  width: 75%;
-  visibility: visible;
 `;

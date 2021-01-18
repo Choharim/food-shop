@@ -108,7 +108,7 @@ const ClassCard = styled.div`
   width: 48%;
   height: 210px;
   margin-bottom: 15px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     url(${(props) => props.image});
   background-size: cover;
   border-radius: 20px;
