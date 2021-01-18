@@ -13,13 +13,18 @@ const Shop = () => {
   const pageCount = Math.ceil(filterMenu.length / 5);
 
   return (
-    <ShopContainer>
-      <HomeBtn onClick={() => history.push("/")} />
-      <Container>
-        <MenuSelect setFilterMenu={setFilterMenu} />
-        <Menu filterMenu={filterMenu} pageCount={pageCount} step={step} />
-      </Container>
-    </ShopContainer>
+    <>
+      <ShopContainer>
+        <HeadContainer>
+          <HomeBtn onClick={() => history.push("/")} />
+          <Title>쇼핑</Title>
+        </HeadContainer>
+        <Container>
+          <MenuSelect setFilterMenu={setFilterMenu} />
+          <Menu filterMenu={filterMenu} pageCount={pageCount} step={step} />
+        </Container>
+      </ShopContainer>
+    </>
   );
 };
 
@@ -32,22 +37,26 @@ const ShopContainer = styled.div`
   width: 100%;
 `;
 
+const HeadContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0 10px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+`;
+
 const HomeBtn = styled(RiArrowGoBackLine)`
-  align-self: flex-start;
-  margin: 20px 0 0 20px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
   font-size: 1.5rem;
   color: #493c3b;
   cursor: pointer;
 `;
 
-const HeadContainer = styled.div`
-  display: flex;
-  margin-bottom: 10px;
-`;
-
 const Title = styled.span`
-  width: 100%;
-  text-align: center;
   font-size: 20px;
   font-weight: bolder;
   color: #493c3b;
@@ -58,5 +67,5 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: calc(100% - 40px);
-  margin: 0 20px;
+  margin: 20px 20px 0;
 `;

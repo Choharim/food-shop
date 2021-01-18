@@ -8,7 +8,6 @@ const animatedComponents = makeAnimated();
 
 const MenuSelect = ({ setFilterMenu }) => {
   const options = [
-    { value: "all", label: "All" },
     { value: "0 4000", label: "0 ~ 4000원" },
     { value: "4000 7000", label: "4000원 ~ 7000원" },
     { value: "7000 11000", label: "7000원 ~ 11000원" },
@@ -17,7 +16,7 @@ const MenuSelect = ({ setFilterMenu }) => {
   const Filter = (option) => {
     const valueArray = option.map((obj) => obj.value.split(" "));
     const priceValue = valueArray.filter((array) => array.length === 2);
-    let priceFilterIndex = [];
+    const priceFilterIndex = [];
     for (let dataIndex = 0; dataIndex < Data.length; dataIndex++) {
       for (
         let optionIndex = 0;
@@ -43,16 +42,49 @@ const MenuSelect = ({ setFilterMenu }) => {
       setFilterMenu(priceFilterMenu);
     }
   };
+  const customStyles = {
+    control: (base) => ({
+      ...base,
+      background: "rgba(27, 31, 35, 0.15)",
+      borderRadius: "10px",
+      padding: "3px 5px",
+      borderColor: "rgba(27, 31, 35, 0.15)",
+      boxShadow: "none",
+    }),
+    menu: (base) => ({
+      ...base,
+      borderRadius: "10px",
+      marginTop: "5px",
+    }),
+    menuList: (base, state) => ({
+      ...base,
+      color: "#493c3b",
+    }),
+    multiValueLabel: (base) => ({
+      ...base,
+      backgroundColor: "#b89995",
+      color: "#fff",
+    }),
+    multiValueRemove: (base) => ({
+      ...base,
+      backgroundColor: "#b89995",
+      color: "#fff",
+    }),
+  };
 
   return (
     <>
       <FilterSelect
+        styles={customStyles}
         closeMenuOnSelect={true}
         components={animatedComponents}
         isMulti
+        placeholder="가격 별 상품 보기"
         options={options}
         onChange={(option) =>
-          Array.isArray(option) && option.length !== 0 && Filter(option)
+          Array.isArray(option) && option.length !== 0
+            ? Filter(option)
+            : Filter([{ value: "all", label: "All" }])
         }
       />
     </>

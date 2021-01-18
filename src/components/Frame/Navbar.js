@@ -78,6 +78,7 @@ const NavbarIcon = styled(FaBars)`
   right: 20px;
   font-size: 1.5em;
   color: #493c3b;
+  z-index: 10;
   cursor: pointer;
 `;
 
