@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { ImFire } from "react-icons/im";
-import { BsArrowLeft } from "react-icons/bs";
+import { RiArrowGoBackLine } from "react-icons/ri";
 import { Data } from "Data";
 import { useHistory } from "react-router-dom";
 
@@ -13,8 +13,10 @@ const FoodClass = () => {
 
   return (
     <ClassContainer>
-      <HomeBtn onClick={() => history.push("/")} />
-      <ClassText>요리 수업</ClassText>
+      <HeadContainer>
+        <HomeBtn onClick={() => history.push("/")} />
+        <Title>요리 수업</Title>
+      </HeadContainer>
       <CardContainer>
         {[...Array(pageCount)].map(
           (n, page) =>
@@ -23,17 +25,15 @@ const FoodClass = () => {
               (foodClass, index) =>
                 index < 6 * (page + 1) &&
                 index >= 6 * page && (
-                  <ClassCard key={index}>
-                    <ClassPicture image={foodClass.image2}></ClassPicture>
-                    <ClassName>{foodClass.name} (Class)</ClassName>
+                  <ClassCard key={index} image={foodClass.image2}>
                     <ClassContents>
+                      <ClassName>{foodClass.name}</ClassName>
                       <div
                         style={{
                           display: "flex",
                           alignItems: "center",
                         }}
                       >
-                        <DiffText>난이도</DiffText>
                         {[...Array(foodClass.difficulty)].map((a, i) => (
                           <Fire key={i} />
                         ))}
@@ -67,18 +67,27 @@ const ClassContainer = styled.div`
   width: 100%;
 `;
 
-const HomeBtn = styled(BsArrowLeft)`
-  align-self: flex-start;
-  padding: 5px;
-  margin: 5px;
-  font-size: 2rem;
+const HeadContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0 10px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+`;
+
+const HomeBtn = styled(RiArrowGoBackLine)`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.5rem;
+  color: #493c3b;
   cursor: pointer;
 `;
 
-const ClassText = styled.span`
-  align-self: flex-start;
-  margin: 0 0 10px 40px;
-  font-size: 23px;
+const Title = styled.span`
+  font-size: 20px;
   font-weight: bolder;
   color: #493c3b;
 `;
@@ -87,85 +96,75 @@ const CardContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  width: calc(100% - 80px);
-  margin: 0 40px;
+  width: calc(100% - 40px);
+  margin: 20px 20px 0;
 `;
 
 const ClassCard = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
+  justify-content: flex-end;
   width: 48%;
-  margin-bottom: 20px;
-  background-color: white;
-  border-radius: 10px;
+  height: 210px;
+  margin-bottom: 15px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url(${(props) => props.image});
+  background-size: cover;
+  border-radius: 20px;
   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
     rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
   cursor: pointer;
 `;
 
-const ClassPicture = styled.div`
-  width: 100%;
-  height: 160px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  background-image: url(${(props) => props.image});
-  background-size: cover;
+const ClassContents = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: calc(100% - 20px);
+  margin: 0 10px 15px;
 `;
 
 const ClassName = styled.span`
-  margin: 10px 0 0 10px;
-  font-size: 16px;
-  color: #493c3b;
+  margin-bottom: 10px;
+  font-size: 20px;
   font-weight: bolder;
-`;
-
-const ClassContents = styled.div`
-  width: calc(100% - 20px);
-  padding: 5px 10px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const DiffText = styled.span`
-  margin-right: 5px;
-  color: #493c3b;
-  font-size: 13px;
+  color: #fff;
 `;
 
 const Fire = styled(ImFire)`
+  margin-left: 2px;
   font-size: 1.1rem;
   color: #ff5733;
 `;
 
 const FakeFire = styled(ImFire)`
+  margin-left: 2px;
   font-size: 1.1rem;
   color: #e3e0db;
 `;
 
 const Price = styled.span`
+  margin-top: 5px;
   font-size: 16px;
-  align-self: flex-end;
+  color: #fff;
 `;
 
 const PageMoveBtnContainer = styled.div`
   position: absolute;
   bottom: 20px;
   max-width: 600px;
-  width: 100%;
+  width: calc(100% - 40px);
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `;
 
 const PrevBtn = styled(IoIosArrowBack)`
-  padding: 2px;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
 `;
 
 const NextBtn = styled(IoIosArrowForward)`
-  padding: 2px;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
 `;
