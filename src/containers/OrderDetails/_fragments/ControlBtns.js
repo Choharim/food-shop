@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { GrPowerReset } from "react-icons/gr";
+import { GrPowerReset, GrTrash } from "react-icons/gr";
 
-const ControlBtns = ({ index, order, setOrder }) => {
+const ControlBtns = ({ index, order, setOrder, setCount, count }) => {
   let copy = order.slice();
 
   const reset = () => {
@@ -16,8 +16,16 @@ const ControlBtns = ({ index, order, setOrder }) => {
     setOrder(copy);
   };
 
+  const Del = () => {
+    if (count !== 1) {
+      setCount(count - 1);
+      setOrder(order.filter((obj, i) => i !== index));
+    }
+  };
+
   return (
     <Container>
+      <DelBtn onClick={Del} />
       <ResetBtn onClick={reset} />
     </Container>
   );
@@ -34,6 +42,13 @@ const Container = styled.div`
 `;
 
 const ResetBtn = styled(GrPowerReset)`
+  font-size: 1.2rem;
+  color: #493c3b;
+  cursor: pointer;
+`;
+
+const DelBtn = styled(GrTrash)`
+  margin-right: 10px;
   font-size: 1.2rem;
   color: #493c3b;
   cursor: pointer;

@@ -134,6 +134,8 @@ const OrderDetails = () => {
                         index={index}
                         order={order}
                         setOrder={setOrder}
+                        setCount={setCount}
+                        count={count}
                       />
                     </ToggleBtn>
                   ))}
