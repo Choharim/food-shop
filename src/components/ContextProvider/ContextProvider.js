@@ -15,6 +15,7 @@ const ContextProvider = ({ children }) => {
     zoneCode: "",
     address: "",
   });
+  const [classData, setClassData] = useState([]);
 
   return (
     <Context.Provider
@@ -31,6 +32,8 @@ const ContextProvider = ({ children }) => {
         setOrderData,
         userInfo,
         setUserInfo,
+        classData,
+        setClassData,
       }}
     >
       {children}
