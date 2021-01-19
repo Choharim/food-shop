@@ -3,8 +3,7 @@ import Modal from "components/Modal";
 import styled from "styled-components";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 
-const SuccessModal = ({ setShowModal, showModal }) => {
-  //3초뒤에 setTimeOut으로 setShowModal(false)하면서 history.push
+const SuccessModal = ({ showModal }) => {
   return (
     <>
       <Modal position="middle" bottom="0" visible={showModal}>

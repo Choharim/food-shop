@@ -24,6 +24,14 @@ const Order = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
+    if (showModal) {
+      window.setTimeout(() => {
+        history.push("/");
+      }, 2000);
+    }
+  }, [showModal, history]);
+
+  useEffect(() => {
     const getUserInfo = () => {
       if (logInSuccess) {
         let info = users.find(
@@ -91,9 +99,7 @@ const Order = () => {
               완료
             </BigButton>
           </ClassContainer>
-          {showModal && (
-            <SuccessModal showModal={showModal} setShowModal={setShowModal} />
-          )}
+          {showModal && <SuccessModal showModal={showModal} />}
         </>
       )}
     </>

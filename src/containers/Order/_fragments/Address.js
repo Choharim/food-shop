@@ -36,13 +36,21 @@ const Address = ({ handleChange }) => {
       <ZoneCodeContainer>
         <InputContainer style={{ height: "auto" }}>
           <InputLabel>우편번호</InputLabel>
-          <ZoneCode defaultValue={userInfo.zoneCode} type="number" />
+          <ZoneCode
+            onChange={handleChange("zoneCode")}
+            value={userInfo.zoneCode}
+            type="number"
+          />
         </InputContainer>
         <SearchBtn onClick={() => setSearchAddress(true)}>검색</SearchBtn>
       </ZoneCodeContainer>
       <InputContainer>
         <InputLabel>주소</InputLabel>
-        <Input defaultValue={userInfo.address} type="text" />
+        <Input
+          onChange={handleChange("address")}
+          value={userInfo.address}
+          type="text"
+        />
         {userInfo.address === "" && <Warning>주소를 검색하세요.</Warning>}
       </InputContainer>
       <InputContainer>
