@@ -31,6 +31,15 @@ const ClassModal = () => {
     return window.removeEventListener("resize", updateModalHeight);
   }, []);
 
+  const clickClass = (foodClass) => (e) => {
+    if (e.target.id === "class") {
+      history.push({
+        pathname: "classDetails",
+        state: { foodClass },
+      });
+    }
+  };
+
   return (
     <Modal
       position="bottom"
@@ -64,7 +73,13 @@ const ClassModal = () => {
               <ArrowIcon />
               {Data.map((foodClass, index) =>
                 foodClass.difficulty === difficulty.score ? (
-                  <ClassList key={index}>{foodClass.name}</ClassList>
+                  <ClassList
+                    key={index}
+                    id="class"
+                    onClick={clickClass(foodClass)}
+                  >
+                    {foodClass.name}
+                  </ClassList>
                 ) : null
               )}
             </div>

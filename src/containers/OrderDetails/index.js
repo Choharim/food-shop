@@ -60,7 +60,7 @@ const OrderDetails = () => {
       return false;
     }
   };
-  console.log(order, orderData);
+
   const successOrder = () => {
     if (checkValidaion()) {
       if (step === 2) {
