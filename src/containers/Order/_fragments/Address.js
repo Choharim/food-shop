@@ -42,19 +42,14 @@ const Address = ({ handleChange }) => {
       </ZoneCodeContainer>
       <InputContainer>
         <InputLabel>주소</InputLabel>
-        <Input
-          defaultValue={userInfo.address !== "" ? userInfo.address : ""}
-          type="text"
-        />
+        <Input defaultValue={userInfo.address} type="text" />
         {userInfo.address === "" && <Warning>주소를 검색하세요.</Warning>}
       </InputContainer>
       <InputContainer>
         <InputLabel>상세 주소</InputLabel>
         <Input
           onChange={handleChange("extraAddress")}
-          defaultValue={
-            userInfo.extraAddress !== "" ? userInfo.extraAddress : ""
-          }
+          value={userInfo.extraAddress}
           type="text"
         />
         {userInfo.extraAddress === "" && (

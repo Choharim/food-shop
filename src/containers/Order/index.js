@@ -1,42 +1,43 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
 import { Context } from "components/ContextProvider/ContextProvider";
 import Address from "./_fragments/Address";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
+import BigButton from "components/Button/BigButton";
+import SuccessModal from "./_fragments/SuccessModal";
+import NamePhone from "./_fragments/NamePhone";
 
 const Order = () => {
   let history = useHistory();
   const location = useLocation();
-  const { userInfo, setUserInfo, orderData, setOrderData } = useContext(
-    Context
-  );
-  //로그인했으면 그거 정보 가져오기
-  //취소버튼 누르면 orderSuccess false되면서 orderData맨마지막 값 제거,
-  //주문하기 버튼누르면 주문성공나오고 홈으로
-
-  /*
-  const getUserInfo = useCallback(() => {
-    if (location.state !== undefined && logInSuccess) {
-      let info= users.find(
-          (user) => user.id === currentUser.id && user.pw === currentUser.pw
-        )
-      setUserInfo({
-        ...userInfo,
-        name: info.name,
-        phone: info.phone,
-        zoneCode: info.zoneCode,
-        address: info.address,
-        extraAddress: info.extraAddress,
-      });
-    }
-  }, [logInSuccess, setUserInfo, userInfo, location]);
+  const {
+    userInfo,
+    setUserInfo,
+    orderData,
+    setOrderData,
+    users,
+    currentUser,
+    logInSuccess,
+  } = useContext(Context);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
+    const getUserInfo = () => {
+      if (logInSuccess) {
+        let info = users.find(
+          (user) => user.id === currentUser.id && user.pw === currentUser.pw
+        );
+        setUserInfo({
+          ...userInfo,
+          ...info,
+        });
+      }
+    };
     getUserInfo();
-  }, [getUserInfo]);
-*/
+  }, []);
+
   const handleChange = (input) => (e) => {
     setUserInfo({ ...userInfo, [input]: e.target.value });
   };
@@ -44,8 +45,29 @@ const Order = () => {
     setOrderData(orderData.slice(0, -1));
     history.push("/");
   };
+  const checkValidaion = () => {
+    if (
+      userInfo.name !== "" &&
+      userInfo.phone !== "" &&
+      userInfo.phone.match("[0-9]{3}-[0-9]{4}-[0-9]{4}") &&
+      userInfo.address &&
+      userInfo.extraAddress
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const handleSubmit = () => {
+    if (checkValidaion()) {
+      setShowModal(true);
+      localStorage.setItem("orderData", JSON.stringify(orderData));
+    } else {
+      setShowModal(false);
+    }
+  };
 
-  console.log(orderData);
+  console.log(userInfo);
 
   return (
     <>
@@ -53,37 +75,23 @@ const Order = () => {
         history.push("/")
       ) : (
         <ClassContainer>
-          <CancleBtn onClick={CancleOrder} />
-          <Title>주문자 정보</Title>
-          <Form>
-            <InputContainer>
-              <InputLabel>이름</InputLabel>
-              <Input
-                onChange={handleChange("name")}
-                defaultValue={userInfo.name !== "" ? userInfo.name : ""}
-                type="text"
-              />
-              {userInfo.name === "" && <Warning>이름을 적어주세요.</Warning>}
-            </InputContainer>
-            <InputContainer>
-              <InputLabel>전화번호</InputLabel>
-              <Input
-                onChange={handleChange("phone")}
-                defaultValue={userInfo.phone !== "" ? userInfo.phone : ""}
-                autocomplete="off"
-                type="tel"
-                placeholder="ex) 010 - 1234 - 5678"
-              />
-              {userInfo.phone === "" && (
-                <Warning>전화번호를 적어주세요.</Warning>
-              )}
-              {!userInfo.phone.match("[0-9]{3}-[0-9]{4}-[0-9]{4}") &&
-                userInfo.phone !== "" && (
-                  <Warning>010 - 1234 - 5678 형식으로 적어주세요.</Warning>
-                )}
-            </InputContainer>
-            <Address handleChange={handleChange} />
-          </Form>
+          <ContentsContainer>
+            <CancleBtn onClick={CancleOrder} />
+            <Title>주문자 정보</Title>
+            <Form>
+              <NamePhone handleChange={handleChange} />
+              <Address handleChange={handleChange} />
+            </Form>
+          </ContentsContainer>
+          <BigButton
+            color={checkValidaion() ? "#7d6765" : "#d7d2cb"}
+            onClick={handleSubmit}
+          >
+            완료
+          </BigButton>
+          {showModal && (
+            <SuccessModal showModal={showModal} setShowModal={setShowModal} />
+          )}
         </ClassContainer>
       )}
     </>
@@ -93,6 +101,13 @@ const Order = () => {
 export default Order;
 
 const ClassContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ContentsContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -123,33 +138,4 @@ const Form = styled.form`
   align-items: flex-start;
   width: 100%;
   margin-top: 30px;
-`;
-
-const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100px;
-  margin-bottom: 5px;
-`;
-
-const InputLabel = styled.label`
-  margin-bottom: 5px;
-  font-size: 16px;
-  color: #493c3b;
-`;
-
-const Input = styled.input`
-  width: calc(100% - 10px);
-  height: 30px;
-  padding: 0 5px;
-  outline: none;
-  border: none;
-  border-bottom: 2px solid #7d6765;
-`;
-
-const Warning = styled.span`
-  margin-top: 5px;
-  font-size: 13px;
-  color: #493c3b;
 `;
