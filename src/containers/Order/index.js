@@ -74,25 +74,27 @@ const Order = () => {
       {location.state === undefined ? (
         history.push("/")
       ) : (
-        <ClassContainer>
-          <ContentsContainer>
-            <CancleBtn onClick={CancleOrder} />
-            <Title>주문자 정보</Title>
-            <Form>
-              <NamePhone handleChange={handleChange} />
-              <Address handleChange={handleChange} />
-            </Form>
-          </ContentsContainer>
-          <BigButton
-            color={checkValidaion() ? "#7d6765" : "#d7d2cb"}
-            onClick={handleSubmit}
-          >
-            완료
-          </BigButton>
+        <>
+          <ClassContainer>
+            <ContentsContainer>
+              <CancleBtn onClick={CancleOrder} />
+              <Title>주문자 정보</Title>
+              <Form>
+                <NamePhone handleChange={handleChange} />
+                <Address handleChange={handleChange} />
+              </Form>
+            </ContentsContainer>
+            <BigButton
+              color={checkValidaion() ? "#7d6765" : "#d7d2cb"}
+              onClick={handleSubmit}
+            >
+              완료
+            </BigButton>
+          </ClassContainer>
           {showModal && (
             <SuccessModal showModal={showModal} setShowModal={setShowModal} />
           )}
-        </ClassContainer>
+        </>
       )}
     </>
   );
