@@ -33,8 +33,6 @@ const Menu = ({ filterMenu }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   });
-  /*
-   */
 
   return (
     <>

@@ -3,9 +3,8 @@ import styled from "styled-components";
 import { BsArrowLeft } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
-const Confirm = ({ food, order, step, setStep, orderData, setOrderData }) => {
+const Confirm = ({ food, order, step, setStep }) => {
   const backStep = () => {
-    setOrderData(orderData.slice(0, -1));
     setStep(step - 1);
   };
 

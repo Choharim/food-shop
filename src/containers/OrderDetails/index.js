@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { BsArrowLeft } from "react-icons/bs";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
@@ -21,8 +21,8 @@ const OrderDetails = () => {
   );
   const location = useLocation();
   const [step, setStep] = useState(1);
-  const [orderSuccess, setOrderSuccess] = useState(false);
   const [count, setCount] = useState(1);
+  const [orderSuccess, setOrderSuccess] = useState(false);
   const [order, setOrder] = useState([
     {
       foodName: "",
@@ -34,7 +34,16 @@ const OrderDetails = () => {
   ]);
   let copy = order.slice();
 
-  const check = () => {
+  useEffect(() => {
+    if (orderSuccess) {
+      history.push({
+        pathname: "/order",
+        state: { order },
+      });
+    }
+  }, [orderSuccess, history, order]);
+
+  const checkValidaion = () => {
     if (
       order.every(
         (obj) => obj.except.length && obj.add.length && obj.allergy !== ""
@@ -43,28 +52,29 @@ const OrderDetails = () => {
       if (
         order.some((obj) => obj.allergy === "yes" && obj.allergyText === "")
       ) {
-        setOrderSuccess(false);
-        alert("알러지 종류를 적어주세요!");
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  };
+  console.log(order, orderData);
+  const successOrder = () => {
+    if (checkValidaion()) {
+      if (step === 2) {
+        setOrderData([...orderData, copy]);
+        setOrderSuccess(true);
       } else {
         for (let i = 0; i < order.length; i++) {
           copy[i].foodName = location.state.food.name;
         }
-        setOrderSuccess(true);
         setOrder(copy);
-        setOrderData([...orderData, copy]);
         setStep(step + 1);
+        setOrderSuccess(false);
       }
-    } else {
-      alert("제외할 재료, 추가할 재료, 알러지 유무를 모두 체크해주세요!");
-      setOrderSuccess(false);
     }
-  };
-
-  const successOrder = () => {
-    history.push({
-      pathname: "/order",
-      state: { orderSuccess },
-    });
   };
 
   return (
@@ -142,8 +152,8 @@ const OrderDetails = () => {
           </ContentsContainer>
           {step === 1 ? (
             <BigButton
-              color={orderSuccess ? "#7d6765" : "#d7d2cb"}
-              onClick={check}
+              color={checkValidaion() ? "#7d6765" : "#d7d2cb"}
+              onClick={successOrder}
             >
               다음
             </BigButton>
