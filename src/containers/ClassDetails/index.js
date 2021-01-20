@@ -6,6 +6,7 @@ import { BsArrowLeft } from "react-icons/bs";
 import BigButton from "components/Button/BigButton";
 import ClassDate from "./_fragments/ClassDate";
 import ClassTime from "./_fragments/ClassTime";
+import ClassPeople from "./_fragments/ClassPeople";
 
 const ClassDetails = () => {
   let data = new Date();
@@ -34,6 +35,7 @@ const ClassDetails = () => {
           <ContentsContainer>
             <ClassDate foodClass={foodClass} setFoodClass={setFoodClass} />
             <ClassTime foodClass={foodClass} setFoodClass={setFoodClass} />
+            <ClassPeople foodClass={foodClass} setFoodClass={setFoodClass} />
           </ContentsContainer>
           <BigButton color={true ? "#7d6765" : "#d7d2cb"}>신청하기</BigButton>
         </DetailsContainer>
