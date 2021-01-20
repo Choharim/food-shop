@@ -17,12 +17,14 @@ const OrderList = () => {
     },
   ]
   */
+
+  //엑스버튼 누르면 삭제 (체크한거 삭제)
   return (
     <>
       {orderData.map((data, index) => (
-        <ItemContainer key={index}>
+        <Container key={index}>
           {data.map((obj, i) => (
-            <Container key={i}>
+            <OrderCard key={i}>
               <Picture
                 image={Data.find((food) => food.name === obj.foodName).image2}
               ></Picture>
@@ -32,7 +34,7 @@ const OrderList = () => {
                   <Title>제외할 재료 : </Title>
                   {obj.except.map((ec, eci) =>
                     ec === "no" ? (
-                      <Text>없음</Text>
+                      <Text key={eci}>없음</Text>
                     ) : (
                       <Text key={eci}>{ec}</Text>
                     )
@@ -42,7 +44,7 @@ const OrderList = () => {
                   <Title>추가할 상품 : </Title>
                   {obj.add.map((ad, adi) =>
                     ad === "no" ? (
-                      <Text>없음</Text>
+                      <Text key={adi}>없음</Text>
                     ) : (
                       <Text key={adi}>{ad}</Text>
                     )
@@ -57,9 +59,9 @@ const OrderList = () => {
                   )}
                 </TextContainer>
               </InfoContainer>
-            </Container>
+            </OrderCard>
           ))}
-        </ItemContainer>
+        </Container>
       ))}
     </>
   );
@@ -67,7 +69,7 @@ const OrderList = () => {
 
 export default OrderList;
 
-const ItemContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -76,7 +78,7 @@ const ItemContainer = styled.div`
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 `;
 
-const Container = styled.div`
+const OrderCard = styled.div`
   display: flex;
   width: 100%;
   margin: 15px;
