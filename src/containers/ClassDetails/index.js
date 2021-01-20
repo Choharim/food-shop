@@ -26,7 +26,7 @@ const ClassDetails = () => {
   let history = useHistory();
   const location = useLocation();
   const [successClass, setSuccessClass] = useState(false);
-  const { classData, setClassData } = useContext(Context);
+  const { classData, setClassData, logInSuccess } = useContext(Context);
 
   useEffect(() => {
     if (successClass) {
@@ -35,6 +35,15 @@ const ClassDetails = () => {
       }, 2000);
     }
   }, [successClass, history]);
+
+  useEffect(() => {
+    if (!logInSuccess) {
+      window.setTimeout(() => {
+        alert("수업 신청은 로그인을 먼저 해주세요");
+        history.push("/logIn");
+      }, 1000);
+    }
+  }, [logInSuccess, history]);
 
   const checkValidation = () => {
     if (foodClass.time === "") {
