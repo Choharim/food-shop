@@ -69,7 +69,7 @@ const Order = () => {
   const handleSubmit = () => {
     if (checkValidaion()) {
       setShowModal(true);
-      localStorage.setItem("orderData", JSON.stringify(orderData));
+      //  localStorage.setItem("orderData", JSON.stringify(orderData));
     } else {
       setShowModal(false);
     }

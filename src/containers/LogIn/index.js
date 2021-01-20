@@ -31,7 +31,7 @@ const LogIn = () => {
 
   useEffect(() => {
     if (logInSuccess) {
-      localStorage.setItem("currentUser", JSON.stringify(currentUser));
+      // localStorage.setItem("currentUser", JSON.stringify(currentUser));
       history.push("/");
     }
   }, [logInSuccess, history, currentUser]);
