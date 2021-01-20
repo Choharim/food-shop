@@ -23,9 +23,7 @@ const MyCart = () => {
           내 수업
         </FoodClassBtn>
       </BtnContainer>
-      <Container>
-        {filter === "order" ? <OrderData /> : <FoodClassData />}
-      </Container>
+      <>{filter === "order" ? <OrderData /> : <FoodClassData />}</>
     </ShopContainer>
   );
 };
@@ -103,12 +101,4 @@ const FoodClassBtn = styled.div`
       background-color: #b89995;
       color: #fff;
     `}
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: calc(100% - 40px);
-  margin: 20px 20px 40px;
 `;

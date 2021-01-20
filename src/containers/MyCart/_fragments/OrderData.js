@@ -11,7 +11,7 @@ const OrderData = () => {
   const { orderData } = useContext(Context);
   console.log(orderData);
   return (
-    <>
+    <DataContainer>
       {Array.isArray(orderData) && orderData.length === 0 ? (
         <Container>
           <Cart image={myCart}></Cart>
@@ -23,11 +23,19 @@ const OrderData = () => {
       ) : (
         <OrderList />
       )}
-    </>
+    </DataContainer>
   );
 };
 
 export default OrderData;
+
+const DataContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: calc(100% - 40px);
+  margin: 20px 20px 40px;
+`;
 
 const Container = styled.div`
   display: flex;

@@ -11,7 +11,7 @@ const FoodClassData = () => {
   const { classData, logInSuccess } = useContext(Context);
   console.log(classData);
   return (
-    <>
+    <DataContainer>
       {!logInSuccess ? (
         <Container>
           <Cart image={myCart2}></Cart>
@@ -31,17 +31,26 @@ const FoodClassData = () => {
       ) : (
         <ClassList />
       )}
-    </>
+    </DataContainer>
   );
 };
 
 export default FoodClassData;
+
+const DataContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: calc(100% - 40px);
+  margin: 0 20px 40px;
+`;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: center;
+  margin-top: 20px;
 `;
 
 const Cart = styled.div`

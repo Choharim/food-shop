@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Data } from "Data";
 import styled from "styled-components";
 import { Context } from "components/ContextProvider/ContextProvider";
+import { GrTrash } from "react-icons/gr";
 
 const ClassList = () => {
   const { classData, setClassData } = useContext(Context);
+  const [checkArray, setCheckArray] = useState([]);
 
   /*
   [
@@ -17,30 +19,93 @@ const ClassList = () => {
   ]
   */
 
-  //엑스버튼 누르면 삭제 (체크한거 삭제)
+  const handleCheck = (index) => (e) => {
+    if (index === "all" && checkArray.every((i) => i !== "all")) {
+      setCheckArray([...Array(classData.length).keys(), "all"]);
+    } else if (index === "all" && checkArray.some((i) => i === "all")) {
+      setCheckArray([...Array(classData.length).keys()]);
+    } else {
+      if (checkArray.some((i) => i === index)) {
+        setCheckArray(checkArray.filter((i) => i !== "all" && i !== index));
+      } else {
+        setCheckArray([...checkArray, index]);
+      }
+    }
+  };
+
+  console.log(checkArray);
   return (
-    <>
-      {classData.map((data, index) => (
-        <Card key={index}>
-          <Picture
-            image={Data.find((food) => food.name === data.name).image2}
-          ></Picture>
-          <InfoContainer>
-            <Text>
-              {data.name} 수업 ({data.people}명)
-            </Text>
-            <TextContainer>
-              <Text>{data.date}</Text>
-              <Text>{data.time === "am" ? "오전" : "오후"}</Text>
-            </TextContainer>
-          </InfoContainer>
-        </Card>
-      ))}
-    </>
+    <ListContainer>
+      <CheckContainer>
+        <CancleCheck
+          type="checkbox"
+          onChange={handleCheck("all")}
+          checked={checkArray.some((i) => i === "all")}
+        />
+        <CancleBtn />
+      </CheckContainer>
+      <Container>
+        {classData.map((data, index) => (
+          <Card key={index}>
+            <Picture
+              image={Data.find((food) => food.name === data.name).image2}
+            ></Picture>
+            <InfoContainer>
+              <Text>
+                {data.name} 수업 ({data.people}명)
+              </Text>
+              <TextContainer>
+                <Text>{data.date}</Text>
+                <Text>{data.time === "am" ? "오전" : "오후"}</Text>
+              </TextContainer>
+            </InfoContainer>
+            <CancleCheck
+              type="checkbox"
+              onChange={handleCheck(index)}
+              checked={checkArray.some((i) => i === index)}
+            />
+          </Card>
+        ))}
+      </Container>
+    </ListContainer>
   );
 };
 
 export default ClassList;
+
+const ListContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+`;
+
+const CheckContainer = styled.div`
+  position: absolute;
+  right: 0;
+  top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 45px;
+`;
+
+const CancleBtn = styled(GrTrash)`
+  color: #493c3b;
+  font-size: 1.3rem;
+  cursor: pointer;
+`;
+
+const CancleCheck = styled.input`
+  width: 15px;
+  height: 15px;
+`;
+
+const Container = styled.div`
+  margin-top: 40px;
+  width: 100%;
+`;
 
 const Card = styled.div`
   display: flex;
