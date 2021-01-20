@@ -6,7 +6,7 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 const SuccessModal = ({ showModal }) => {
   return (
     <>
-      <Modal position="middle" bottom="0" visible={showModal}>
+      <Modal position="middle" bottom="40%" visible={showModal}>
         <ModalContainer>
           <Title>주문이 완료되었습니다</Title>
           <Check />

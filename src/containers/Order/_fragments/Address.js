@@ -67,7 +67,7 @@ const Address = ({ handleChange }) => {
       {searchAddress && (
         <Modal
           position="middle"
-          bottom="0"
+          bottom="25%"
           visible={searchAddress}
           closeModal={() => setSearchAddress(false)}
         >
