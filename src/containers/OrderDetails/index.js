@@ -43,7 +43,7 @@ const OrderDetails = () => {
     }
   }, [orderSuccess, history, order]);
 
-  const checkValidaion = () => {
+  const checkValidation = () => {
     if (
       order.every(
         (obj) => obj.except.length && obj.add.length && obj.allergy !== ""
@@ -62,7 +62,7 @@ const OrderDetails = () => {
   };
 
   const successOrder = () => {
-    if (checkValidaion()) {
+    if (checkValidation()) {
       if (step === 2) {
         setOrderData([...orderData, copy]);
         setOrderSuccess(true);
@@ -154,7 +154,7 @@ const OrderDetails = () => {
           </ContentsContainer>
           {step === 1 ? (
             <BigButton
-              color={checkValidaion() ? "#7d6765" : "#d7d2cb"}
+              color={checkValidation() ? "#7d6765" : "#d7d2cb"}
               onClick={successOrder}
             >
               다음

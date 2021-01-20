@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const ClassTime = ({ setFoodClass, foodClass }) => {
+const ClassTime = ({ setFoodClass, foodClass, className }) => {
   const handleChange = (e) => {
-    setFoodClass({ ...foodClass, [e.target.name]: e.target.value });
+    setFoodClass({
+      ...foodClass,
+      [e.target.name]: e.target.value,
+      name: className,
+    });
   };
 
   return (

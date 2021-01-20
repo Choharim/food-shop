@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -7,6 +7,8 @@ import BigButton from "components/Button/BigButton";
 import ClassDate from "./_fragments/ClassDate";
 import ClassTime from "./_fragments/ClassTime";
 import ClassPeople from "./_fragments/ClassPeople";
+import SuccessModal from "./_fragments/SuccessModal";
+import { Context } from "components/ContextProvider/ContextProvider";
 
 const ClassDetails = () => {
   let data = new Date();
@@ -16,29 +18,71 @@ const ClassDetails = () => {
   let day = data.getDate();
   day = day >= 10 ? day : `0${day}`;
   const [foodClass, setFoodClass] = useState({
+    name: "",
     date: `${year}.${month}.${day}`,
     time: "",
     people: 1,
   });
   let history = useHistory();
   const location = useLocation();
-  // 다 쓰면 classData,setClassData에 넣기
-  console.log(foodClass);
+  const [successClass, setSuccessClass] = useState(false);
+  const { classData, setClassData } = useContext(Context);
+
+  useEffect(() => {
+    if (successClass) {
+      window.setTimeout(() => {
+        history.push("/");
+      }, 2000);
+    }
+  }, [successClass, history]);
+
+  const checkValidation = () => {
+    if (foodClass.time === "") {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const successApply = () => {
+    if (checkValidation()) {
+      setClassData([...classData, foodClass]);
+      setSuccessClass(true);
+    } else {
+      setSuccessClass(false);
+    }
+  };
+
+  console.log(classData);
   return (
     <>
       {location.state === undefined ? (
         history.push("/class")
       ) : (
-        <DetailsContainer>
-          <BackBtn onClick={() => history.push("/class")} />
-          <Title>{location.state.foodClass.name} 수업</Title>
-          <ContentsContainer>
-            <ClassDate foodClass={foodClass} setFoodClass={setFoodClass} />
-            <ClassTime foodClass={foodClass} setFoodClass={setFoodClass} />
-            <ClassPeople foodClass={foodClass} setFoodClass={setFoodClass} />
-          </ContentsContainer>
-          <BigButton color={true ? "#7d6765" : "#d7d2cb"}>신청하기</BigButton>
-        </DetailsContainer>
+        <>
+          <DetailsContainer>
+            <BackBtn onClick={() => history.push("/class")} />
+            <Title>{location.state.foodClass.name} 수업</Title>
+            <ContentsContainer>
+              <ClassDate foodClass={foodClass} setFoodClass={setFoodClass} />
+              <ClassTime
+                foodClass={foodClass}
+                setFoodClass={setFoodClass}
+                className={location.state.foodClass.name}
+              />
+              <ClassPeople foodClass={foodClass} setFoodClass={setFoodClass} />
+            </ContentsContainer>
+            <BigButton
+              color={checkValidation() ? "#7d6765" : "#d7d2cb"}
+              onClick={successApply}
+            >
+              신청하기
+            </BigButton>
+          </DetailsContainer>
+          {successClass && (
+            <SuccessModal foodClass={foodClass} successClass={successClass} />
+          )}
+        </>
       )}
     </>
   );

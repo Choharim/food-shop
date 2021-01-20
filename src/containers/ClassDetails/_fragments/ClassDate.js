@@ -13,7 +13,10 @@ const ClassDate = ({ setFoodClass, foodClass }) => {
     let day = data.getDate();
     day = day >= 10 ? day : `0${day}`;
 
-    setFoodClass({ ...foodClass, date: `${year}.${month}.${day}` });
+    setFoodClass({
+      ...foodClass,
+      date: `${year}.${month}.${day}`,
+    });
   };
 
   return (
