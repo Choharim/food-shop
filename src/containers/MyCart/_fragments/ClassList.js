@@ -7,7 +7,7 @@ import { GrTrash } from "react-icons/gr";
 const ClassList = () => {
   const { classData, setClassData } = useContext(Context);
   const [checkArray, setCheckArray] = useState([]);
-
+  let updateArray = classData.slice();
   /*
   [
     {
@@ -32,6 +32,19 @@ const ClassList = () => {
       }
     }
   };
+  const deleteCard = () => {
+    if (checkArray.some((i) => i === "all")) {
+      setClassData([]);
+    } else {
+      for (let i = 0; i < checkArray.length; i++) {
+        updateArray = updateArray.filter(
+          (obj, index) => index !== checkArray[i]
+        );
+      }
+      setClassData(updateArray);
+      setCheckArray([]);
+    }
+  };
 
   console.log(checkArray);
   return (
@@ -42,7 +55,7 @@ const ClassList = () => {
           onChange={handleCheck("all")}
           checked={checkArray.some((i) => i === "all")}
         />
-        <CancleBtn />
+        <CancleBtn onClick={deleteCard} />
       </CheckContainer>
       <Container>
         {classData.map((data, index) => (
