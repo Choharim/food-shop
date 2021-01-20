@@ -7,6 +7,7 @@ import { Context } from "components/ContextProvider/ContextProvider";
 import home from "icons/home.png";
 import shop from "icons/shop.png";
 import foodClass from "icons/foodClass.png";
+import myCart from "icons/myCart.png";
 
 const Navbar = () => {
   const { logInSuccess, setLogInSuccess, users, currentUser } = useContext(
@@ -54,6 +55,10 @@ const Navbar = () => {
           <UrlBbtn to="/class">
             <ClassIcon image={foodClass} />
             <Text>수업</Text>
+          </UrlBbtn>
+          <UrlBbtn to="/myCart">
+            <ClassIcon image={myCart} />
+            <Text>장바구니</Text>
           </UrlBbtn>
         </UrlContainer>
         {logInSuccess ? (

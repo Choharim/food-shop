@@ -11,18 +11,16 @@ const Shop = () => {
   const [filterMenu, setFilterMenu] = useState(Data);
 
   return (
-    <>
-      <ShopContainer>
-        <HeadContainer>
-          <HomeBtn onClick={() => history.push("/")} />
-          <Title>쇼핑</Title>
-        </HeadContainer>
-        <Container>
-          <MenuSelect setFilterMenu={setFilterMenu} />
-          <Menu filterMenu={filterMenu} />
-        </Container>
-      </ShopContainer>
-    </>
+    <ShopContainer>
+      <HeadContainer>
+        <HomeBtn onClick={() => history.push("/")} />
+        <Title>쇼핑</Title>
+      </HeadContainer>
+      <Container>
+        <MenuSelect setFilterMenu={setFilterMenu} />
+        <Menu filterMenu={filterMenu} />
+      </Container>
+    </ShopContainer>
   );
 };
 
