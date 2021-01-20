@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { BsArrowLeft } from "react-icons/bs";
 import BigButton from "components/Button/BigButton";
 import ClassDate from "./_fragments/ClassDate";
+import ClassTime from "./_fragments/ClassTime";
 
 const ClassDetails = () => {
   let data = new Date();
@@ -21,7 +22,7 @@ const ClassDetails = () => {
   let history = useHistory();
   const location = useLocation();
   // 다 쓰면 classData,setClassData에 넣기
-
+  console.log(foodClass);
   return (
     <>
       {location.state === undefined ? (
@@ -32,6 +33,7 @@ const ClassDetails = () => {
           <Title>{location.state.foodClass.name} 수업</Title>
           <ContentsContainer>
             <ClassDate foodClass={foodClass} setFoodClass={setFoodClass} />
+            <ClassTime foodClass={foodClass} setFoodClass={setFoodClass} />
           </ContentsContainer>
           <BigButton color={true ? "#7d6765" : "#d7d2cb"}>신청하기</BigButton>
         </DetailsContainer>
@@ -70,5 +72,5 @@ const ContentsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: calc(100% - 40px);
-  margin: 50px 20px 0;
+  margin: 30px 20px 0;
 `;

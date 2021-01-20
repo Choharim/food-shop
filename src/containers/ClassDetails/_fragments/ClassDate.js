@@ -14,7 +14,6 @@ const ClassDate = ({ setFoodClass, foodClass }) => {
     day = day >= 10 ? day : `0${day}`;
 
     setFoodClass({ ...foodClass, date: `${year}.${month}.${day}` });
-    //한템포 늦게 바뀜
   };
 
   return (
@@ -39,10 +38,15 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
+  margin-bottom: 20px;
 `;
 
 const CalendarContainer = styled(Calendar)`
   width: 100%;
+  .rdrMonthAndYearWrapper {
+    padding-top: 0;
+    height: 50px;
+  }
   .rdrNextPrevButton {
     background-color: #fff;
   }
