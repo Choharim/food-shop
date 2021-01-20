@@ -67,9 +67,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: calc(100% - 40px);
-  margin: 20px 20px 0;
-  border-left: 3px solid #b89995;
+  width: 100%;
+  margin: 20px 0;
   overflow-y: auto;
 `;
 
@@ -77,8 +76,9 @@ const DataContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin-top: 30px;
+  width: calc(100% - 40px);
+  padding-top: 30px;
+  border-left: 3px solid #b89995;
 `;
 
 const Cart = styled(AiOutlineShoppingCart)`

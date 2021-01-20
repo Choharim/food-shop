@@ -8,16 +8,6 @@ const ClassList = () => {
   const { classData, setClassData } = useContext(Context);
   const [checkArray, setCheckArray] = useState([]);
   let updateArray = classData.slice();
-  /*
-  [
-    {
-      name: "",
-      date: "",
-      time: "",
-     people: 1
-    },
-  ]
-  */
 
   const handleCheck = (index) => (e) => {
     if (index === "all" && checkArray.every((i) => i !== "all")) {
