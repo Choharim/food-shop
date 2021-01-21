@@ -9,7 +9,7 @@ import ClassList from "./ClassList";
 const FoodClassData = () => {
   let history = useHistory();
   const { classData, logInSuccess } = useContext(Context);
-  console.log(classData);
+
   return (
     <DataContainer>
       {!logInSuccess ? (

@@ -42,7 +42,14 @@ const Address = ({ handleChange }) => {
             type="number"
           />
         </InputContainer>
-        <SearchBtn onClick={() => setSearchAddress(true)}>검색</SearchBtn>
+        <SearchBtn
+          onClick={(e) => {
+            e.preventDefault();
+            setSearchAddress(true);
+          }}
+        >
+          검색
+        </SearchBtn>
       </ZoneCodeContainer>
       <InputContainer>
         <InputLabel>주소</InputLabel>

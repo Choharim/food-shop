@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Data } from "Data";
 import styled from "styled-components";
 import { Context } from "components/ContextProvider/ContextProvider";
+import { AiOutlineClose } from "react-icons/ai";
 
 const OrderList = () => {
   const { setOrderData, orderData } = useContext(Context);
@@ -17,14 +18,29 @@ const OrderList = () => {
     },
   ]
   */
+  /* const deleteCard = (index, i) => {
+    const updateArray = orderData.map((data, a) =>
+      a === index ? data.filter((n, b) => b !== i) : data
+    );
+    setOrderData(updateArray);
+  };
+*/
 
-  //엑스버튼 누르면 삭제 (체크한거 삭제)
+  console.log(orderData);
   return (
     <>
       {orderData.map((data, index) => (
         <Container key={index}>
           {data.map((obj, i) => (
             <OrderCard key={i}>
+              <DelBtn
+                onClick={() => {
+                  const updateArray = orderData.map((data, a) =>
+                    a === index ? data.filter((n, b) => b !== i) : data
+                  );
+                  setOrderData(updateArray);
+                }}
+              />
               <Picture
                 image={Data.find((food) => food.name === obj.foodName).image2}
               ></Picture>
@@ -79,9 +95,18 @@ const Container = styled.div`
 `;
 
 const OrderCard = styled.div`
+  position: relative;
   display: flex;
-  width: 100%;
-  margin: 15px;
+  width: calc(100% - 20px);
+  margin: 10px;
+`;
+
+const DelBtn = styled(AiOutlineClose)`
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #493c3b;
+  cursor: pointer;
 `;
 
 const Picture = styled.div`

@@ -9,8 +9,9 @@ const ClassList = () => {
   const [checkArray, setCheckArray] = useState([]);
   let updateArray = classData.slice();
   let reversCheckArray = checkArray.slice();
-  reversCheckArray.sort();
-  reversCheckArray.reverse();
+  reversCheckArray.sort(function (a, b) {
+    return b - a;
+  });
 
   const handleCheck = (index) => (e) => {
     if (checkArray.length !== classData.length && index === "all") {
@@ -35,7 +36,6 @@ const ClassList = () => {
     setCheckArray([]);
   };
 
-  console.log(checkArray, classData);
   return (
     <ListContainer>
       <CheckContainer>

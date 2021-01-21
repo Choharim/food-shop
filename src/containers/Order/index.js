@@ -70,6 +70,13 @@ const Order = () => {
     if (checkValidaion()) {
       setShowModal(true);
       //  localStorage.setItem("orderData", JSON.stringify(orderData));
+      setUserInfo({
+        name: "",
+        phone: "",
+        extraAddress: "",
+        zoneCode: "",
+        address: "",
+      });
     } else {
       setShowModal(false);
     }

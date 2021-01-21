@@ -83,12 +83,11 @@ const DataContainer = styled.div`
 
 const Cart = styled(AiOutlineShoppingCart)`
   position: absolute;
-  left: -16px;
-  font-size: 1.2rem;
+  left: -18px;
+  font-size: 1.3rem;
   padding: 5px;
-  color: white;
-  background-color: #b89995;
-  border-radius: 50%;
+  color: #7d6765;
+  background-color: #fff;
 `;
 
 const Name = styled.span`

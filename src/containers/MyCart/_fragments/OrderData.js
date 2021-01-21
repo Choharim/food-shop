@@ -9,7 +9,7 @@ import OrderList from "./OrderList";
 const OrderData = () => {
   let history = useHistory();
   const { orderData } = useContext(Context);
-  console.log(orderData);
+
   return (
     <DataContainer>
       {Array.isArray(orderData) && orderData.length === 0 ? (
