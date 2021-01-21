@@ -8,6 +8,9 @@ const ClassList = () => {
   const { classData, setClassData } = useContext(Context);
   const [checkArray, setCheckArray] = useState([]);
   let updateArray = classData.slice();
+  let reversCheckArray = checkArray.slice();
+  reversCheckArray.sort();
+  reversCheckArray.reverse();
 
   const handleCheck = (index) => (e) => {
     if (checkArray.length !== classData.length && index === "all") {
@@ -23,20 +26,16 @@ const ClassList = () => {
     }
   };
   const deleteCard = () => {
-    if (checkArray.some((i) => i === "all")) {
-      setClassData([]);
-    } else {
-      for (let i = 0; i < checkArray.length; i++) {
-        updateArray = updateArray.filter(
-          (obj, index) => index !== checkArray[i]
-        );
-      }
-      setClassData(updateArray);
-      setCheckArray([]);
+    for (let i = 0; i < checkArray.length; i++) {
+      updateArray = updateArray.filter(
+        (obj, index) => index !== reversCheckArray[i]
+      );
     }
+    setClassData(updateArray);
+    setCheckArray([]);
   };
 
-  console.log(checkArray);
+  console.log(checkArray, classData);
   return (
     <ListContainer>
       <CheckContainer>
