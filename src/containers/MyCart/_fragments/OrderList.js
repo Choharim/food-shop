@@ -8,15 +8,14 @@ const OrderList = () => {
   const { setOrderData, orderData } = useContext(Context);
 
   /*
-  [
-    {
-      foodName: "",
-      except: [],
-      add: [],
-      allergy: "",
-      allergyText: "",
-    },
-  ]
+const updateArray = orderData.map((element, i) =>
+                    i === index
+                      ? element.length === 1
+                        ? null
+                        : element.filter((n, i2) => i2 !== index2)
+                      : element
+                  );
+                  setOrderData(updateArray);
   */
   /* const deleteCard = (index, i) => {
     const updateArray = orderData.map((data, a) =>
@@ -31,12 +30,17 @@ const OrderList = () => {
     <>
       {orderData.map((data, index) => (
         <Container key={index}>
-          {data.map((obj, i) => (
-            <OrderCard key={i}>
+          {data.map((obj, index2) => (
+            <OrderCard key={index2}>
               <DelBtn
                 onClick={() => {
-                  const updateArray = orderData.map((data, a) =>
-                    a === index ? data.filter((n, b) => b !== i) : data
+                  let updateArray = orderData.map((element, i) =>
+                    i === index
+                      ? element.filter((ele, i2) => i2 !== index2)
+                      : element
+                  );
+                  updateArray = updateArray.filter(
+                    (array) => array.length !== 0
                   );
                   setOrderData(updateArray);
                 }}
