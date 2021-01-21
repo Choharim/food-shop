@@ -75,8 +75,6 @@ const Order = () => {
     }
   };
 
-  console.log(userInfo);
-
   return (
     <>
       {location.state === undefined ? (

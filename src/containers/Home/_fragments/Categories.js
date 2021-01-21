@@ -12,7 +12,7 @@ const Categories = ({ filterFoodArray }) => {
   return (
     <MenuFilterContainer>
       <MenuFilterItem
-        color={filter === "all" ? "#7d6765" : "#fff"}
+        color={filter === "all" ? "#b89995" : "#fff"}
         onClick={() => {
           filterFoodArray("all");
           setFilter("all");
@@ -22,7 +22,7 @@ const Categories = ({ filterFoodArray }) => {
         <MenuFilterText>모두</MenuFilterText>
       </MenuFilterItem>
       <MenuFilterItem
-        color={filter === "dish" ? "#7d6765" : "#fff"}
+        color={filter === "dish" ? "#b89995" : "#fff"}
         onClick={() => {
           filterFoodArray("dish");
           setFilter("dish");
@@ -32,7 +32,7 @@ const Categories = ({ filterFoodArray }) => {
         <MenuFilterText>식사</MenuFilterText>
       </MenuFilterItem>
       <MenuFilterItem
-        color={filter === "drink" ? "#7d6765" : "#fff"}
+        color={filter === "drink" ? "#b89995" : "#fff"}
         onClick={() => {
           filterFoodArray("drink");
           setFilter("drink");
@@ -42,7 +42,7 @@ const Categories = ({ filterFoodArray }) => {
         <MenuFilterText>음료</MenuFilterText>
       </MenuFilterItem>
       <MenuFilterItem
-        color={filter === "snack" ? "#7d6765" : "#fff"}
+        color={filter === "snack" ? "#b89995" : "#fff"}
         onClick={() => {
           filterFoodArray("snack");
           setFilter("snack");

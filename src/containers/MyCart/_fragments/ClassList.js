@@ -10,13 +10,13 @@ const ClassList = () => {
   let updateArray = classData.slice();
 
   const handleCheck = (index) => (e) => {
-    if (index === "all" && checkArray.every((i) => i !== "all")) {
-      setCheckArray([...Array(classData.length).keys(), "all"]);
-    } else if (index === "all" && checkArray.some((i) => i === "all")) {
+    if (checkArray.length !== classData.length && index === "all") {
       setCheckArray([...Array(classData.length).keys()]);
+    } else if (checkArray.length === classData.length && index === "all") {
+      setCheckArray([]);
     } else {
       if (checkArray.some((i) => i === index)) {
-        setCheckArray(checkArray.filter((i) => i !== "all" && i !== index));
+        setCheckArray(checkArray.filter((i) => i !== index));
       } else {
         setCheckArray([...checkArray, index]);
       }
@@ -43,7 +43,7 @@ const ClassList = () => {
         <CancleCheck
           type="checkbox"
           onChange={handleCheck("all")}
-          checked={checkArray.some((i) => i === "all")}
+          checked={checkArray.length === classData.length}
         />
         <CancleBtn onClick={deleteCard} />
       </CheckContainer>
