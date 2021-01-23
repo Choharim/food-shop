@@ -97,7 +97,7 @@ const DelBtn = styled(AiOutlineClose)`
 
 const Picture = styled.div`
   width: 100px;
-  height: 100%;
+  height: 100px;
   margin-right: 10px;
   border-radius: 10px;
   background-image: url(${(props) => props.image});
