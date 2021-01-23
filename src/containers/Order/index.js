@@ -125,8 +125,10 @@ const ContentsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
   width: calc(100% - 40px);
-  margin: 0 20px 0;
+  height: calc(100% - 80px);
+  margin: 0 20px 80px;
 `;
 
 const CancleBtn = styled(AiOutlineClose)`
@@ -139,7 +141,6 @@ const CancleBtn = styled(AiOutlineClose)`
 `;
 
 const Title = styled.span`
-  margin-top: 150px;
   font-size: 23px;
   font-weight: bolder;
   color: #493c3b;
@@ -150,5 +151,5 @@ const Form = styled.form`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  margin-top: 30px;
+  margin-top: 20px;
 `;

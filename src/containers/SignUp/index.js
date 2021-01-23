@@ -127,40 +127,34 @@ const SingUp = () => {
   };
 
   return (
-    <Container>
+    <SignUpContainer>
       <BackBtn
         onClick={() => (step !== 1 ? setStep(step - 1) : history.push("/"))}
       />
-      <SignUpContainer>
-        {step !== 4 && <Logo onClick={() => history.push("/")} />}
-        <SignUpForm onSubmit={(e) => e.preventDefault()}>
-          {formContents(step)}
-        </SignUpForm>
-        <BigButton
-          type="submit"
-          color={checkValidaion() ? "#7d6765" : "#d7d2cb"}
-          onClick={handleSubmit}
-        >
-          {step !== 4 ? "다음" : "완료"}
-        </BigButton>
-      </SignUpContainer>
-    </Container>
+      {step !== 4 && <Logo onClick={() => history.push("/")} />}
+      <SignUpForm onSubmit={(e) => e.preventDefault()}>
+        {formContents(step)}
+      </SignUpForm>
+      <BigButton
+        type="submit"
+        color={checkValidaion() ? "#7d6765" : "#d7d2cb"}
+        onClick={handleSubmit}
+      >
+        {step !== 4 ? "다음" : "완료"}
+      </BigButton>
+    </SignUpContainer>
   );
 };
 
 export default SingUp;
 
-const Container = styled.div`
-  display: flex;
-  width: 100%;
-`;
-
 const SignUpContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
-  margin: 180px 20px 0;
+  margin: 0 20px;
 `;
 
 const BackBtn = styled(RiArrowGoBackLine)`

@@ -81,7 +81,7 @@ const ListContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  // overflow-y: auto;
+  overflow-y: scroll;
 `;
 
 const CheckContainer = styled.div`

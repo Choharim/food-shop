@@ -64,8 +64,7 @@ const ClassCard = styled.div`
   align-items: flex-end;
   justify-content: flex-end;
   width: 48%;
-  height: 210px;
-  margin-bottom: 15px;
+  height: calc(100% / 3 - 10px);
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     url(${(props) => props.image});
   background-size: cover;

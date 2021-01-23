@@ -99,11 +99,12 @@ const ClassDetails = () => {
 export default ClassDetails;
 
 const DetailsContainer = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
+  margin: 0 20px;
 `;
 
 const BackBtn = styled(BsArrowLeft)`
@@ -116,8 +117,8 @@ const BackBtn = styled(BsArrowLeft)`
 `;
 
 const Title = styled.span`
-  margin-top: 50px;
-  font-size: 23px;
+  margin-bottom: 20px;
+  font-size: 20px;
   font-weight: bolder;
   color: #493c3b;
 `;
@@ -125,6 +126,6 @@ const Title = styled.span`
 const ContentsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: calc(100% - 40px);
-  margin: 30px 20px 0;
+  width: 100%;
+  margin-bottom: 60px;
 `;

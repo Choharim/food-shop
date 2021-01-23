@@ -44,7 +44,7 @@ const OneStep = ({ userObj, showPicture, handleChange }) => {
             <Input
               onChange={handleChange("phone")}
               value={userObj.phone}
-              type="tel"
+              type="text"
               placeholder="ex) 010-1234-5678"
               width="100%"
             >

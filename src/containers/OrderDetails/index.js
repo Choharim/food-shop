@@ -86,22 +86,22 @@ const OrderDetails = () => {
           <FoodPicture image={location.state.food.image2}>
             <BackBtn onClick={() => history.push("/shop")} />
           </FoodPicture>
-          {favorite.some((item) => item === location.state.food.name) ? (
-            <FillHeartIcon
-              onClick={() =>
-                setFavorite(
-                  favorite.filter((item) => item !== location.state.food.name)
-                )
-              }
-            />
-          ) : (
-            <HeartIcon
-              onClick={() =>
-                setFavorite([...favorite, location.state.food.name])
-              }
-            />
-          )}
           <ContentsContainer>
+            {favorite.some((item) => item === location.state.food.name) ? (
+              <FillHeartIcon
+                onClick={() =>
+                  setFavorite(
+                    favorite.filter((item) => item !== location.state.food.name)
+                  )
+                }
+              />
+            ) : (
+              <HeartIcon
+                onClick={() =>
+                  setFavorite([...favorite, location.state.food.name])
+                }
+              />
+            )}
             {step === 1 ? (
               <>
                 <Intro
@@ -178,13 +178,14 @@ const DetailsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  overflow: hidden;
 `;
 
 const FoodPicture = styled.div`
   width: 100%;
-  height: 300px;
+  height: 250px;
   background-image: url(${(props) => props.image});
-  background-size: contain;
+  background-size: cover;
 `;
 
 const BackBtn = styled(BsArrowLeft)`
@@ -201,8 +202,8 @@ const BackBtn = styled(BsArrowLeft)`
 
 const HeartIcon = styled(AiOutlineHeart)`
   position: absolute;
-  top: 190px;
-  right: 50px;
+  top: -25px;
+  right: 25px;
   padding: 8px;
   border-radius: 50%;
   color: white;
@@ -214,8 +215,8 @@ const HeartIcon = styled(AiOutlineHeart)`
 
 const FillHeartIcon = styled(AiFillHeart)`
   position: absolute;
-  top: 190px;
-  right: 50px;
+  top: -25px;
+  right: 25px;
   padding: 8px;
   border-radius: 50%;
   color: rgb(237, 73, 86);
@@ -226,14 +227,11 @@ const FillHeartIcon = styled(AiFillHeart)`
 `;
 
 const ContentsContainer = styled.div`
-  position: absolute;
-  bottom: 0;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 600px;
-  height: 510px;
   margin-bottom: 100px;
   background-color: white;
   border-top-left-radius: 30px;
@@ -245,5 +243,5 @@ const ScrollContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  overflow-y: auto;
+  overflow-y: scroll;
 `;

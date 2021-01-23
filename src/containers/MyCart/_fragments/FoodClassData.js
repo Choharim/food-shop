@@ -42,21 +42,23 @@ const DataContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: calc(100% - 40px);
-  margin: 0 20px 40px;
+  margin: 0 20px 80px;
+  height: calc(100% - 80px);
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  width: 100%;
+  height: 100%;
 `;
 
 const Cart = styled.div`
   width: 120px;
   height: 120px;
-  margin: 150px 0 30px;
+  margin-bottom: 30px;
   background-image: url(${(props) => props.image});
   background-size: cover;
 `;

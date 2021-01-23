@@ -82,6 +82,7 @@ const Container = styled.div`
 const OrderCard = styled.div`
   position: relative;
   display: flex;
+  align-items: center;
   width: calc(100% - 20px);
   margin: 10px;
 `;
@@ -96,7 +97,7 @@ const DelBtn = styled(AiOutlineClose)`
 
 const Picture = styled.div`
   width: 100px;
-  height: 100px;
+  height: 100%;
   margin-right: 10px;
   border-radius: 10px;
   background-image: url(${(props) => props.image});
@@ -109,7 +110,6 @@ const InfoContainer = styled.div`
 `;
 
 const Name = styled.span`
-  margin-bottom: 5px;
   font-size: 16px;
   font-weight: bolder;
   color: #493c3b;
@@ -118,6 +118,8 @@ const Name = styled.span`
 const TextContainer = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  margin-top: 5px;
 `;
 
 const Title = styled.span`

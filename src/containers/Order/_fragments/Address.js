@@ -34,7 +34,7 @@ const Address = ({ handleChange }) => {
   return (
     <>
       <ZoneCodeContainer>
-        <InputContainer style={{ height: "auto" }}>
+        <InputContainer>
           <InputLabel>우편번호</InputLabel>
           <ZoneCode
             onChange={handleChange("zoneCode")}
@@ -108,7 +108,6 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100px;
   margin-bottom: 5px;
 `;
 

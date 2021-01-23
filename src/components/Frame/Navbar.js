@@ -91,11 +91,13 @@ const NavbarBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   position: fixed;
   right: -330px;
   visibility: hidden;
   opacity: 0;
   width: 330px;
+  height: 100%;
   z-index: 100;
   background-color: white;
   transition: 0.2s ease;
@@ -106,7 +108,6 @@ const NavbarBox = styled.div`
       visibility: visible;
       opacity: 1;
     `}
-  height:100%;
 `;
 
 const HeadContainer = styled.div`
@@ -156,7 +157,6 @@ const UrlContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  margin: 150px 0;
 `;
 
 const UrlBbtn = styled(Link)`

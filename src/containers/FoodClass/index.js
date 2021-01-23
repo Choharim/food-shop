@@ -69,7 +69,8 @@ const CardContainer = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   width: calc(100% - 40px);
-  margin: 20px 20px 0;
+  height: 100%;
+  margin: 20px 20px 40px;
 `;
 
 const PageMoveBtnContainer = styled.div`

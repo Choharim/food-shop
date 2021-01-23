@@ -64,31 +64,35 @@ const LogIn = () => {
       <BackBtn onClick={() => history.push("/")} />
       <Logo onClick={() => history.push("/")} />
       <LogInForm>
-        <Input
-          onChange={handleChange("id")}
-          value={currentUser.id}
-          type="text"
-          width="100%"
-        >
-          아이디
-        </Input>
-        {currentUser.id === "" && <Warning>아이디를 적어주세요.</Warning>}
-        {!checkUser() && currentUser.id !== "" && (
-          <Warning>등록되지 않은 정보입니다.</Warning>
-        )}
-        <Input
-          onChange={handleChange("pw")}
-          value={currentUser.pw}
-          autocomplete="current-password"
-          type="password"
-          width="100%"
-        >
-          비밀번호
-        </Input>
-        {currentUser.pw === "" && <Warning>비밀번호를 적어주세요.</Warning>}
-        {!checkUser() && currentUser.pw !== "" && (
-          <Warning>등록되지 않은 정보입니다.</Warning>
-        )}
+        <LabelContainer>
+          <Input
+            onChange={handleChange("id")}
+            value={currentUser.id}
+            type="text"
+            width="100%"
+          >
+            아이디
+          </Input>
+          {currentUser.id === "" && <Warning>아이디를 적어주세요.</Warning>}
+          {!checkUser() && currentUser.id !== "" && (
+            <Warning>등록되지 않은 정보입니다.</Warning>
+          )}
+        </LabelContainer>
+        <LabelContainer>
+          <Input
+            onChange={handleChange("pw")}
+            value={currentUser.pw}
+            autocomplete="current-password"
+            type="password"
+            width="100%"
+          >
+            비밀번호
+          </Input>
+          {currentUser.pw === "" && <Warning>비밀번호를 적어주세요.</Warning>}
+          {!checkUser() && currentUser.pw !== "" && (
+            <Warning>등록되지 않은 정보입니다.</Warning>
+          )}
+        </LabelContainer>
       </LogInForm>
       <LineContainer>
         <LineText>OR</LineText>
@@ -111,8 +115,9 @@ const LogInContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
-  margin: 180px 20px 0;
+  margin: 0 20px;
 `;
 
 const BackBtn = styled(RiArrowGoBackLine)`
@@ -148,6 +153,13 @@ const LineContainer = styled.div`
   width: 100%;
   margin-bottom: 20px;
   border-top: 1px solid #7d6765;
+`;
+
+const LabelContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100px;
 `;
 
 const LineText = styled.span`

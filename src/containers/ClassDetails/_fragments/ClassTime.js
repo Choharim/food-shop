@@ -46,12 +46,12 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 `;
 
 const Text = styled.span`
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bolder;
   color: #493c3b;
 `;
@@ -59,6 +59,9 @@ const Text = styled.span`
 const InputContainer = styled.div`
   display: flex;
   align-items: center;
+  > input {
+    margin: 0 5px 0 0;
+  }
 `;
 
 const Input = styled.input``;

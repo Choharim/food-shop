@@ -41,7 +41,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 `;
 
 const CalendarContainer = styled(Calendar)`
@@ -71,7 +71,7 @@ const CalendarContainer = styled(Calendar)`
 `;
 
 const Text = styled.span`
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bolder;
   color: #493c3b;
 `;

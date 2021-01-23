@@ -21,7 +21,7 @@ const NamePhone = ({ handleChange }) => {
           onChange={handleChange("phone")}
           value={userInfo.phone}
           autocomplete="off"
-          type="tel"
+          type="text"
           placeholder="ex) 010 - 1234 - 5678"
         />
         {userInfo.phone === "" && <Warning>전화번호를 적어주세요.</Warning>}
@@ -40,7 +40,6 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100px;
   margin-bottom: 5px;
 `;
 
