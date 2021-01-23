@@ -7,25 +7,6 @@ import { AiOutlineClose } from "react-icons/ai";
 const OrderList = () => {
   const { setOrderData, orderData } = useContext(Context);
 
-  /*
-const updateArray = orderData.map((element, i) =>
-                    i === index
-                      ? element.length === 1
-                        ? null
-                        : element.filter((n, i2) => i2 !== index2)
-                      : element
-                  );
-                  setOrderData(updateArray);
-  */
-  /* const deleteCard = (index, i) => {
-    const updateArray = orderData.map((data, a) =>
-      a === index ? data.filter((n, b) => b !== i) : data
-    );
-    setOrderData(updateArray);
-  };
-*/
-
-  console.log(orderData);
   return (
     <>
       {orderData.map((data, index) => (

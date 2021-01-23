@@ -62,7 +62,6 @@ const ClassDetails = () => {
     }
   };
 
-  console.log(classData);
   return (
     <>
       {location.state === undefined ? (

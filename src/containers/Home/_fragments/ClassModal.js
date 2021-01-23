@@ -20,16 +20,17 @@ const ClassModal = () => {
   ];
   const [difficulty, setDifficulty] = useState(difficultyData[2]);
   const [height, setHeight] = useState(0);
-  const modal = useRef();
 
   useEffect(() => {
     const updateModalHeight = () => {
-      setHeight(window.innerHeight - 420);
+      if (height !== window.innerHeight) {
+        setHeight(window.innerHeight - 1150);
+      }
     };
     updateModalHeight();
     window.addEventListener("resize", updateModalHeight);
     return window.removeEventListener("resize", updateModalHeight);
-  }, []);
+  }, [height]);
 
   const clickClass = (foodClass) => (e) => {
     if (e.target.id === "class") {
@@ -43,11 +44,11 @@ const ClassModal = () => {
   return (
     <Modal
       position="bottom"
-      bottom={`-${height}px`}
+      bottom={`${height}px`}
       visible={showModal}
       closeModal={() => setShowModal(false)}
     >
-      <ModalContainer ref={modal}>
+      <ModalContainer>
         <TouchLineArea onClick={() => setShowModal(!showModal)}>
           <TouchLine></TouchLine>
         </TouchLineArea>
