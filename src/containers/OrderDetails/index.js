@@ -234,8 +234,6 @@ const ContentsContainer = styled.div`
   width: 100%;
   margin-bottom: 100px;
   background-color: white;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
 `;
 
 const ScrollContainer = styled.div`
