@@ -2,8 +2,7 @@
 
 > 기획과 디자인 모두 1인으로 진행된 펫 프렌즈는 모바일 웹으로 제작되었습니다. 강아지를 사랑하는 보호자들이 펫프렌즈를 통해 맞춤형 음식을 주문할 수 있으며, 요리하는 수업을 신청할 수 있습니다. [바로가기](http://choharim.github.io/food-shop/)
 
-<img src="src\images\petFriends1.png" width="220">
-<img src="src\images\petFriends2.png" width="220">
+<img src="src\images\petFriends.png" width="500">
 
 ---
 
