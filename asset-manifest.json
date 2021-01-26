@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/food-shop/static/js/main.b1663e82.chunk.js",
-    "main.js.map": "/food-shop/static/js/main.b1663e82.chunk.js.map",
+    "main.js": "/food-shop/static/js/main.ca953513.chunk.js",
+    "main.js.map": "/food-shop/static/js/main.ca953513.chunk.js.map",
     "runtime-main.js": "/food-shop/static/js/runtime-main.92721b70.js",
     "runtime-main.js.map": "/food-shop/static/js/runtime-main.92721b70.js.map",
     "static/css/2.7a9abd53.chunk.css": "/food-shop/static/css/2.7a9abd53.chunk.css",
-    "static/js/2.b4a7c12f.chunk.js": "/food-shop/static/js/2.b4a7c12f.chunk.js",
-    "static/js/2.b4a7c12f.chunk.js.map": "/food-shop/static/js/2.b4a7c12f.chunk.js.map",
+    "static/js/2.fe4db49d.chunk.js": "/food-shop/static/js/2.fe4db49d.chunk.js",
+    "static/js/2.fe4db49d.chunk.js.map": "/food-shop/static/js/2.fe4db49d.chunk.js.map",
     "index.html": "/food-shop/index.html",
     "static/css/2.7a9abd53.chunk.css.map": "/food-shop/static/css/2.7a9abd53.chunk.css.map",
-    "static/js/2.b4a7c12f.chunk.js.LICENSE.txt": "/food-shop/static/js/2.b4a7c12f.chunk.js.LICENSE.txt",
+    "static/js/2.fe4db49d.chunk.js.LICENSE.txt": "/food-shop/static/js/2.fe4db49d.chunk.js.LICENSE.txt",
     "static/media/basicProfile.2527b704.png": "/food-shop/static/media/basicProfile.2527b704.png",
     "static/media/cookingClass.a4f589bb.jpg": "/food-shop/static/media/cookingClass.a4f589bb.jpg",
     "static/media/dish-1-1.65428b6e.jpg": "/food-shop/static/media/dish-1-1.65428b6e.jpg",
@@ -44,7 +44,7 @@
   "entrypoints": [
     "static/js/runtime-main.92721b70.js",
     "static/css/2.7a9abd53.chunk.css",
-    "static/js/2.b4a7c12f.chunk.js",
-    "static/js/main.b1663e82.chunk.js"
+    "static/js/2.fe4db49d.chunk.js",
+    "static/js/main.ca953513.chunk.js"
   ]
 }
