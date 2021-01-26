@@ -236,6 +236,7 @@ const ClassList = styled.span`
   margin: 0 10px;
   color: #493c3b;
   font-size: 16px;
+  cursor: pointer;
 `;
 
 const ClassBtn = styled(BigButton)`

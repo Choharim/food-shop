@@ -178,7 +178,7 @@ const DetailsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  overflow: hidden;
+  overflow: auto;
 `;
 
 const FoodPicture = styled.div`
@@ -241,5 +241,4 @@ const ScrollContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  overflow-y: scroll;
 `;

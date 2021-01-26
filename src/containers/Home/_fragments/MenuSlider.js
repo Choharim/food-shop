@@ -21,7 +21,7 @@ const MenuSlider = ({ foodSlider }) => {
     pauseOnHover: true,
     arrows: false,
     dots: true,
-    // autoplay: true,
+    autoplay: true,
   };
 
   const clickCard = (food) => (e) => {

@@ -10,7 +10,7 @@ const ClassList = ({ pageCount, step }) => {
   const clickCard = (foodClass) => (e) => {
     if (e.target.id === "card") {
       history.push({
-        pathname: "classDetails",
+        pathname: "/classDetails",
         state: { foodClass },
       });
     }
